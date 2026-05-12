@@ -23,14 +23,24 @@ on:
         description: 'Production direction'
         required: true
         default: 'piano, bass, drums, strings, guitar, wide chorus'
+      publish_to_site:
+        description: 'Commit the rendered WAV as the latest site song'
+        required: true
+        type: choice
+        default: 'yes'
+        options:
+          - 'yes'
+          - 'no'
 
 permissions:
-  contents: read
+  contents: write
 
 env:
   REQUEST_PATH: generated/requests/song-request.dml.json
   MIDI_PATH: generated/song-midi-events/song-request/midi-events.dml.json
   WAV_PATH: generated/audio/song-request/song.wav
+  SITE_WAV_PATH: site/audio/latest/song.wav
+  SITE_METADATA_PATH: site/data/latest-song.json
 
 jobs:
   render:
@@ -39,6 +49,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          persist-credentials: true
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -88,6 +100,51 @@ jobs:
       - name: Check WAV file
         run: node tools/audio-wav-renderer/src/check.mjs "$WAV_PATH"
 
+      - name: Publish latest song to site working tree
+        if: ${{ github.event.inputs.publish_to_site == 'yes' }}
+        shell: bash
+        run: |
+          mkdir -p "$(dirname "$SITE_WAV_PATH")" "$(dirname "$SITE_METADATA_PATH")"
+          cp "$WAV_PATH" "$SITE_WAV_PATH"
+          node - <<'NODE'
+          const fs = require('node:fs');
+          const metadata = {
+            schema: 'dml.site_latest_song.v1',
+            title: process.env.INPUT_TITLE,
+            key: process.env.INPUT_KEY,
+            bpm: Number(process.env.INPUT_BPM),
+            emotion: process.env.INPUT_EMOTION,
+            production_direction: process.env.INPUT_PRODUCTION_DIRECTION,
+            audio_path: 'audio/latest/song.wav',
+            source_request_path: process.env.REQUEST_PATH,
+            source_midi_path: process.env.MIDI_PATH,
+            generated_at: new Date().toISOString(),
+            github_run_url: `${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`,
+            boundary: 'published_latest_site_wav'
+          };
+          fs.writeFileSync(process.env.SITE_METADATA_PATH, JSON.stringify(metadata, null, 2) + '\n');
+          NODE
+        env:
+          INPUT_TITLE: ${{ github.event.inputs.title }}
+          INPUT_KEY: ${{ github.event.inputs.key }}
+          INPUT_BPM: ${{ github.event.inputs.bpm }}
+          INPUT_EMOTION: ${{ github.event.inputs.emotion }}
+          INPUT_PRODUCTION_DIRECTION: ${{ github.event.inputs.production_direction }}
+
+      - name: Commit latest site song
+        if: ${{ github.event.inputs.publish_to_site == 'yes' }}
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$SITE_WAV_PATH" "$SITE_METADATA_PATH"
+          if git diff --cached --quiet; then
+            echo "No site song changes to publish."
+          else
+            git commit -m "site: publish latest rendered song"
+            git push
+          fi
+
       - name: Upload song request artifact
         uses: actions/upload-artifact@v4
         with:
@@ -95,9 +152,12 @@ jobs:
           path: |
             ${{ env.REQUEST_PATH }}
             ${{ env.MIDI_PATH }}
+            ${{ env.SITE_METADATA_PATH }}
 
       - name: Upload WAV artifact
         uses: actions/upload-artifact@v4
         with:
           name: dkey-rendered-song-wav
-          path: ${{ env.WAV_PATH }}
+          path: |
+            ${{ env.WAV_PATH }}
+            ${{ env.SITE_WAV_PATH }}
