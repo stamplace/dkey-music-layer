@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  foundation:
+  verify:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -19,14 +19,15 @@ jobs:
         with:
           node-version: 20
 
-      - name: Doctor
-        run: npm run doctor
+      - name: Full verify
+        run: npm run verify
 
-      - name: Test
-        run: npm test
-
-      - name: Pack check
-        run: npm run pack:check
-
-      - name: Render smoke
-        run: npm run smoke
+      - name: Upload generated DML artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dml-generated-artifacts
+          path: |
+            generated/**
+            assets/rights/**
+          if-no-files-found: warn
