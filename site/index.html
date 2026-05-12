@@ -89,42 +89,42 @@
         <div class="mark" aria-hidden="true"></div>
         <div><strong>DKey Music Layer</strong><span>Render Console · WAV output</span></div>
       </div>
-      <div class="pill">Human-led · CI-rendered · WAV artifact</div>
+      <div class="pill">Human-led · CI-rendered · site-published WAV</div>
     </header>
 
     <section class="hero">
       <div class="panel copy">
         <span class="pill">Product render path</span>
-        <h1>כתוב שיר. הרץ Render. קבל WAV.</h1>
-        <p class="lead">זה המסלול המוצרי הנוכחי: לא JSON כמטרה, אלא בקשת שיר שנכנסת למנוע ומחזירה קובץ שמע.</p>
-        <p>האתר מציג את השיר האחרון שפורסם, ובמקביל מכוון אותך ל־GitHub Action שמייצר WAV חדש לפי פרמטרים. השלב הבא יחבר את הכפתור להפעלה אוטומטית מלאה.</p>
+        <h1>כתוב שיר. הרץ Render. קבל WAV באתר.</h1>
+        <p class="lead">זה המסלול המוצרי הנוכחי: בקשת שיר נכנסת למנוע, יוצאת כקובץ שמע, ומתפרסמת כ־latest באתר.</p>
+        <p>האתר מציג קודם את השיר האחרון שפורסם מתוך Action. אם עדיין אין latest, הוא נופל חזרה לשיר הקיים.</p>
         <div class="steps">
           <div class="step"><b>1</b><br>ממלאים כוונת שיר</div>
           <div class="step"><b>2</b><br>פותחים Render Song</div>
-          <div class="step"><b>3</b><br>Run workflow</div>
-          <div class="step"><b>4</b><br>מורידים WAV artifact</div>
+          <div class="step"><b>3</b><br>publish_to_site=yes</div>
+          <div class="step"><b>4</b><br>השיר מופיע באתר</div>
         </div>
       </div>
 
       <section class="panel audio-card">
-        <h2>השיר האחרון באתר</h2>
-        <p>זה קובץ ה־WAV שפורסם עם האתר. יצירת שיר חדש מתבצעת כרגע דרך Action ומחזירה artifact להורדה.</p>
-        <audio controls preload="metadata" src="audio/hasidic-modern/first-song.wav"></audio>
+        <h2 id="latestTitle">השיר האחרון באתר</h2>
+        <p id="latestMeta">טוען metadata של השיר האחרון. אם אין metadata, יוצג קובץ ברירת המחדל.</p>
+        <audio id="latestAudio" controls preload="metadata" src="audio/latest/song.wav"></audio>
         <div class="actions">
-          <a class="button" href="audio/hasidic-modern/first-song.wav" download>הורד WAV קיים</a>
+          <a class="button" id="downloadLatest" href="audio/latest/song.wav" download>הורד WAV אחרון</a>
           <a class="button secondary" href="https://github.com/stamplace/dkey-music-layer/actions/workflows/render-song.yml" target="_blank" rel="noopener">פתח Render Song</a>
         </div>
         <div class="status">
-          <div class="row"><span>Current engine</span><strong class="ok">DML → WAV</strong></div>
-          <div class="row"><span>New-song output</span><strong>GitHub artifact</strong></div>
-          <div class="row"><span>Next layer</span><strong class="warn">site-triggered render</strong></div>
+          <div class="row"><span>Current engine</span><strong class="ok">DML → WAV → Site</strong></div>
+          <div class="row"><span>Latest path</span><strong id="latestPath">audio/latest/song.wav</strong></div>
+          <div class="row"><span>Next layer</span><strong class="warn">one-click site trigger</strong></div>
         </div>
       </section>
     </section>
 
     <section class="panel console">
       <h2>Render Console</h2>
-      <p>מלא כאן את כוונת השיר, העתק את הערכים לתוך GitHub Action, והריצה תחזיר WAV להורדה. זה גשר נקי עד שנחבר API מלא.</p>
+      <p>מלא כאן את כוונת השיר, העתק את הערכים לתוך GitHub Action, בחר publish_to_site=yes, והריצה תעדכן את השיר באתר.</p>
       <div class="console-grid">
         <form class="grid" id="songForm">
           <label>שם השיר
@@ -155,7 +155,7 @@
     </section>
 
     <section class="roadmap">
-      <div class="card"><h3>עכשיו</h3><p>אתר מוצר + נגן WAV + workflow שמייצר WAV חדש לפי input.</p></div>
+      <div class="card"><h3>עכשיו</h3><p>אתר מוצר + נגן WAV + workflow שמייצר ומפרסם WAV אחרון באתר.</p></div>
       <div class="card"><h3>הבא</h3><p>כפתור באתר שמפעיל render בלי להיכנס ידנית ל־Actions.</p></div>
       <div class="card"><h3>פרודקשן מלא</h3><p>מנוע תזמור עשיר, stems, סמפלים אמיתיים עם rights gate, ומערכת שמחזירה קובץ ישירות למשתמש.</p></div>
     </section>
@@ -164,6 +164,12 @@
   <script>
     const form = document.getElementById('songForm');
     const output = document.getElementById('output');
+    const latestAudio = document.getElementById('latestAudio');
+    const latestTitle = document.getElementById('latestTitle');
+    const latestMeta = document.getElementById('latestMeta');
+    const latestPath = document.getElementById('latestPath');
+    const downloadLatest = document.getElementById('downloadLatest');
+    const fallbackAudio = 'audio/hasidic-modern/first-song.wav';
 
     function makeActionValues() {
       return {
@@ -171,7 +177,8 @@
         key: document.getElementById('key').value,
         bpm: String(Number(document.getElementById('bpm').value || 90)),
         emotion: document.getElementById('emotion').value.trim() || 'warm, clear, human',
-        production_direction: document.getElementById('intent').value.trim() || 'piano, bass, drums, strings, guitar'
+        production_direction: document.getElementById('intent').value.trim() || 'piano, bass, drums, strings, guitar',
+        publish_to_site: 'yes'
       };
     }
 
@@ -180,6 +187,28 @@
       const values = makeActionValues();
       output.textContent = Object.entries(values).map(([key, value]) => `${key}: ${value}`).join('\n');
     });
+
+    async function loadLatestSong() {
+      try {
+        const response = await fetch('data/latest-song.json', { cache: 'no-store' });
+        if (!response.ok) throw new Error('missing latest-song metadata');
+        const data = await response.json();
+        const audioPath = data.audio_path || 'audio/latest/song.wav';
+        latestTitle.textContent = data.title ? `השיר האחרון: ${data.title}` : 'השיר האחרון באתר';
+        latestMeta.textContent = `${data.key || 'key?'} · ${data.bpm || 'bpm?'} BPM · ${data.emotion || 'emotion?'}`;
+        latestPath.textContent = audioPath;
+        latestAudio.src = audioPath;
+        downloadLatest.href = audioPath;
+      } catch (error) {
+        latestTitle.textContent = 'שיר ברירת מחדל באתר';
+        latestMeta.textContent = 'עדיין לא פורסם latest דרך Render Song. מוצג קובץ קיים.';
+        latestPath.textContent = fallbackAudio;
+        latestAudio.src = fallbackAudio;
+        downloadLatest.href = fallbackAudio;
+      }
+    }
+
+    loadLatestSong();
   </script>
 </body>
 </html>
