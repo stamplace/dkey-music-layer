@@ -19,6 +19,10 @@ const requiredFiles = [
   'packages/render-engine/src/index.mjs',
   'tools/pack-validator/src/index.mjs',
   'tools/render-smoke/src/index.mjs',
+  'docs/formats/09_DML_FORMAT_CONTRACT.md',
+  'assets/demo-projects/hasidic-modern/project.dml.json',
+  'assets/vault/demo-hasidic-modern/asset-vault.dml.json',
+  'tools/project-validator/src/index.mjs',
   '.github/workflows/ci.yml'
 ];
 
@@ -66,9 +70,9 @@ function statusCommand() {
 function pickCommand() {
   const state = readState();
   state.delivery_status = 'picked';
-  state.active_wave = 'Wave 01: Product Control Layer';
-  state.current_work = 'Strengthen devctl work ledger and production control commands';
-  state.next_action = 'Run npm run verify, commit, and push Wave 01 control layer';
+  state.active_wave = 'Wave 02: DML Project Format and Asset Vault Hardening';
+  state.current_work = 'Harden DML project format, asset vault metadata, and validators';
+  state.next_action = 'Run npm run verify, commit, and push Wave 02 format hardening';
   state.verified = false;
   writeState(state);
   console.log('Work picked.');
@@ -78,9 +82,9 @@ function pickCommand() {
 function closeCommand() {
   const state = readState();
   state.delivery_status = 'implemented';
-  state.active_wave = 'Wave 01: Product Control Layer';
-  state.current_work = 'Product control layer baseline implemented';
-  state.next_action = 'Wave 02: DML project format and asset vault hardening';
+  state.active_wave = 'Wave 02: DML Project Format and Asset Vault Hardening';
+  state.current_work = 'DML project format and asset vault baseline implemented';
+  state.next_action = 'Wave 03: Intent-to-arrangement contract and first editable arrangement plan';
   state.verified = true;
   writeState(state);
   console.log('Work closed.');

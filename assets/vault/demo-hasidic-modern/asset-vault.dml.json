@@ -1,0 +1,31 @@
+{
+  "schema": "dml.asset_vault.v0",
+  "vault_id": "demo-hasidic-modern-vault",
+  "status": "demo_placeholder",
+  "policy": {
+    "real_commercial_assets_allowed": false,
+    "requires_source_ownership": true,
+    "requires_license_metadata": true,
+    "requires_explicit_import_log": true
+  },
+  "asset_classes": [
+    "sample",
+    "loop",
+    "midi",
+    "stem",
+    "project",
+    "render"
+  ],
+  "packs": [
+    {
+      "pack_id": "hasidic-modern-demo-pack",
+      "path": "../demo-packs/hasidic-modern/pack.dml.json",
+      "rights": {
+        "type": "demo_placeholder",
+        "commercial_use": false,
+        "training_use": false,
+        "redistribution": false
+      }
+    }
+  ]
+}

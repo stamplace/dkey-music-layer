@@ -36,3 +36,22 @@ Rejected for this wave:
 - Building a full UI.
 - Importing real Korg formats.
 - Adding large binary sample assets.
+
+## Wave 02 Decision — DML Format First
+
+Decision: strengthen the internal DML project and asset-vault contracts before building larger UI/audio features.
+
+Reason:
+DKey Music Layer must be able to describe a real musical project before it can reliably generate, edit, render, or control one. The project format is the stable product memory between human intent, arrangement, assets, tracks, stems, mix, and export.
+
+Selected path:
+- Add project.dml.json as the first project contract.
+- Add asset-vault.dml.json as the first source asset and rights contract.
+- Add validation before deeper feature work.
+- Keep all assets as demo placeholders until ownership is explicit.
+
+Rejected for this wave:
+- Real commercial samples.
+- Full DAW UI.
+- External arranger import.
+- Audio model training.

@@ -29,3 +29,12 @@ npm run smoke
 - Added npm run verify as the unified local verification command.
 - Updated active-wave to Wave 01.
 - Updated devctl state with active work metadata.
+
+## Wave 02 Execution
+
+- Added formal DML project fixture.
+- Added demo asset vault metadata.
+- Added DML format contract documentation.
+- Added project validator.
+- Updated package scripts for project:check and stronger format:check.
+- Updated devctl state for Wave 02.

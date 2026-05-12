@@ -1,0 +1,65 @@
+{
+  "schema": "dml.project.v0",
+  "project_id": "demo-hasidic-modern-project",
+  "title": "Demo Hasidic Modern",
+  "status": "demo_fixture",
+  "musical_context": {
+    "key": "Bm",
+    "bpm": 90,
+    "time_signature": "4/4",
+    "mood": "wide emotional chorus",
+    "density": "medium"
+  },
+  "intent": {
+    "human_prompt": "שיר חסידי מודרני, בית רגוע, פזמון רחב, כינורות חיים, פסנתר ובס יציב",
+    "control_mode": "human_in_the_loop",
+    "revision_policy": "never overwrite human intent without explicit approval"
+  },
+  "tracks": [
+    {
+      "id": "drums",
+      "role": "rhythm",
+      "engine": "sample",
+      "asset_pack": "hasidic-modern-demo-pack",
+      "output": "stems/drums.wav"
+    },
+    {
+      "id": "bass",
+      "role": "foundation",
+      "engine": "sample",
+      "asset_pack": "hasidic-modern-demo-pack",
+      "output": "stems/bass.wav"
+    },
+    {
+      "id": "piano",
+      "role": "harmony",
+      "engine": "sample",
+      "asset_pack": "hasidic-modern-demo-pack",
+      "output": "stems/piano.wav"
+    },
+    {
+      "id": "strings",
+      "role": "emotion",
+      "engine": "sample",
+      "asset_pack": "hasidic-modern-demo-pack",
+      "output": "stems/strings.wav"
+    },
+    {
+      "id": "guitar",
+      "role": "texture",
+      "engine": "sample",
+      "asset_pack": "hasidic-modern-demo-pack",
+      "output": "stems/guitar.wav"
+    }
+  ],
+  "exports": {
+    "stems": true,
+    "mix": "exports/demo-mix.wav",
+    "project": "exports/demo.project.dml.json"
+  },
+  "rights": {
+    "contains_real_commercial_assets": false,
+    "asset_policy": "demo_placeholders_only",
+    "requires_license_review_before_release": true
+  }
+}
