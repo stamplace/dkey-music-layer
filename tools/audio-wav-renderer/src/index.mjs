@@ -32,6 +32,14 @@ function secondsFromTicks(ticks, ppq, bpm) {
   return (ticks / ppq) * (60 / bpm);
 }
 
+function eventStartSeconds(event, ppq, bpm) {
+  return secondsFromTicks(event.tick, ppq, bpm) + ((event.humanize_ms ?? 0) / 1000);
+}
+
+function eventDurationSeconds(event, ppq, bpm) {
+  return secondsFromTicks(event.duration, ppq, bpm);
+}
+
 function envelope(t, duration, attack, release) {
   if (t < 0 || t > duration + release) return 0;
   if (t < attack) return t / Math.max(attack, 0.0001);
@@ -89,16 +97,22 @@ assert(Array.isArray(plan.events) && plan.events.length > 0, 'Input must contain
 const ppq = plan.timebase?.ppq ?? 480;
 const bpm = plan.timebase?.bpm ?? 90;
 const noteEvents = plan.events.filter((event) => event.type === 'note');
-const lastTick = Math.max(...noteEvents.map((event) => event.tick + event.duration));
-const durationSeconds = secondsFromTicks(lastTick, ppq, bpm) + TAIL_SECONDS;
+assert(noteEvents.length > 0, 'Input must contain at least one note event.');
+
+const renderEvents = noteEvents.map((event) => {
+  const profile = TRACK_PROFILES[event.track] ?? TRACK_PROFILES.piano;
+  const start = eventStartSeconds(event, ppq, bpm);
+  const duration = eventDurationSeconds(event, ppq, bpm);
+  return { event, profile, start, duration };
+});
+
+const lastAudibleSecond = Math.max(...renderEvents.map(({ start, duration, profile }) => start + duration + profile.release));
+const durationSeconds = lastAudibleSecond + TAIL_SECONDS;
 const totalFrames = Math.ceil(durationSeconds * SAMPLE_RATE);
 const left = new Float32Array(totalFrames);
 const right = new Float32Array(totalFrames);
 
-for (const event of noteEvents) {
-  const profile = TRACK_PROFILES[event.track] ?? TRACK_PROFILES.piano;
-  const start = secondsFromTicks(event.tick, ppq, bpm) + ((event.humanize_ms ?? 0) / 1000);
-  const duration = secondsFromTicks(event.duration, ppq, bpm);
+for (const { event, profile, start, duration } of renderEvents) {
   const freq = event.track === 'drums' ? 55 : midiToFrequency(event.note + (profile.octave * 12));
   const startFrame = Math.max(0, Math.floor(start * SAMPLE_RATE));
   const endFrame = Math.min(totalFrames, Math.ceil((start + duration + profile.release) * SAMPLE_RATE));
