@@ -1,0 +1,103 @@
+name: DML Render Song
+
+on:
+  workflow_dispatch:
+    inputs:
+      title:
+        description: 'Song title'
+        required: true
+        default: 'אור שלא נכנע'
+      key:
+        description: 'Musical key, for example Bm, Am, Em, C'
+        required: true
+        default: 'Bm'
+      bpm:
+        description: 'Tempo BPM'
+        required: true
+        default: '90'
+      emotion:
+        description: 'Core emotion'
+        required: true
+        default: 'warm, rising, clear, human'
+      production_direction:
+        description: 'Production direction'
+        required: true
+        default: 'piano, bass, drums, strings, guitar, wide chorus'
+
+permissions:
+  contents: read
+
+env:
+  REQUEST_PATH: generated/requests/song-request.dml.json
+  MIDI_PATH: generated/song-midi-events/song-request/midi-events.dml.json
+  WAV_PATH: generated/audio/song-request/song.wav
+
+jobs:
+  render:
+    name: render song request
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Create song request
+        shell: bash
+        run: |
+          mkdir -p generated/requests
+          node - <<'NODE'
+          const fs = require('node:fs');
+          const request = {
+            schema: 'dml.product_song_request.v1',
+            created_at: new Date().toISOString(),
+            product: 'DKey Music Layer',
+            title: process.env.INPUT_TITLE,
+            musical_intent: {
+              key: process.env.INPUT_KEY,
+              bpm: Number(process.env.INPUT_BPM),
+              emotion: process.env.INPUT_EMOTION,
+              tuning: '440Hz',
+              human_role: 'conductor'
+            },
+            production_direction: process.env.INPUT_PRODUCTION_DIRECTION,
+            requested_outputs: ['wav_mix', 'midi_events'],
+            boundaries: {
+              real_sample_loading: false,
+              rights_gate_required_for_real_assets: true
+            }
+          };
+          fs.writeFileSync(process.env.REQUEST_PATH, JSON.stringify(request, null, 2) + '\n');
+          NODE
+        env:
+          INPUT_TITLE: ${{ github.event.inputs.title }}
+          INPUT_KEY: ${{ github.event.inputs.key }}
+          INPUT_BPM: ${{ github.event.inputs.bpm }}
+          INPUT_EMOTION: ${{ github.event.inputs.emotion }}
+          INPUT_PRODUCTION_DIRECTION: ${{ github.event.inputs.production_direction }}
+
+      - name: Render request to MIDI events
+        run: node tools/song-request-renderer/src/index.mjs "$REQUEST_PATH" "$MIDI_PATH"
+
+      - name: Render MIDI events to WAV
+        run: node tools/audio-wav-renderer/src/index.mjs "$MIDI_PATH" "$WAV_PATH"
+
+      - name: Check WAV file
+        run: node tools/audio-wav-renderer/src/check.mjs "$WAV_PATH"
+
+      - name: Upload song request artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dkey-song-request
+          path: |
+            ${{ env.REQUEST_PATH }}
+            ${{ env.MIDI_PATH }}
+
+      - name: Upload WAV artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dkey-rendered-song-wav
+          path: ${{ env.WAV_PATH }}
