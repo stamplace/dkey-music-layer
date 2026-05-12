@@ -2,7 +2,7 @@ name: DML CI
 
 on:
   push:
-    branches: [ main, develop, "wave/**" ]
+    branches: [ main, develop, "wave/**", "production/**" ]
   pull_request:
     branches: [ main, develop ]
   workflow_dispatch:
@@ -30,4 +30,13 @@ jobs:
           path: |
             generated/**
             assets/rights/**
+          if-no-files-found: warn
+
+      - name: Upload generated audio artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dml-generated-audio
+          path: |
+            generated/audio/**
           if-no-files-found: warn
