@@ -46,6 +46,10 @@ const requiredFiles = [
   'tools/playback-planner/src/index.mjs',
   'tools/playback-planner/src/check.mjs',
   'generated/playback-plans/hasidic-modern/playback-plan.dml.json',
+  'docs/preview/16_SAMPLE_SLOT_PREVIEW_RENDERER.md',
+  'tools/sample-slot-preview-renderer/src/index.mjs',
+  'tools/sample-slot-preview-renderer/src/check.mjs',
+  'generated/sample-slot-previews/hasidic-modern/sample-slot-preview.dml.json',
   '.github/workflows/ci.yml'
 ];
 
@@ -93,9 +97,9 @@ function statusCommand() {
 function pickCommand() {
   const state = readState();
   state.delivery_status = 'picked';
-  state.active_wave = 'Wave 08: Sample Trigger Playback Boundary';
-  state.current_work = 'Add asset-backed sample trigger map and playback plan boundary';
-  state.next_action = 'Run npm run verify, commit, and push Wave 08 playback boundary';
+  state.active_wave = 'Wave 09: Sample Slot Preview Renderer Boundary';
+  state.current_work = 'Add deterministic sample-slot preview renderer boundary';
+  state.next_action = 'Run npm run verify, commit, and push Wave 09 preview boundary';
   state.verified = false;
   writeState(state);
   console.log('Work picked.');
@@ -105,9 +109,9 @@ function pickCommand() {
 function closeCommand() {
   const state = readState();
   state.delivery_status = 'implemented';
-  state.active_wave = 'Wave 08: Sample Trigger Playback Boundary';
-  state.current_work = 'Sample trigger playback boundary baseline implemented';
-  state.next_action = 'Wave 09: Deterministic sample-slot preview renderer boundary';
+  state.active_wave = 'Wave 09: Sample Slot Preview Renderer Boundary';
+  state.current_work = 'Sample-slot preview renderer baseline implemented';
+  state.next_action = 'Wave 10: Asset rights manifest hardening before real sample loading';
   state.verified = true;
   writeState(state);
   console.log('Work closed.');

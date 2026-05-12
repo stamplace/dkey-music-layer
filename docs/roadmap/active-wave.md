@@ -1,22 +1,22 @@
-# Active Wave — Wave 08: Sample Trigger Playback Boundary
+# Active Wave — Wave 09: Sample Slot Preview Renderer Boundary
 
 ## Status
 BUILD
 
 ## Goal
-Add the first asset-backed sample trigger map and playback plan boundary.
+Add a deterministic preview renderer from playback plan to sample-slot timeline artifact.
 
 ## Scope
-- Add sample trigger map fixture.
-- Add trigger map validation.
-- Add playback planner.
-- Generate playback plan artifact.
-- Add playback boundary documentation.
-- Strengthen playback, format, and verify checks.
+- Add sample-slot preview renderer.
+- Generate sample-slot preview artifact.
+- Add preview artifact checker.
+- Add preview boundary documentation.
+- Add preview:check.
+- Strengthen format:check and verify.
 - Preserve all existing verification.
 
 ## GitHub
-- Issue: #8 — Wave 08: Asset-backed sample trigger map and first playback boundary
+- Issue: #9 — Wave 09: Sample slot preview renderer
 
 ## Definition of Done
 - npm run doctor passes.
@@ -29,6 +29,7 @@ Add the first asset-backed sample trigger map and playback plan boundary.
 - npm run render:check passes.
 - npm run export:check passes.
 - npm run playback:check passes.
+- npm run preview:check passes.
 - npm run format:check passes.
 - npm run smoke passes.
 - npm run verify passes.
@@ -37,5 +38,5 @@ Add the first asset-backed sample trigger map and playback plan boundary.
 ## Boundaries
 - No audio DSP yet.
 - No WAV rendering yet.
-- No real sample file loading yet.
-- This wave creates an inspectable playback plan only.
+- No real sample loading yet.
+- This wave creates deterministic preview metadata only.

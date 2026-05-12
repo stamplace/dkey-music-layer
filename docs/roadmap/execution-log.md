@@ -96,3 +96,13 @@ npm run smoke
 - Added playback:check.
 - Strengthened format:check and verify.
 - Updated devctl state for Wave 08.
+
+## Wave 09 Execution
+
+- Added sample-slot preview renderer.
+- Added generated sample-slot preview artifact.
+- Added sample-slot preview checker.
+- Added preview boundary documentation.
+- Added preview:check.
+- Strengthened format:check and verify.
+- Updated devctl state for Wave 09.

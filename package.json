@@ -10,11 +10,11 @@
     "test": "node tests/smoke/core-pipeline.test.mjs",
     "smoke": "node tools/render-smoke/src/index.mjs",
     "pack:check": "node tools/pack-validator/src/index.mjs assets/demo-packs/hasidic-modern/pack.dml.json",
-    "format:check": "npm run pack:check && npm run project:check && npm run arrangement:check && npm run performance:check && npm run midi:check && npm run render:check && npm run export:check && npm run playback:check && npm run smoke",
+    "format:check": "npm run pack:check && npm run project:check && npm run arrangement:check && npm run performance:check && npm run midi:check && npm run render:check && npm run export:check && npm run playback:check && npm run preview:check && npm run smoke",
     "ops:status": "node tools/devctl/src/index.mjs status",
     "ops:pick": "node tools/devctl/src/index.mjs pick",
     "ops:close": "node tools/devctl/src/index.mjs close",
-    "verify": "npm run doctor && npm test && npm run pack:check && npm run project:check && npm run arrangement:check && npm run performance:check && npm run midi:check && npm run render:check && npm run export:check && npm run playback:check && npm run smoke && npm run ops:status",
+    "verify": "npm run doctor && npm test && npm run pack:check && npm run project:check && npm run arrangement:check && npm run performance:check && npm run midi:check && npm run render:check && npm run export:check && npm run playback:check && npm run preview:check && npm run smoke && npm run ops:status",
     "project:check": "node tools/project-validator/src/index.mjs assets/demo-projects/hasidic-modern/project.dml.json",
     "arrangement:check": "node tools/arrangement-validator/src/index.mjs assets/demo-arrangements/hasidic-modern/arrangement.dml.json",
     "performance:check": "node tools/performance-validator/src/index.mjs assets/demo-performances/hasidic-modern/performance.dml.json",
@@ -28,7 +28,10 @@
     "sample-trigger:check": "node tools/sample-trigger-validator/src/index.mjs assets/demo-sample-trigger-maps/hasidic-modern/sample-trigger-map.dml.json",
     "playback-plan:write": "node tools/playback-planner/src/index.mjs assets/demo-midi-events/hasidic-modern/midi-events.dml.json assets/demo-sample-trigger-maps/hasidic-modern/sample-trigger-map.dml.json generated/playback-plans/hasidic-modern/playback-plan.dml.json",
     "playback-plan:check": "node tools/playback-planner/src/check.mjs generated/playback-plans/hasidic-modern/playback-plan.dml.json",
-    "playback:check": "npm run sample-trigger:check && npm run playback-plan:write && npm run playback-plan:check"
+    "playback:check": "npm run sample-trigger:check && npm run playback-plan:write && npm run playback-plan:check",
+    "sample-slot-preview:write": "node tools/sample-slot-preview-renderer/src/index.mjs generated/playback-plans/hasidic-modern/playback-plan.dml.json generated/sample-slot-previews/hasidic-modern/sample-slot-preview.dml.json",
+    "sample-slot-preview:check": "node tools/sample-slot-preview-renderer/src/check.mjs generated/sample-slot-previews/hasidic-modern/sample-slot-preview.dml.json",
+    "preview:check": "npm run sample-slot-preview:write && npm run sample-slot-preview:check"
   },
   "engines": {
     "node": ">=20"

@@ -1,7 +1,7 @@
 {
   "project": "dkey-music-layer",
   "delivery_status": "implemented",
-  "active_wave": "Wave 08: Sample Trigger Playback Boundary",
+  "active_wave": "Wave 09: Sample Slot Preview Renderer Boundary",
   "mode": "PRODUCTION",
   "current_scope": [
     "repo foundation",
@@ -10,14 +10,14 @@
     "devctl",
     "smoke verification"
   ],
-  "next_action": "Wave 09: Deterministic sample-slot preview renderer boundary",
+  "next_action": "Wave 10: Asset rights manifest hardening before real sample loading",
   "verified": true,
   "risks": [
     "Remote GitHub repository creation was not available through the connected tool in this session.",
     "Real audio DSP/rendering is not implemented yet.",
     "Third-party asset rights must be documented before real samples are imported."
   ],
-  "current_work": "Sample trigger playback boundary baseline implemented",
-  "github_issue": "#8",
-  "updated_at": "2026-05-12T14:19:10.589Z"
+  "current_work": "Sample-slot preview renderer baseline implemented",
+  "github_issue": "#9",
+  "updated_at": "2026-05-12T14:25:22.636Z"
 }

@@ -170,3 +170,22 @@ Rejected for this wave:
 - Real sample loading.
 - DSP engine.
 - DAW UI.
+
+## Wave 09 Decision — Deterministic Preview Before Playback Engine
+
+Decision: add a deterministic sample-slot preview renderer before real sample loading or audio rendering.
+
+Reason:
+The system needs an inspectable timeline of what would play before it attempts to load samples or generate audio. This keeps the playback layer testable, stable, and rights-safe.
+
+Selected path:
+- Read playback-plan.dml.json.
+- Generate sample-slot-preview.dml.json.
+- Validate track, section, sample slot, velocity layer, and timing.
+- Keep this wave metadata-only.
+
+Rejected for this wave:
+- Real sample loading.
+- WAV rendering.
+- Audio DSP.
+- DAW UI.

@@ -1,0 +1,216 @@
+{
+  "schema": "dml.sample_slot_preview.v0",
+  "preview_id": "demo-hasidic-modern-sample-slot-preview",
+  "source_playback_plan": "demo-hasidic-modern-playback-plan",
+  "deterministic": true,
+  "summary": {
+    "preview_event_count": 10,
+    "track_count": 5,
+    "section_count": 3,
+    "tracks": [
+      "piano",
+      "strings",
+      "bass",
+      "drums",
+      "guitar"
+    ],
+    "sections": [
+      "intro",
+      "verse",
+      "chorus"
+    ],
+    "start_tick": 0,
+    "end_tick": 6720
+  },
+  "timeline": [
+    {
+      "index": 0,
+      "tick": 0,
+      "end_tick": 960,
+      "section": "intro",
+      "track": "piano",
+      "sample_slot": "piano_soft_grand_placeholder",
+      "velocity_layer": "soft",
+      "note": 59,
+      "velocity": 54,
+      "articulation": "soft_legato",
+      "humanize_ms": 8,
+      "preview_label": "intro:piano:piano_soft_grand_placeholder:soft"
+    },
+    {
+      "index": 2,
+      "tick": 0,
+      "end_tick": 1920,
+      "section": "intro",
+      "track": "strings",
+      "sample_slot": "strings_long_pad_placeholder",
+      "velocity_layer": "support",
+      "note": 71,
+      "velocity": 48,
+      "articulation": "long_pad",
+      "humanize_ms": 15,
+      "preview_label": "intro:strings:strings_long_pad_placeholder:support"
+    },
+    {
+      "index": 1,
+      "tick": 960,
+      "end_tick": 1920,
+      "section": "intro",
+      "track": "piano",
+      "sample_slot": "piano_soft_grand_placeholder",
+      "velocity_layer": "soft",
+      "note": 62,
+      "velocity": 58,
+      "articulation": "soft_legato",
+      "humanize_ms": 11,
+      "preview_label": "intro:piano:piano_soft_grand_placeholder:soft"
+    },
+    {
+      "index": 3,
+      "tick": 1920,
+      "end_tick": 2400,
+      "section": "verse",
+      "track": "bass",
+      "sample_slot": "finger_bass_placeholder",
+      "velocity_layer": "round",
+      "note": 47,
+      "velocity": 66,
+      "articulation": "finger_root_pulse",
+      "humanize_ms": 2,
+      "preview_label": "verse:bass:finger_bass_placeholder:round"
+    },
+    {
+      "index": 4,
+      "tick": 1920,
+      "end_tick": 2040,
+      "section": "verse",
+      "track": "drums",
+      "sample_slot": "light_to_full_kit_placeholder",
+      "velocity_layer": "light",
+      "note": 36,
+      "velocity": 52,
+      "articulation": "light_brush_groove",
+      "humanize_ms": 10,
+      "preview_label": "verse:drums:light_to_full_kit_placeholder:light"
+    },
+    {
+      "index": 5,
+      "tick": 1920,
+      "end_tick": 2400,
+      "section": "verse",
+      "track": "piano",
+      "sample_slot": "piano_soft_grand_placeholder",
+      "velocity_layer": "soft",
+      "note": 59,
+      "velocity": 61,
+      "articulation": "broken_chords",
+      "humanize_ms": 6,
+      "preview_label": "verse:piano:piano_soft_grand_placeholder:soft"
+    },
+    {
+      "index": 7,
+      "tick": 5760,
+      "end_tick": 6240,
+      "section": "chorus",
+      "track": "bass",
+      "sample_slot": "finger_bass_placeholder",
+      "velocity_layer": "solid",
+      "note": 47,
+      "velocity": 92,
+      "articulation": "solid_foundation",
+      "humanize_ms": 0,
+      "preview_label": "chorus:bass:finger_bass_placeholder:solid"
+    },
+    {
+      "index": 6,
+      "tick": 5760,
+      "end_tick": 5880,
+      "section": "chorus",
+      "track": "drums",
+      "sample_slot": "light_to_full_kit_placeholder",
+      "velocity_layer": "full",
+      "note": 36,
+      "velocity": 94,
+      "articulation": "full_kit_groove",
+      "humanize_ms": 1,
+      "preview_label": "chorus:drums:light_to_full_kit_placeholder:full"
+    },
+    {
+      "index": 9,
+      "tick": 5760,
+      "end_tick": 6240,
+      "section": "chorus",
+      "track": "guitar",
+      "sample_slot": "acoustic_strum_placeholder",
+      "velocity_layer": "open",
+      "note": 59,
+      "velocity": 76,
+      "articulation": "open_strum",
+      "humanize_ms": 7,
+      "preview_label": "chorus:guitar:acoustic_strum_placeholder:open"
+    },
+    {
+      "index": 8,
+      "tick": 5760,
+      "end_tick": 6720,
+      "section": "chorus",
+      "track": "strings",
+      "sample_slot": "strings_long_pad_placeholder",
+      "velocity_layer": "lift",
+      "note": 74,
+      "velocity": 86,
+      "articulation": "long_octave_lift",
+      "humanize_ms": 12,
+      "preview_label": "chorus:strings:strings_long_pad_placeholder:lift"
+    }
+  ],
+  "indexes": {
+    "by_track": {
+      "piano": [
+        0,
+        1,
+        5
+      ],
+      "strings": [
+        2,
+        8
+      ],
+      "bass": [
+        3,
+        7
+      ],
+      "drums": [
+        4,
+        6
+      ],
+      "guitar": [
+        9
+      ]
+    },
+    "by_section": {
+      "intro": [
+        0,
+        2,
+        1
+      ],
+      "verse": [
+        3,
+        4,
+        5
+      ],
+      "chorus": [
+        7,
+        6,
+        9,
+        8
+      ]
+    }
+  },
+  "boundary": {
+    "creates_audio": false,
+    "loads_real_samples": false,
+    "writes_wav": false,
+    "preview_only": true,
+    "next_step": "Wave 10 can introduce asset rights manifest hardening before any real sample loading."
+  }
+}
