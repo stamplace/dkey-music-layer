@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DKey Music Layer — First Song</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #05070c;
+      --card: rgba(255,255,255,.07);
+      --line: rgba(255,255,255,.14);
+      --text: #f3f6ff;
+      --muted: #9aa7bd;
+      --accent: #7cf7d4;
+      --accent2: #8ab4ff;
+      --danger: #ffb4a9;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(124,247,212,.18), transparent 35%),
+        radial-gradient(circle at 80% 0%, rgba(138,180,255,.16), transparent 36%),
+        linear-gradient(145deg, #05070c, #090d16 55%, #05070c);
+      color: var(--text);
+      min-height: 100vh;
+    }
+    .wrap { width: min(1120px, calc(100% - 32px)); margin: 0 auto; padding: 32px 0 56px; }
+    .hero { display: grid; grid-template-columns: 1.05fr .95fr; gap: 24px; align-items: stretch; }
+    .panel {
+      border: 1px solid var(--line);
+      background: var(--card);
+      border-radius: 28px;
+      box-shadow: 0 24px 80px rgba(0,0,0,.35);
+      backdrop-filter: blur(18px);
+    }
+    .copy { padding: 36px; }
+    .badge { display: inline-flex; gap: 8px; align-items: center; color: var(--accent); border: 1px solid rgba(124,247,212,.28); border-radius: 999px; padding: 8px 12px; font-size: 14px; }
+    h1 { font-size: clamp(36px, 6vw, 76px); line-height: .95; margin: 22px 0 18px; letter-spacing: -0.05em; }
+    p { color: var(--muted); font-size: 18px; line-height: 1.75; margin: 0 0 16px; }
+    .grid { display: grid; gap: 14px; padding: 22px; }
+    label { display: grid; gap: 8px; color: #dce7ff; font-size: 14px; }
+    input, textarea, select {
+      width: 100%; border: 1px solid var(--line); background: rgba(0,0,0,.28); color: var(--text);
+      border-radius: 16px; padding: 13px 14px; font: inherit; outline: none;
+    }
+    textarea { min-height: 90px; resize: vertical; }
+    button {
+      border: 0; border-radius: 18px; padding: 15px 18px; font: inherit; font-weight: 800;
+      color: #04110e; background: linear-gradient(135deg, var(--accent), var(--accent2)); cursor: pointer;
+      box-shadow: 0 14px 34px rgba(124,247,212,.16);
+    }
+    button.secondary { color: var(--text); background: rgba(255,255,255,.08); border: 1px solid var(--line); box-shadow: none; }
+    .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .output { margin-top: 24px; padding: 22px; overflow: auto; }
+    pre { direction: ltr; text-align: left; white-space: pre-wrap; color: #d7fff3; font-size: 13px; line-height: 1.55; margin: 0; }
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 24px; }
+    .step { padding: 18px; border-radius: 22px; border: 1px solid var(--line); background: rgba(255,255,255,.045); }
+    .step b { color: var(--accent); }
+    .note { color: var(--danger); font-size: 14px; }
+    @media (max-width: 860px) { .hero { grid-template-columns: 1fr; } .steps, .actions { grid-template-columns: 1fr; } .copy { padding: 26px; } }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <div class="panel copy">
+        <span class="badge">DKey Music Layer · First Song Path</span>
+        <h1>האולפן החי הראשון שלך</h1>
+        <p>זהו דמו מוצרי ראשוני: לא מחולל אודיו עדיין, אלא יוצר ארטיפקט DML ברור לשיר הראשון — כוונה, מבנה, הרגשה, כלי נגינה, ותוואי הפקה.</p>
+        <p>העיקרון: האדם נשאר המנצח. המערכת בונה מסלול שאפשר לבדוק, לשנות, להפוך לקובץ MIDI, ובהמשך לחבר לסמפלים אמיתיים מאושרים.</p>
+        <div class="steps">
+          <div class="step"><b>1</b><br>כתוב כוונה</div>
+          <div class="step"><b>2</b><br>צור DML Song</div>
+          <div class="step"><b>3</b><br>הורד ארטיפקט</div>
+        </div>
+      </div>
+
+      <form class="panel grid" id="songForm">
+        <label>שם השיר
+          <input id="title" value="אור שלא נכנע" />
+        </label>
+        <label>נושא
+          <input id="theme" value="אמונה פשוטה בתוך עומס החיים" />
+        </label>
+        <label>רגש מרכזי
+          <input id="emotion" value="חם, מתגבר, נקי, אנושי" />
+        </label>
+        <label>סולם
+          <select id="key">
+            <option>Bm</option><option>Am</option><option>Em</option><option>Dm</option><option>G</option><option>C</option>
+          </select>
+        </label>
+        <label>BPM
+          <input id="bpm" type="number" min="50" max="180" value="90" />
+        </label>
+        <label>תיאור ביצוע / הפקה
+          <textarea id="intent">זמר גברי, עברית נקייה, פסנתר רך בבית, בס עגול, תופים נפתחים בפזמון, מיתרים רחבים, סיום גדול אבל לא צעקני.</textarea>
+        </label>
+        <div class="actions">
+          <button type="submit">צור שיר ראשון</button>
+          <button type="button" class="secondary" id="downloadBtn">הורד JSON</button>
+        </div>
+        <p class="note">גבול נוכחי: זה יוצר תכנון שיר. אודיו/WAV/סמפלים אמיתיים יגיעו רק אחרי שער זכויות.</p>
+      </form>
+    </section>
+
+    <section class="panel output">
+      <pre id="output">לחץ “צור שיר ראשון” כדי ליצור ארטיפקט DML.</pre>
+    </section>
+  </main>
+
+  <script>
+    const form = document.getElementById('songForm');
+    const output = document.getElementById('output');
+    const downloadBtn = document.getElementById('downloadBtn');
+    let latest = null;
+
+    function makeSong() {
+      const title = document.getElementById('title').value.trim() || 'untitled';
+      const theme = document.getElementById('theme').value.trim();
+      const emotion = document.getElementById('emotion').value.trim();
+      const key = document.getElementById('key').value;
+      const bpm = Number(document.getElementById('bpm').value || 90);
+      const intent = document.getElementById('intent').value.trim();
+      return {
+        schema: 'dml.first_song_brief.v0',
+        created_at: new Date().toISOString(),
+        product: 'DKey Music Layer',
+        title,
+        musical_intent: { theme, emotion, key, bpm, tuning: '440Hz', sample_rate_target: '48kHz', human_role: 'conductor' },
+        arrangement: [
+          { section: 'intro', bars: 4, energy: 'low', focus: 'piano motif' },
+          { section: 'verse', bars: 16, energy: 'warm', focus: 'clear vocal and soft piano' },
+          { section: 'chorus', bars: 16, energy: 'wide', focus: 'memorable hook, drums, bass, strings' },
+          { section: 'bridge', bars: 8, energy: 'lift', focus: 'short harmonic opening' },
+          { section: 'final_chorus', bars: 16, energy: 'full', focus: 'radio-ready emotional release' }
+        ],
+        tracks: ['vocal', 'piano', 'bass', 'drums', 'strings', 'guitar'],
+        production_direction: intent,
+        boundaries: {
+          creates_audio: false,
+          loads_real_samples: false,
+          requires_rights_gate_for_real_assets: true,
+          next_step: 'Convert this brief into DML arrangement/performance/MIDI/audio pipeline.'
+        }
+      };
+    }
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      latest = makeSong();
+      output.textContent = JSON.stringify(latest, null, 2);
+    });
+
+    downloadBtn.addEventListener('click', () => {
+      if (!latest) latest = makeSong();
+      const blob = new Blob([JSON.stringify(latest, null, 2) + '\n'], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = latest.title.replace(/\s+/g, '-').toLowerCase() + '.first-song.dml.json';
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+  </script>
+</body>
+</html>
