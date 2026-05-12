@@ -1,0 +1,42 @@
+name: DML Manual Ops
+
+on:
+  workflow_dispatch:
+    inputs:
+      op:
+        description: Safe whitelisted operation to run
+        required: true
+        default: status
+        type: choice
+        options:
+          - status
+          - doctor
+          - format-check
+          - verify
+          - full-report
+
+jobs:
+  ops:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run DML ops bridge
+        run: node tools/ops-runner/src/index.mjs "${{ inputs.op }}"
+
+      - name: Upload ops report and generated artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dml-ops-${{ inputs.op }}
+          path: |
+            generated/ops/**
+            generated/**
+            assets/rights/**
+          if-no-files-found: warn
