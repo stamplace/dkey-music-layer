@@ -1,42 +1,34 @@
-# Active Wave — Wave 10: Asset Rights Manifest Hardening
+# Active Wave — Wave 11A: GitHub Ops Bridge
 
 ## Status
 BUILD
 
 ## Goal
-Add a rights manifest gate before real sample loading.
+Create a GitHub-based operations bridge so mobile work no longer depends on long terminal paste blocks.
 
 ## Scope
-- Generate asset rights manifest from playback plan sample slots.
-- Add asset rights validator.
-- Add rights boundary documentation.
-- Add rights:check.
-- Strengthen format:check and verify.
+- Upgrade CI from partial checks to full `npm run verify`.
+- Add manual GitHub Actions workflow for safe whitelisted operations.
+- Add ops runner for `status`, `doctor`, `format-check`, `verify`, and `full-report`.
+- Add generated ops report artifact path.
+- Add documentation for the mobile GitHub workflow.
 - Preserve all existing checks.
 
 ## GitHub
-- Issue: #10 — Wave 10: Asset rights manifest hardening
+- Issue: #11 — Wave 11A: GitHub Ops Bridge
 
 ## Definition of Done
-- npm run doctor passes.
-- npm test passes.
-- npm run pack:check passes.
-- npm run project:check passes.
-- npm run arrangement:check passes.
-- npm run performance:check passes.
-- npm run midi:check passes.
-- npm run render:check passes.
-- npm run export:check passes.
-- npm run playback:check passes.
-- npm run preview:check passes.
-- npm run rights:check passes.
-- npm run format:check passes.
-- npm run smoke passes.
-- npm run verify passes.
-- Git working tree is clean after checkpoint and push.
+- Main CI runs `npm run verify`.
+- Manual `DML Manual Ops` workflow exists.
+- Ops runner rejects unknown operations.
+- Ops runner writes `generated/ops/latest-ops-report.dml.json`.
+- GitHub Actions uploads generated artifacts for inspection.
+- Documentation explains how to run from phone.
+- `npm run verify` remains the source of truth.
 
 ## Boundaries
 - No real sample loading.
 - No WAV rendering.
 - No audio DSP.
-- No commercial rights claim.
+- No public product site deployment in this wave.
+- No arbitrary shell command workflow.
