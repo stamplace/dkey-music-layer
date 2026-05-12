@@ -1,34 +1,34 @@
-# Active Wave — Wave 11A: GitHub Ops Bridge
+# Active Wave — Wave 11B: Public Demo Surface And First Song Path
 
 ## Status
 BUILD
 
 ## Goal
-Create a GitHub-based operations bridge so mobile work no longer depends on long terminal paste blocks.
+Turn the visible static product demo into a verified first-song creation path.
 
 ## Scope
-- Upgrade CI from partial checks to full `npm run verify`.
-- Add manual GitHub Actions workflow for safe whitelisted operations.
-- Add ops runner for `status`, `doctor`, `format-check`, `verify`, and `full-report`.
-- Add generated ops report artifact path.
-- Add documentation for the mobile GitHub workflow.
+- Keep the static `site/index.html` demo as the public product surface.
+- Add a committed first-song DML artifact.
+- Add a first-song validator.
+- Add `first-song:check`.
+- Wire `first-song:check` into `format:check` and `verify`.
 - Preserve all existing checks.
 
 ## GitHub
-- Issue: #11 — Wave 11A: GitHub Ops Bridge
+- Issue: #12 — Wave 11B: Public demo surface and first song creation path
 
 ## Definition of Done
-- Main CI runs `npm run verify`.
-- Manual `DML Manual Ops` workflow exists.
-- Ops runner rejects unknown operations.
-- Ops runner writes `generated/ops/latest-ops-report.dml.json`.
-- GitHub Actions uploads generated artifacts for inspection.
-- Documentation explains how to run from phone.
-- `npm run verify` remains the source of truth.
+- Static demo page exists.
+- Demo can generate and download a first-song JSON artifact in the browser.
+- A committed first-song artifact exists under `assets/demo-first-songs`.
+- Validator rejects incomplete or unsafe first-song briefs.
+- `npm run first-song:check` passes.
+- `npm run verify` passes.
+- GitHub Pages workflow exists.
 
 ## Boundaries
-- No real sample loading.
+- No server.
+- No real audio generation.
+- No sample loading.
 - No WAV rendering.
-- No audio DSP.
-- No public product site deployment in this wave.
-- No arbitrary shell command workflow.
+- No commercial asset claim.
