@@ -75,3 +75,13 @@ npm run smoke
 - Added render:check.
 - Strengthened format:check and verify.
 - Updated devctl state for Wave 06.
+
+## Wave 07 Execution
+
+- Added dependency-free Standard MIDI writer.
+- Added generated Standard MIDI artifact.
+- Added MIDI file checker.
+- Added export boundary documentation.
+- Added export:check.
+- Strengthened format:check and verify.
+- Updated devctl state for Wave 07.

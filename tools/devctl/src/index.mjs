@@ -36,6 +36,10 @@ const requiredFiles = [
   'tools/debug-midi-renderer/src/index.mjs',
   'tools/debug-midi-renderer/src/check.mjs',
   'generated/debug-midi/hasidic-modern/debug-midi-render.dml.json',
+  'docs/export/14_STANDARD_MIDI_EXPORT_BOUNDARY.md',
+  'tools/standard-midi-writer/src/index.mjs',
+  'tools/standard-midi-writer/src/check.mjs',
+  'generated/standard-midi/hasidic-modern/demo-hasidic-modern.mid',
   '.github/workflows/ci.yml'
 ];
 
@@ -83,9 +87,9 @@ function statusCommand() {
 function pickCommand() {
   const state = readState();
   state.delivery_status = 'picked';
-  state.active_wave = 'Wave 06: Debug MIDI Renderer';
-  state.current_work = 'Add debug MIDI renderer and first generated artifact';
-  state.next_action = 'Run npm run verify, commit, and push Wave 06 debug renderer';
+  state.active_wave = 'Wave 07: Standard MIDI Export Boundary';
+  state.current_work = 'Add Standard MIDI writer and first MIDI export artifact';
+  state.next_action = 'Run npm run verify, commit, and push Wave 07 MIDI export';
   state.verified = false;
   writeState(state);
   console.log('Work picked.');
@@ -95,9 +99,9 @@ function pickCommand() {
 function closeCommand() {
   const state = readState();
   state.delivery_status = 'implemented';
-  state.active_wave = 'Wave 06: Debug MIDI Renderer';
-  state.current_work = 'Debug MIDI renderer baseline implemented';
-  state.next_action = 'Wave 07: Standard MIDI file writer and artifact export boundary';
+  state.active_wave = 'Wave 07: Standard MIDI Export Boundary';
+  state.current_work = 'Standard MIDI export boundary baseline implemented';
+  state.next_action = 'Wave 08: Asset-backed sample trigger map and first playback boundary';
   state.verified = true;
   writeState(state);
   console.log('Work closed.');

@@ -10,18 +10,21 @@
     "test": "node tests/smoke/core-pipeline.test.mjs",
     "smoke": "node tools/render-smoke/src/index.mjs",
     "pack:check": "node tools/pack-validator/src/index.mjs assets/demo-packs/hasidic-modern/pack.dml.json",
-    "format:check": "npm run pack:check && npm run project:check && npm run arrangement:check && npm run performance:check && npm run midi:check && npm run render:check && npm run smoke",
+    "format:check": "npm run pack:check && npm run project:check && npm run arrangement:check && npm run performance:check && npm run midi:check && npm run render:check && npm run export:check && npm run smoke",
     "ops:status": "node tools/devctl/src/index.mjs status",
     "ops:pick": "node tools/devctl/src/index.mjs pick",
     "ops:close": "node tools/devctl/src/index.mjs close",
-    "verify": "npm run doctor && npm test && npm run pack:check && npm run project:check && npm run arrangement:check && npm run performance:check && npm run midi:check && npm run render:check && npm run smoke && npm run ops:status",
+    "verify": "npm run doctor && npm test && npm run pack:check && npm run project:check && npm run arrangement:check && npm run performance:check && npm run midi:check && npm run render:check && npm run export:check && npm run smoke && npm run ops:status",
     "project:check": "node tools/project-validator/src/index.mjs assets/demo-projects/hasidic-modern/project.dml.json",
     "arrangement:check": "node tools/arrangement-validator/src/index.mjs assets/demo-arrangements/hasidic-modern/arrangement.dml.json",
     "performance:check": "node tools/performance-validator/src/index.mjs assets/demo-performances/hasidic-modern/performance.dml.json",
     "midi:check": "node tools/midi-event-validator/src/index.mjs assets/demo-midi-events/hasidic-modern/midi-events.dml.json",
     "debug-midi:render": "node tools/debug-midi-renderer/src/index.mjs assets/demo-midi-events/hasidic-modern/midi-events.dml.json generated/debug-midi/hasidic-modern/debug-midi-render.dml.json",
     "debug-midi:check": "node tools/debug-midi-renderer/src/check.mjs generated/debug-midi/hasidic-modern/debug-midi-render.dml.json",
-    "render:check": "npm run debug-midi:render && npm run debug-midi:check"
+    "render:check": "npm run debug-midi:render && npm run debug-midi:check",
+    "midi-file:write": "node tools/standard-midi-writer/src/index.mjs assets/demo-midi-events/hasidic-modern/midi-events.dml.json generated/standard-midi/hasidic-modern/demo-hasidic-modern.mid",
+    "midi-file:check": "node tools/standard-midi-writer/src/check.mjs generated/standard-midi/hasidic-modern/demo-hasidic-modern.mid",
+    "export:check": "npm run midi-file:write && npm run midi-file:check"
   },
   "engines": {
     "node": ">=20"

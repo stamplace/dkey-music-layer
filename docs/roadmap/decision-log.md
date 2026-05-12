@@ -131,3 +131,23 @@ Rejected for this wave:
 - Sample playback.
 - DAW UI.
 - Audio rendering.
+
+## Wave 07 Decision — Standard MIDI Export Boundary
+
+Decision: add a dependency-free Standard MIDI File writer after proving the debug render artifact.
+
+Reason:
+The product needs its first real export artifact, but the export must stay behind verified DML state. A simple SMF writer proves the boundary without introducing playback, audio rendering, or external dependencies.
+
+Selected path:
+- Write MIDI format 0 with one track.
+- Use PPQ 480 from the DML MIDI event plan.
+- Encode tempo, time signature, note-on, note-off, and end-of-track.
+- Add a binary file checker.
+- Keep generated MIDI as a proof artifact.
+
+Rejected for this wave:
+- Sample playback.
+- Audio rendering.
+- DAW UI.
+- Multi-track MIDI export.

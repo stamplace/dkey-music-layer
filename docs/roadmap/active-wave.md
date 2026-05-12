@@ -1,21 +1,21 @@
-# Active Wave — Wave 06: Debug MIDI Renderer
+# Active Wave — Wave 07: Standard MIDI Export Boundary
 
 ## Status
 BUILD
 
 ## Goal
-Add a debug renderer that turns the MIDI event plan into a generated artifact.
+Add the first Standard MIDI File writer and export artifact from the DML MIDI event plan.
 
 ## Scope
-- Add debug MIDI renderer tool.
-- Add generated debug MIDI artifact.
-- Add artifact check script.
-- Add debug renderer documentation.
-- Strengthen render and format checks.
+- Add dependency-free Standard MIDI writer.
+- Add generated MIDI file artifact.
+- Add MIDI file checker.
+- Add export boundary documentation.
+- Strengthen export, format, and verify checks.
 - Preserve all existing verification.
 
 ## GitHub
-- Issue: #6 — Wave 06: Debug MIDI renderer and first generated artifact
+- Issue: #7 — Wave 07: Standard MIDI file writer and export boundary
 
 ## Definition of Done
 - npm run doctor passes.
@@ -26,13 +26,14 @@ Add a debug renderer that turns the MIDI event plan into a generated artifact.
 - npm run performance:check passes.
 - npm run midi:check passes.
 - npm run render:check passes.
+- npm run export:check passes.
 - npm run format:check passes.
 - npm run smoke passes.
 - npm run verify passes.
 - Git working tree is clean after checkpoint and push.
 
 ## Boundaries
-- No Standard MIDI File export yet.
 - No sample playback yet.
+- No audio rendering yet.
 - No full DAW UI yet.
-- This wave adds debug render state only.
+- The MIDI file is a proof artifact, not final musical output.
