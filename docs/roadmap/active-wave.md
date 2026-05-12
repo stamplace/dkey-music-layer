@@ -1,20 +1,21 @@
-# Active Wave — Wave 05: Performance-to-MIDI Event Plan
+# Active Wave — Wave 06: Debug MIDI Renderer
 
 ## Status
 BUILD
 
 ## Goal
-Add the first MIDI event plan derived from performance state.
+Add a debug renderer that turns the MIDI event plan into a generated artifact.
 
 ## Scope
-- Add MIDI event plan fixture.
-- Add MIDI event validation.
-- Add performance-to-MIDI documentation.
-- Strengthen format checks.
-- Preserve doctor, tests, pack validation, project validation, arrangement validation, performance validation, render smoke, and ops status.
+- Add debug MIDI renderer tool.
+- Add generated debug MIDI artifact.
+- Add artifact check script.
+- Add debug renderer documentation.
+- Strengthen render and format checks.
+- Preserve all existing verification.
 
 ## GitHub
-- Issue: #5 — Wave 05: Performance-to-MIDI event plan
+- Issue: #6 — Wave 06: Debug MIDI renderer and first generated artifact
 
 ## Definition of Done
 - npm run doctor passes.
@@ -24,13 +25,14 @@ Add the first MIDI event plan derived from performance state.
 - npm run arrangement:check passes.
 - npm run performance:check passes.
 - npm run midi:check passes.
+- npm run render:check passes.
 - npm run format:check passes.
 - npm run smoke passes.
 - npm run verify passes.
 - Git working tree is clean after checkpoint and push.
 
 ## Boundaries
-- No real .mid file export yet.
+- No Standard MIDI File export yet.
 - No sample playback yet.
 - No full DAW UI yet.
-- This wave adds inspectable event state only.
+- This wave adds debug render state only.

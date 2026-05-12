@@ -65,3 +65,13 @@ npm run smoke
 - Added midi:check.
 - Strengthened format:check and verify.
 - Updated devctl state for Wave 05.
+
+## Wave 06 Execution
+
+- Added debug MIDI renderer.
+- Added generated debug MIDI artifact.
+- Added debug MIDI artifact checker.
+- Added debug renderer documentation.
+- Added render:check.
+- Strengthened format:check and verify.
+- Updated devctl state for Wave 06.

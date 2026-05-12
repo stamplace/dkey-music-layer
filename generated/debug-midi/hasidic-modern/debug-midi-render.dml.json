@@ -1,0 +1,155 @@
+{
+  "schema": "dml.debug_midi_render.v0",
+  "render_id": "debug-render-demo-hasidic-modern",
+  "source_midi_event_plan": "demo-hasidic-modern-midi-events",
+  "generated_at": "2026-05-12T14:10:54.625Z",
+  "timebase": {
+    "ppq": 480,
+    "bpm": 90,
+    "time_signature": "4/4"
+  },
+  "summary": {
+    "event_count": 10,
+    "track_count": 5,
+    "section_count": 3,
+    "tracks": [
+      "piano",
+      "strings",
+      "bass",
+      "drums",
+      "guitar"
+    ],
+    "sections": [
+      "intro",
+      "verse",
+      "chorus"
+    ],
+    "start_tick": 0,
+    "end_tick": 6720
+  },
+  "tracks": {
+    "piano": [
+      {
+        "tick": 0,
+        "note": 59,
+        "duration": 960,
+        "velocity": 54,
+        "articulation": "soft_legato",
+        "humanize_ms": 8,
+        "section": "intro"
+      },
+      {
+        "tick": 960,
+        "note": 62,
+        "duration": 960,
+        "velocity": 58,
+        "articulation": "soft_legato",
+        "humanize_ms": 11,
+        "section": "intro"
+      },
+      {
+        "tick": 1920,
+        "note": 59,
+        "duration": 480,
+        "velocity": 61,
+        "articulation": "broken_chords",
+        "humanize_ms": 6,
+        "section": "verse"
+      }
+    ],
+    "strings": [
+      {
+        "tick": 0,
+        "note": 71,
+        "duration": 1920,
+        "velocity": 48,
+        "articulation": "long_pad",
+        "humanize_ms": 15,
+        "section": "intro"
+      },
+      {
+        "tick": 5760,
+        "note": 74,
+        "duration": 960,
+        "velocity": 86,
+        "articulation": "long_octave_lift",
+        "humanize_ms": 12,
+        "section": "chorus"
+      }
+    ],
+    "bass": [
+      {
+        "tick": 1920,
+        "note": 47,
+        "duration": 480,
+        "velocity": 66,
+        "articulation": "finger_root_pulse",
+        "humanize_ms": 2,
+        "section": "verse"
+      },
+      {
+        "tick": 5760,
+        "note": 47,
+        "duration": 480,
+        "velocity": 92,
+        "articulation": "solid_foundation",
+        "humanize_ms": 0,
+        "section": "chorus"
+      }
+    ],
+    "drums": [
+      {
+        "tick": 1920,
+        "note": 36,
+        "duration": 120,
+        "velocity": 52,
+        "articulation": "light_brush_groove",
+        "humanize_ms": 10,
+        "section": "verse"
+      },
+      {
+        "tick": 5760,
+        "note": 36,
+        "duration": 120,
+        "velocity": 94,
+        "articulation": "full_kit_groove",
+        "humanize_ms": 1,
+        "section": "chorus"
+      }
+    ],
+    "guitar": [
+      {
+        "tick": 5760,
+        "note": 59,
+        "duration": 480,
+        "velocity": 76,
+        "articulation": "open_strum",
+        "humanize_ms": 7,
+        "section": "chorus"
+      }
+    ]
+  },
+  "sections": [
+    {
+      "section": "intro",
+      "start_tick": 0,
+      "end_tick": 1920
+    },
+    {
+      "section": "verse",
+      "start_tick": 1920,
+      "end_tick": 2400
+    },
+    {
+      "section": "chorus",
+      "start_tick": 5760,
+      "end_tick": 6720
+    }
+  ],
+  "render_policy": {
+    "debug_only": true,
+    "writes_standard_midi_file": false,
+    "safe_to_commit": true,
+    "next_step": "Wave 07 can add a real Standard MIDI File writer."
+  }
+}

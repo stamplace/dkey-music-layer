@@ -32,6 +32,10 @@ const requiredFiles = [
   'docs/midi/12_PERFORMANCE_TO_MIDI_EVENT_PLAN.md',
   'assets/demo-midi-events/hasidic-modern/midi-events.dml.json',
   'tools/midi-event-validator/src/index.mjs',
+  'docs/rendering/13_DEBUG_MIDI_RENDERER.md',
+  'tools/debug-midi-renderer/src/index.mjs',
+  'tools/debug-midi-renderer/src/check.mjs',
+  'generated/debug-midi/hasidic-modern/debug-midi-render.dml.json',
   '.github/workflows/ci.yml'
 ];
 
@@ -79,9 +83,9 @@ function statusCommand() {
 function pickCommand() {
   const state = readState();
   state.delivery_status = 'picked';
-  state.active_wave = 'Wave 05: Performance-to-MIDI Event Plan';
-  state.current_work = 'Add first MIDI event plan and validator from performance state';
-  state.next_action = 'Run npm run verify, commit, and push Wave 05 MIDI event plan';
+  state.active_wave = 'Wave 06: Debug MIDI Renderer';
+  state.current_work = 'Add debug MIDI renderer and first generated artifact';
+  state.next_action = 'Run npm run verify, commit, and push Wave 06 debug renderer';
   state.verified = false;
   writeState(state);
   console.log('Work picked.');
@@ -91,9 +95,9 @@ function pickCommand() {
 function closeCommand() {
   const state = readState();
   state.delivery_status = 'implemented';
-  state.active_wave = 'Wave 05: Performance-to-MIDI Event Plan';
-  state.current_work = 'Performance-to-MIDI event plan baseline implemented';
-  state.next_action = 'Wave 06: Debug MIDI renderer and first generated MIDI artifact';
+  state.active_wave = 'Wave 06: Debug MIDI Renderer';
+  state.current_work = 'Debug MIDI renderer baseline implemented';
+  state.next_action = 'Wave 07: Standard MIDI file writer and artifact export boundary';
   state.verified = true;
   writeState(state);
   console.log('Work closed.');

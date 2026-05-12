@@ -112,3 +112,22 @@ Rejected for this wave:
 - Sample playback.
 - Full DAW UI.
 - Audio model training.
+
+## Wave 06 Decision — Debug Artifact Before Binary MIDI Export
+
+Decision: add a debug MIDI renderer before writing Standard MIDI Files.
+
+Reason:
+A JSON debug artifact keeps the system inspectable and easy to verify. It proves event grouping by tracks and sections before introducing binary MIDI generation, DAW import concerns, or playback.
+
+Selected path:
+- Add debug MIDI renderer.
+- Generate a small committed debug artifact.
+- Add artifact validation.
+- Defer Standard MIDI File export to Wave 07.
+
+Rejected for this wave:
+- Binary MIDI file writing.
+- Sample playback.
+- DAW UI.
+- Audio rendering.

@@ -1,7 +1,7 @@
 {
   "project": "dkey-music-layer",
   "delivery_status": "implemented",
-  "active_wave": "Wave 05: Performance-to-MIDI Event Plan",
+  "active_wave": "Wave 06: Debug MIDI Renderer",
   "mode": "PRODUCTION",
   "current_scope": [
     "repo foundation",
@@ -10,14 +10,14 @@
     "devctl",
     "smoke verification"
   ],
-  "next_action": "Wave 06: Debug MIDI renderer and first generated MIDI artifact",
+  "next_action": "Wave 07: Standard MIDI file writer and artifact export boundary",
   "verified": true,
   "risks": [
     "Remote GitHub repository creation was not available through the connected tool in this session.",
     "Real audio DSP/rendering is not implemented yet.",
     "Third-party asset rights must be documented before real samples are imported."
   ],
-  "current_work": "Performance-to-MIDI event plan baseline implemented",
-  "github_issue": "#5",
-  "updated_at": "2026-05-12T14:05:08.288Z"
+  "current_work": "Debug MIDI renderer baseline implemented",
+  "github_issue": "#6",
+  "updated_at": "2026-05-12T14:10:45.128Z"
 }
