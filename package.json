@@ -10,14 +10,14 @@
     "test": "node tests/smoke/core-pipeline.test.mjs",
     "smoke": "node tools/render-smoke/src/index.mjs",
     "pack:check": "node tools/pack-validator/src/index.mjs assets/demo-packs/hasidic-modern/pack.dml.json",
-    "format:check": "npm run pack:check && npm run project:check && npm run arrangement:check && npm run performance:check && npm run midi:check && npm run render:check && npm run export:check && npm run playback:check && npm run preview:check && npm run rights:check && npm run first-song:check && npm run smoke",
+    "format:check": "npm run pack:check && npm run project:check && npm run arrangement:check && npm run performance:check && npm run midi:check && npm run render:check && npm run export:check && npm run playback:check && npm run preview:check && npm run rights:check && npm run first-song:check && npm run audio:check && npm run smoke",
     "ops:status": "node tools/devctl/src/index.mjs status",
     "ops:pick": "node tools/devctl/src/index.mjs pick",
     "ops:close": "node tools/devctl/src/index.mjs close",
     "ops:run": "node tools/ops-runner/src/index.mjs",
     "ops:verify": "node tools/ops-runner/src/index.mjs verify",
     "ops:full-report": "node tools/ops-runner/src/index.mjs full-report",
-    "verify": "npm run doctor && npm test && npm run pack:check && npm run project:check && npm run arrangement:check && npm run performance:check && npm run midi:check && npm run render:check && npm run export:check && npm run playback:check && npm run preview:check && npm run rights:check && npm run first-song:check && npm run smoke && npm run ops:status",
+    "verify": "npm run doctor && npm test && npm run pack:check && npm run project:check && npm run arrangement:check && npm run performance:check && npm run midi:check && npm run render:check && npm run export:check && npm run playback:check && npm run preview:check && npm run rights:check && npm run first-song:check && npm run audio:check && npm run smoke && npm run ops:status",
     "project:check": "node tools/project-validator/src/index.mjs assets/demo-projects/hasidic-modern/project.dml.json",
     "arrangement:check": "node tools/arrangement-validator/src/index.mjs assets/demo-arrangements/hasidic-modern/arrangement.dml.json",
     "performance:check": "node tools/performance-validator/src/index.mjs assets/demo-performances/hasidic-modern/performance.dml.json",
@@ -38,7 +38,10 @@
     "asset-rights:write": "node tools/asset-rights-validator/src/index.mjs generated/playback-plans/hasidic-modern/playback-plan.dml.json assets/rights/hasidic-modern/asset-rights.dml.json",
     "asset-rights:check": "node tools/asset-rights-validator/src/check.mjs assets/rights/hasidic-modern/asset-rights.dml.json generated/playback-plans/hasidic-modern/playback-plan.dml.json",
     "rights:check": "npm run asset-rights:write && npm run asset-rights:check",
-    "first-song:check": "node tools/first-song-validator/src/index.mjs assets/demo-first-songs/hasidic-modern/first-song.dml.json"
+    "first-song:check": "node tools/first-song-validator/src/index.mjs assets/demo-first-songs/hasidic-modern/first-song.dml.json",
+    "audio:write": "node tools/audio-wav-renderer/src/index.mjs assets/demo-midi-events/hasidic-modern/midi-events.dml.json generated/audio/hasidic-modern/first-song.wav",
+    "audio:file-check": "node tools/audio-wav-renderer/src/check.mjs generated/audio/hasidic-modern/first-song.wav",
+    "audio:check": "npm run audio:write && npm run audio:file-check"
   },
   "engines": {
     "node": ">=20"
