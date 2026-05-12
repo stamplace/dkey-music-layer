@@ -5,6 +5,9 @@ on:
     branches: [ main ]
     paths:
       - 'site/**'
+      - 'tools/audio-wav-renderer/**'
+      - 'assets/demo-midi-events/**'
+      - 'package.json'
       - '.github/workflows/pages.yml'
   workflow_dispatch:
 
@@ -26,6 +29,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Build product audio
+        run: |
+          npm run audio:write
+          mkdir -p site/audio/hasidic-modern
+          cp generated/audio/hasidic-modern/first-song.wav site/audio/hasidic-modern/first-song.wav
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

@@ -3,112 +3,158 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>DKey Music Layer — First Song</title>
+  <title>DKey Music Layer — Product Audio Surface</title>
   <style>
     :root {
       color-scheme: dark;
-      --bg: #05070c;
-      --card: rgba(255,255,255,.07);
-      --line: rgba(255,255,255,.14);
-      --text: #f3f6ff;
-      --muted: #9aa7bd;
-      --accent: #7cf7d4;
-      --accent2: #8ab4ff;
-      --danger: #ffb4a9;
+      --bg: #04060b;
+      --panel: rgba(255,255,255,.075);
+      --panel-strong: rgba(255,255,255,.105);
+      --line: rgba(255,255,255,.16);
+      --text: #f5f7ff;
+      --muted: #a7b2c8;
+      --soft: #d9e5ff;
+      --accent: #77ffd8;
+      --accent2: #9ebcff;
+      --warn: #ffd39a;
+      --ok: #97ffbf;
+      --shadow: 0 28px 90px rgba(0,0,0,.42);
     }
     * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background:
-        radial-gradient(circle at 20% 10%, rgba(124,247,212,.18), transparent 35%),
-        radial-gradient(circle at 80% 0%, rgba(138,180,255,.16), transparent 36%),
-        linear-gradient(145deg, #05070c, #090d16 55%, #05070c);
+        radial-gradient(circle at 16% 10%, rgba(119,255,216,.2), transparent 34%),
+        radial-gradient(circle at 84% 6%, rgba(158,188,255,.18), transparent 34%),
+        radial-gradient(circle at 55% 86%, rgba(119,255,216,.08), transparent 38%),
+        linear-gradient(145deg, #04060b, #0a1020 52%, #04060b);
       color: var(--text);
       min-height: 100vh;
     }
-    .wrap { width: min(1120px, calc(100% - 32px)); margin: 0 auto; padding: 32px 0 56px; }
-    .hero { display: grid; grid-template-columns: 1.05fr .95fr; gap: 24px; align-items: stretch; }
-    .panel {
-      border: 1px solid var(--line);
-      background: var(--card);
-      border-radius: 28px;
-      box-shadow: 0 24px 80px rgba(0,0,0,.35);
-      backdrop-filter: blur(18px);
-    }
+    .wrap { width: min(1180px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 56px; }
+    header { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 22px; }
+    .brand { display: flex; gap: 12px; align-items: center; }
+    .mark { width: 42px; height: 42px; border-radius: 16px; background: linear-gradient(135deg, var(--accent), var(--accent2)); box-shadow: 0 16px 34px rgba(119,255,216,.18); }
+    .brand strong { display: block; letter-spacing: -.02em; }
+    .brand span { display: block; color: var(--muted); font-size: 13px; }
+    .pill { border: 1px solid rgba(119,255,216,.28); color: var(--accent); border-radius: 999px; padding: 8px 12px; font-size: 13px; background: rgba(119,255,216,.055); }
+    .hero { display: grid; grid-template-columns: 1.08fr .92fr; gap: 22px; align-items: stretch; }
+    .panel { border: 1px solid var(--line); background: var(--panel); border-radius: 30px; box-shadow: var(--shadow); backdrop-filter: blur(18px); }
     .copy { padding: 36px; }
-    .badge { display: inline-flex; gap: 8px; align-items: center; color: var(--accent); border: 1px solid rgba(124,247,212,.28); border-radius: 999px; padding: 8px 12px; font-size: 14px; }
-    h1 { font-size: clamp(36px, 6vw, 76px); line-height: .95; margin: 22px 0 18px; letter-spacing: -0.05em; }
-    p { color: var(--muted); font-size: 18px; line-height: 1.75; margin: 0 0 16px; }
+    h1 { font-size: clamp(40px, 7vw, 84px); line-height: .9; margin: 18px 0 18px; letter-spacing: -.055em; }
+    h2 { margin: 0 0 12px; font-size: 24px; letter-spacing: -.025em; }
+    p { color: var(--muted); font-size: 17px; line-height: 1.75; margin: 0 0 16px; }
+    .lead { color: var(--soft); font-size: 20px; }
     .grid { display: grid; gap: 14px; padding: 22px; }
     label { display: grid; gap: 8px; color: #dce7ff; font-size: 14px; }
     input, textarea, select {
       width: 100%; border: 1px solid var(--line); background: rgba(0,0,0,.28); color: var(--text);
       border-radius: 16px; padding: 13px 14px; font: inherit; outline: none;
     }
-    textarea { min-height: 90px; resize: vertical; }
-    button {
-      border: 0; border-radius: 18px; padding: 15px 18px; font: inherit; font-weight: 800;
+    textarea { min-height: 100px; resize: vertical; }
+    button, .button {
+      border: 0; border-radius: 18px; padding: 15px 18px; font: inherit; font-weight: 850;
       color: #04110e; background: linear-gradient(135deg, var(--accent), var(--accent2)); cursor: pointer;
-      box-shadow: 0 14px 34px rgba(124,247,212,.16);
+      box-shadow: 0 14px 34px rgba(119,255,216,.16); text-decoration: none; text-align: center;
     }
-    button.secondary { color: var(--text); background: rgba(255,255,255,.08); border: 1px solid var(--line); box-shadow: none; }
+    button.secondary, .button.secondary { color: var(--text); background: rgba(255,255,255,.08); border: 1px solid var(--line); box-shadow: none; }
     .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .output { margin-top: 24px; padding: 22px; overflow: auto; }
-    pre { direction: ltr; text-align: left; white-space: pre-wrap; color: #d7fff3; font-size: 13px; line-height: 1.55; margin: 0; }
-    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 24px; }
-    .step { padding: 18px; border-radius: 22px; border: 1px solid var(--line); background: rgba(255,255,255,.045); }
-    .step b { color: var(--accent); }
-    .note { color: var(--danger); font-size: 14px; }
-    @media (max-width: 860px) { .hero { grid-template-columns: 1fr; } .steps, .actions { grid-template-columns: 1fr; } .copy { padding: 26px; } }
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 22px; }
+    .step { padding: 16px; border-radius: 22px; border: 1px solid var(--line); background: rgba(255,255,255,.045); min-height: 102px; }
+    .step b { color: var(--accent); font-size: 22px; }
+    .audio-card { padding: 24px; display: grid; gap: 16px; align-content: start; }
+    audio { width: 100%; filter: drop-shadow(0 14px 28px rgba(0,0,0,.25)); }
+    .status { display: grid; gap: 9px; }
+    .row { display: flex; justify-content: space-between; gap: 12px; border: 1px solid var(--line); background: rgba(0,0,0,.18); padding: 12px 14px; border-radius: 16px; color: var(--muted); }
+    .row strong { color: var(--text); }
+    .ok { color: var(--ok); }
+    .warn { color: var(--warn); }
+    .output { margin-top: 22px; padding: 22px; overflow: auto; }
+    pre { direction: ltr; text-align: left; white-space: pre-wrap; color: #d7fff3; font-size: 13px; line-height: 1.55; margin: 0; max-height: 420px; }
+    .roadmap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 22px; }
+    .card { padding: 18px; border-radius: 22px; border: 1px solid var(--line); background: var(--panel-strong); }
+    .card h3 { margin: 0 0 8px; font-size: 17px; }
+    .card p { font-size: 14px; margin: 0; }
+    @media (max-width: 900px) { .hero { grid-template-columns: 1fr; } .steps, .roadmap, .actions { grid-template-columns: 1fr; } .copy { padding: 26px; } header { align-items: flex-start; flex-direction: column; } }
   </style>
 </head>
 <body>
   <main class="wrap">
+    <header>
+      <div class="brand">
+        <div class="mark" aria-hidden="true"></div>
+        <div><strong>DKey Music Layer</strong><span>Production audio creation surface</span></div>
+      </div>
+      <div class="pill">Human-led · CI-verified · WAV output</div>
+    </header>
+
     <section class="hero">
       <div class="panel copy">
-        <span class="badge">DKey Music Layer · First Song Path</span>
-        <h1>האולפן החי הראשון שלך</h1>
-        <p>זהו דמו מוצרי ראשוני: לא מחולל אודיו עדיין, אלא יוצר ארטיפקט DML ברור לשיר הראשון — כוונה, מבנה, הרגשה, כלי נגינה, ותוואי הפקה.</p>
-        <p>העיקרון: האדם נשאר המנצח. המערכת בונה מסלול שאפשר לבדוק, לשנות, להפוך לקובץ MIDI, ובהמשך לחבר לסמפלים אמיתיים מאושרים.</p>
+        <span class="pill">Product path · first audible output</span>
+        <h1>אולפן מוזיקלי חי, לא עוד טופס.</h1>
+        <p class="lead">כאן מתחיל המוצר: האדם כותב כוונה מוזיקלית, המערכת מחזיקה מבנה, בדיקות, מנוע, וזמן קצר אחר כך — קובץ שמע שמיע.</p>
+        <p>הגרסה הנוכחית כבר לא עוצרת ב־JSON. יש מנוע WAV דטרמיניסטי שמייצר קובץ אודיו מתוך אירועי MIDI פנימיים, והאתר מיועד לפרסם אותו כנגן וקובץ להורדה.</p>
         <div class="steps">
-          <div class="step"><b>1</b><br>כתוב כוונה</div>
-          <div class="step"><b>2</b><br>צור DML Song</div>
-          <div class="step"><b>3</b><br>הורד ארטיפקט</div>
+          <div class="step"><b>1</b><br>כוונה מוזיקלית</div>
+          <div class="step"><b>2</b><br>Arrangement / MIDI</div>
+          <div class="step"><b>3</b><br>WAV Render</div>
+          <div class="step"><b>4</b><br>נגן והורדה</div>
         </div>
       </div>
 
-      <form class="panel grid" id="songForm">
-        <label>שם השיר
-          <input id="title" value="אור שלא נכנע" />
-        </label>
-        <label>נושא
-          <input id="theme" value="אמונה פשוטה בתוך עומס החיים" />
-        </label>
-        <label>רגש מרכזי
-          <input id="emotion" value="חם, מתגבר, נקי, אנושי" />
-        </label>
-        <label>סולם
-          <select id="key">
-            <option>Bm</option><option>Am</option><option>Em</option><option>Dm</option><option>G</option><option>C</option>
-          </select>
-        </label>
-        <label>BPM
-          <input id="bpm" type="number" min="50" max="180" value="90" />
-        </label>
-        <label>תיאור ביצוע / הפקה
-          <textarea id="intent">זמר גברי, עברית נקייה, פסנתר רך בבית, בס עגול, תופים נפתחים בפזמון, מיתרים רחבים, סיום גדול אבל לא צעקני.</textarea>
-        </label>
+      <section class="panel audio-card">
+        <h2>השיר הראשון</h2>
+        <p>קובץ ה־WAV נבנה אוטומטית בפרסום האתר דרך GitHub Actions. אם הנגן עדיין לא נטען, ה־Pages עדיין לא הופעל או שהפריסה האחרונה נכשלה.</p>
+        <audio controls preload="metadata" src="audio/hasidic-modern/first-song.wav"></audio>
         <div class="actions">
-          <button type="submit">צור שיר ראשון</button>
-          <button type="button" class="secondary" id="downloadBtn">הורד JSON</button>
+          <a class="button" href="audio/hasidic-modern/first-song.wav" download>הורד WAV</a>
+          <button class="secondary" type="button" id="renderBriefBtn">צור בריף שיר</button>
         </div>
-        <p class="note">גבול נוכחי: זה יוצר תכנון שיר. אודיו/WAV/סמפלים אמיתיים יגיעו רק אחרי שער זכויות.</p>
-      </form>
+        <div class="status">
+          <div class="row"><span>Audio engine</span><strong class="ok">WAV 44.1kHz / stereo</strong></div>
+          <div class="row"><span>Current output</span><strong>first-song.wav</strong></div>
+          <div class="row"><span>Next production layer</span><strong class="warn">stems + richer sound</strong></div>
+        </div>
+      </section>
     </section>
 
+    <section class="roadmap">
+      <div class="card"><h3>מה יש עכשיו</h3><p>מסלול מאומת: brief → arrangement/performance/MIDI → WAV renderer → CI artifact → אתר מוצר.</p></div>
+      <div class="card"><h3>מה חסר לפרודקשן מלא</h3><p>מנוע תזמור עשיר, stems נפרדים, סמפלים אמיתיים עם זכויות, ויכולת ליצור שיר חדש מהטופס עצמו.</p></div>
+      <div class="card"><h3>הצעד הבא</h3><p>לחבר את האתר ל־workflow שמקבל input, מרנדר WAV חדש, ומחזיר קובץ להורדה בלי העתקות ארוכות.</p></div>
+    </section>
+
+    <form class="panel grid" id="songForm" style="margin-top:22px;">
+      <h2>כוונת שיר חדשה</h2>
+      <label>שם השיר
+        <input id="title" value="אור שלא נכנע" />
+      </label>
+      <label>נושא
+        <input id="theme" value="אמונה פשוטה בתוך עומס החיים" />
+      </label>
+      <label>רגש מרכזי
+        <input id="emotion" value="חם, מתגבר, נקי, אנושי" />
+      </label>
+      <label>סולם
+        <select id="key">
+          <option>Bm</option><option>Am</option><option>Em</option><option>Dm</option><option>G</option><option>C</option>
+        </select>
+      </label>
+      <label>BPM
+        <input id="bpm" type="number" min="50" max="180" value="90" />
+      </label>
+      <label>תיאור ביצוע / הפקה
+        <textarea id="intent">זמר גברי, עברית נקייה, פסנתר רך בבית, בס עגול, תופים נפתחים בפזמון, מיתרים רחבים, סיום גדול אבל לא צעקני.</textarea>
+      </label>
+      <div class="actions">
+        <button type="submit">בנה מפרט שיר</button>
+        <button type="button" class="secondary" id="downloadBtn">הורד מפרט</button>
+      </div>
+    </form>
+
     <section class="panel output">
-      <pre id="output">לחץ “צור שיר ראשון” כדי ליצור ארטיפקט DML.</pre>
+      <pre id="output">כאן יופיע מפרט השיר. השלב הבא יחבר את המפרט הזה לרינדור WAV אוטומטי.</pre>
     </section>
   </main>
 
@@ -116,6 +162,7 @@
     const form = document.getElementById('songForm');
     const output = document.getElementById('output');
     const downloadBtn = document.getElementById('downloadBtn');
+    const renderBriefBtn = document.getElementById('renderBriefBtn');
     let latest = null;
 
     function makeSong() {
@@ -126,33 +173,43 @@
       const bpm = Number(document.getElementById('bpm').value || 90);
       const intent = document.getElementById('intent').value.trim();
       return {
-        schema: 'dml.first_song_brief.v0',
+        schema: 'dml.product_song_request.v1',
         created_at: new Date().toISOString(),
         product: 'DKey Music Layer',
         title,
-        musical_intent: { theme, emotion, key, bpm, tuning: '440Hz', sample_rate_target: '48kHz', human_role: 'conductor' },
-        arrangement: [
-          { section: 'intro', bars: 4, energy: 'low', focus: 'piano motif' },
-          { section: 'verse', bars: 16, energy: 'warm', focus: 'clear vocal and soft piano' },
-          { section: 'chorus', bars: 16, energy: 'wide', focus: 'memorable hook, drums, bass, strings' },
+        musical_intent: { theme, emotion, key, bpm, tuning: '440Hz', human_role: 'conductor' },
+        requested_outputs: ['wav_mix', 'midi', 'stems_future'],
+        arrangement_target: [
+          { section: 'intro', bars: 4, energy: 'low', focus: 'motif' },
+          { section: 'verse', bars: 16, energy: 'warm', focus: 'clear lead line' },
+          { section: 'chorus', bars: 16, energy: 'wide', focus: 'memorable hook' },
           { section: 'bridge', bars: 8, energy: 'lift', focus: 'short harmonic opening' },
-          { section: 'final_chorus', bars: 16, energy: 'full', focus: 'radio-ready emotional release' }
+          { section: 'final_chorus', bars: 16, energy: 'full', focus: 'emotional release' }
         ],
-        tracks: ['vocal', 'piano', 'bass', 'drums', 'strings', 'guitar'],
+        tracks: ['vocal_future', 'piano', 'bass', 'drums', 'strings', 'guitar'],
         production_direction: intent,
-        boundaries: {
-          creates_audio: false,
-          loads_real_samples: false,
-          requires_rights_gate_for_real_assets: true,
-          next_step: 'Convert this brief into DML arrangement/performance/MIDI/audio pipeline.'
+        current_engine_boundary: {
+          browser_renders_audio_directly: false,
+          ci_renders_wav: true,
+          real_sample_loading_requires_rights_gate: true,
+          next_step: 'Send this request into a GitHub Actions render workflow and return WAV artifact.'
         }
       };
     }
 
-    form.addEventListener('submit', (event) => {
-      event.preventDefault();
+    function showSong() {
       latest = makeSong();
       output.textContent = JSON.stringify(latest, null, 2);
+    }
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      showSong();
+    });
+
+    renderBriefBtn.addEventListener('click', () => {
+      document.getElementById('songForm').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      showSong();
     });
 
     downloadBtn.addEventListener('click', () => {
@@ -161,7 +218,7 @@
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = latest.title.replace(/\s+/g, '-').toLowerCase() + '.first-song.dml.json';
+      a.download = latest.title.replace(/\s+/g, '-').toLowerCase() + '.song-request.dml.json';
       a.click();
       URL.revokeObjectURL(url);
     });
