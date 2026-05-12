@@ -1,0 +1,172 @@
+{
+  "schema": "dml.playback_plan.v0",
+  "playback_plan_id": "demo-hasidic-modern-playback-plan",
+  "source_midi_event_plan": "demo-hasidic-modern-midi-events",
+  "source_trigger_map": "demo-hasidic-modern-sample-trigger-map",
+  "generated_at": "2026-05-12T14:19:25.636Z",
+  "summary": {
+    "trigger_count": 10,
+    "track_count": 5,
+    "section_count": 3,
+    "tracks": [
+      "piano",
+      "strings",
+      "bass",
+      "drums",
+      "guitar"
+    ],
+    "sections": [
+      "intro",
+      "verse",
+      "chorus"
+    ]
+  },
+  "triggers": [
+    {
+      "section": "intro",
+      "track": "piano",
+      "tick": 0,
+      "note": 59,
+      "duration": 960,
+      "velocity": 54,
+      "sample_slot": "piano_soft_grand_placeholder",
+      "sample_root": "assets/demo-packs/hasidic-modern/samples/piano",
+      "velocity_layer": "soft",
+      "articulation": "soft_legato",
+      "humanize_ms": 8,
+      "creates_audio": false
+    },
+    {
+      "section": "intro",
+      "track": "piano",
+      "tick": 960,
+      "note": 62,
+      "duration": 960,
+      "velocity": 58,
+      "sample_slot": "piano_soft_grand_placeholder",
+      "sample_root": "assets/demo-packs/hasidic-modern/samples/piano",
+      "velocity_layer": "soft",
+      "articulation": "soft_legato",
+      "humanize_ms": 11,
+      "creates_audio": false
+    },
+    {
+      "section": "intro",
+      "track": "strings",
+      "tick": 0,
+      "note": 71,
+      "duration": 1920,
+      "velocity": 48,
+      "sample_slot": "strings_long_pad_placeholder",
+      "sample_root": "assets/demo-packs/hasidic-modern/samples/strings",
+      "velocity_layer": "support",
+      "articulation": "long_pad",
+      "humanize_ms": 15,
+      "creates_audio": false
+    },
+    {
+      "section": "verse",
+      "track": "bass",
+      "tick": 1920,
+      "note": 47,
+      "duration": 480,
+      "velocity": 66,
+      "sample_slot": "finger_bass_placeholder",
+      "sample_root": "assets/demo-packs/hasidic-modern/samples/bass",
+      "velocity_layer": "round",
+      "articulation": "finger_root_pulse",
+      "humanize_ms": 2,
+      "creates_audio": false
+    },
+    {
+      "section": "verse",
+      "track": "drums",
+      "tick": 1920,
+      "note": 36,
+      "duration": 120,
+      "velocity": 52,
+      "sample_slot": "light_to_full_kit_placeholder",
+      "sample_root": "assets/demo-packs/hasidic-modern/samples/drums",
+      "velocity_layer": "light",
+      "articulation": "light_brush_groove",
+      "humanize_ms": 10,
+      "creates_audio": false
+    },
+    {
+      "section": "verse",
+      "track": "piano",
+      "tick": 1920,
+      "note": 59,
+      "duration": 480,
+      "velocity": 61,
+      "sample_slot": "piano_soft_grand_placeholder",
+      "sample_root": "assets/demo-packs/hasidic-modern/samples/piano",
+      "velocity_layer": "soft",
+      "articulation": "broken_chords",
+      "humanize_ms": 6,
+      "creates_audio": false
+    },
+    {
+      "section": "chorus",
+      "track": "drums",
+      "tick": 5760,
+      "note": 36,
+      "duration": 120,
+      "velocity": 94,
+      "sample_slot": "light_to_full_kit_placeholder",
+      "sample_root": "assets/demo-packs/hasidic-modern/samples/drums",
+      "velocity_layer": "full",
+      "articulation": "full_kit_groove",
+      "humanize_ms": 1,
+      "creates_audio": false
+    },
+    {
+      "section": "chorus",
+      "track": "bass",
+      "tick": 5760,
+      "note": 47,
+      "duration": 480,
+      "velocity": 92,
+      "sample_slot": "finger_bass_placeholder",
+      "sample_root": "assets/demo-packs/hasidic-modern/samples/bass",
+      "velocity_layer": "solid",
+      "articulation": "solid_foundation",
+      "humanize_ms": 0,
+      "creates_audio": false
+    },
+    {
+      "section": "chorus",
+      "track": "strings",
+      "tick": 5760,
+      "note": 74,
+      "duration": 960,
+      "velocity": 86,
+      "sample_slot": "strings_long_pad_placeholder",
+      "sample_root": "assets/demo-packs/hasidic-modern/samples/strings",
+      "velocity_layer": "lift",
+      "articulation": "long_octave_lift",
+      "humanize_ms": 12,
+      "creates_audio": false
+    },
+    {
+      "section": "chorus",
+      "track": "guitar",
+      "tick": 5760,
+      "note": 59,
+      "duration": 480,
+      "velocity": 76,
+      "sample_slot": "acoustic_strum_placeholder",
+      "sample_root": "assets/demo-packs/hasidic-modern/samples/guitar",
+      "velocity_layer": "open",
+      "articulation": "open_strum",
+      "humanize_ms": 7,
+      "creates_audio": false
+    }
+  ],
+  "boundary": {
+    "debug_only": true,
+    "creates_audio": false,
+    "loads_real_samples": false,
+    "next_step": "Wave 09 can introduce deterministic sample-slot preview rendering without real DSP."
+  }
+}

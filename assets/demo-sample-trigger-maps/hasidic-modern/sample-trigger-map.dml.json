@@ -1,0 +1,63 @@
+{
+  "schema": "dml.sample_trigger_map.v0",
+  "trigger_map_id": "demo-hasidic-modern-sample-trigger-map",
+  "source_pack": "hasidic-modern-demo-pack",
+  "source_midi_event_plan": "demo-hasidic-modern-midi-events",
+  "policy": {
+    "real_sample_loading": false,
+    "placeholder_slots_only": true,
+    "requires_asset_rights_before_audio_render": true
+  },
+  "track_slots": {
+    "piano": {
+      "instrument_family": "keys",
+      "slot": "piano_soft_grand_placeholder",
+      "sample_root": "assets/demo-packs/hasidic-modern/samples/piano",
+      "velocity_layers": [
+        { "name": "soft", "min": 0, "max": 70 },
+        { "name": "bright", "min": 71, "max": 127 }
+      ]
+    },
+    "strings": {
+      "instrument_family": "strings",
+      "slot": "strings_long_pad_placeholder",
+      "sample_root": "assets/demo-packs/hasidic-modern/samples/strings",
+      "velocity_layers": [
+        { "name": "support", "min": 0, "max": 69 },
+        { "name": "lift", "min": 70, "max": 127 }
+      ]
+    },
+    "bass": {
+      "instrument_family": "bass",
+      "slot": "finger_bass_placeholder",
+      "sample_root": "assets/demo-packs/hasidic-modern/samples/bass",
+      "velocity_layers": [
+        { "name": "round", "min": 0, "max": 80 },
+        { "name": "solid", "min": 81, "max": 127 }
+      ]
+    },
+    "drums": {
+      "instrument_family": "drums",
+      "slot": "light_to_full_kit_placeholder",
+      "sample_root": "assets/demo-packs/hasidic-modern/samples/drums",
+      "velocity_layers": [
+        { "name": "light", "min": 0, "max": 70 },
+        { "name": "full", "min": 71, "max": 127 }
+      ]
+    },
+    "guitar": {
+      "instrument_family": "guitar",
+      "slot": "acoustic_strum_placeholder",
+      "sample_root": "assets/demo-packs/hasidic-modern/samples/guitar",
+      "velocity_layers": [
+        { "name": "texture", "min": 0, "max": 75 },
+        { "name": "open", "min": 76, "max": 127 }
+      ]
+    }
+  },
+  "playback_boundary": {
+    "creates_audio": false,
+    "creates_playback_plan": true,
+    "safe_to_commit": true
+  }
+}

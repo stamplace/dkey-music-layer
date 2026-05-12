@@ -1,21 +1,22 @@
-# Active Wave — Wave 07: Standard MIDI Export Boundary
+# Active Wave — Wave 08: Sample Trigger Playback Boundary
 
 ## Status
 BUILD
 
 ## Goal
-Add the first Standard MIDI File writer and export artifact from the DML MIDI event plan.
+Add the first asset-backed sample trigger map and playback plan boundary.
 
 ## Scope
-- Add dependency-free Standard MIDI writer.
-- Add generated MIDI file artifact.
-- Add MIDI file checker.
-- Add export boundary documentation.
-- Strengthen export, format, and verify checks.
+- Add sample trigger map fixture.
+- Add trigger map validation.
+- Add playback planner.
+- Generate playback plan artifact.
+- Add playback boundary documentation.
+- Strengthen playback, format, and verify checks.
 - Preserve all existing verification.
 
 ## GitHub
-- Issue: #7 — Wave 07: Standard MIDI file writer and export boundary
+- Issue: #8 — Wave 08: Asset-backed sample trigger map and first playback boundary
 
 ## Definition of Done
 - npm run doctor passes.
@@ -27,13 +28,14 @@ Add the first Standard MIDI File writer and export artifact from the DML MIDI ev
 - npm run midi:check passes.
 - npm run render:check passes.
 - npm run export:check passes.
+- npm run playback:check passes.
 - npm run format:check passes.
 - npm run smoke passes.
 - npm run verify passes.
 - Git working tree is clean after checkpoint and push.
 
 ## Boundaries
-- No sample playback yet.
-- No audio rendering yet.
-- No full DAW UI yet.
-- The MIDI file is a proof artifact, not final musical output.
+- No audio DSP yet.
+- No WAV rendering yet.
+- No real sample file loading yet.
+- This wave creates an inspectable playback plan only.

@@ -85,3 +85,14 @@ npm run smoke
 - Added export:check.
 - Strengthened format:check and verify.
 - Updated devctl state for Wave 07.
+
+## Wave 08 Execution
+
+- Added sample trigger map fixture.
+- Added sample trigger validator.
+- Added playback planner.
+- Added generated playback plan artifact.
+- Added playback boundary documentation.
+- Added playback:check.
+- Strengthened format:check and verify.
+- Updated devctl state for Wave 08.

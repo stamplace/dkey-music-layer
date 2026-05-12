@@ -151,3 +151,22 @@ Rejected for this wave:
 - Audio rendering.
 - DAW UI.
 - Multi-track MIDI export.
+
+## Wave 08 Decision — Playback Plan Before Audio Rendering
+
+Decision: add an asset-backed sample trigger map and playback plan before loading or rendering real samples.
+
+Reason:
+The product must preserve a verifiable bridge from MIDI events to asset-backed sample slots before audio playback. This keeps the system inspectable and prevents accidental use of unlicensed or unmanaged samples.
+
+Selected path:
+- Add sample-trigger-map.dml.json.
+- Validate track-to-slot mapping and velocity layers.
+- Generate playback-plan.dml.json from MIDI events plus trigger map.
+- Keep the boundary non-audio and placeholder-only.
+
+Rejected for this wave:
+- WAV rendering.
+- Real sample loading.
+- DSP engine.
+- DAW UI.

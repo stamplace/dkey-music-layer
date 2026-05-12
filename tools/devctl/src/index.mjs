@@ -40,6 +40,12 @@ const requiredFiles = [
   'tools/standard-midi-writer/src/index.mjs',
   'tools/standard-midi-writer/src/check.mjs',
   'generated/standard-midi/hasidic-modern/demo-hasidic-modern.mid',
+  'docs/playback/15_SAMPLE_TRIGGER_PLAYBACK_BOUNDARY.md',
+  'assets/demo-sample-trigger-maps/hasidic-modern/sample-trigger-map.dml.json',
+  'tools/sample-trigger-validator/src/index.mjs',
+  'tools/playback-planner/src/index.mjs',
+  'tools/playback-planner/src/check.mjs',
+  'generated/playback-plans/hasidic-modern/playback-plan.dml.json',
   '.github/workflows/ci.yml'
 ];
 
@@ -87,9 +93,9 @@ function statusCommand() {
 function pickCommand() {
   const state = readState();
   state.delivery_status = 'picked';
-  state.active_wave = 'Wave 07: Standard MIDI Export Boundary';
-  state.current_work = 'Add Standard MIDI writer and first MIDI export artifact';
-  state.next_action = 'Run npm run verify, commit, and push Wave 07 MIDI export';
+  state.active_wave = 'Wave 08: Sample Trigger Playback Boundary';
+  state.current_work = 'Add asset-backed sample trigger map and playback plan boundary';
+  state.next_action = 'Run npm run verify, commit, and push Wave 08 playback boundary';
   state.verified = false;
   writeState(state);
   console.log('Work picked.');
@@ -99,9 +105,9 @@ function pickCommand() {
 function closeCommand() {
   const state = readState();
   state.delivery_status = 'implemented';
-  state.active_wave = 'Wave 07: Standard MIDI Export Boundary';
-  state.current_work = 'Standard MIDI export boundary baseline implemented';
-  state.next_action = 'Wave 08: Asset-backed sample trigger map and first playback boundary';
+  state.active_wave = 'Wave 08: Sample Trigger Playback Boundary';
+  state.current_work = 'Sample trigger playback boundary baseline implemented';
+  state.next_action = 'Wave 09: Deterministic sample-slot preview renderer boundary';
   state.verified = true;
   writeState(state);
   console.log('Work closed.');
