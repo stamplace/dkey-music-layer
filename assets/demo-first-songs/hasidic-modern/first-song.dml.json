@@ -1,0 +1,61 @@
+{
+  "schema": "dml.first_song_brief.v0",
+  "product": "DKey Music Layer",
+  "title": "אור שלא נכנע",
+  "musical_intent": {
+    "theme": "אמונה פשוטה בתוך עומס החיים",
+    "emotion": "חם, מתגבר, נקי, אנושי",
+    "key": "Bm",
+    "bpm": 90,
+    "tuning": "440Hz",
+    "sample_rate_target": "48kHz",
+    "human_role": "conductor"
+  },
+  "arrangement": [
+    {
+      "section": "intro",
+      "bars": 4,
+      "energy": "low",
+      "focus": "piano motif"
+    },
+    {
+      "section": "verse",
+      "bars": 16,
+      "energy": "warm",
+      "focus": "clear vocal and soft piano"
+    },
+    {
+      "section": "chorus",
+      "bars": 16,
+      "energy": "wide",
+      "focus": "memorable hook, drums, bass, strings"
+    },
+    {
+      "section": "bridge",
+      "bars": 8,
+      "energy": "lift",
+      "focus": "short harmonic opening"
+    },
+    {
+      "section": "final_chorus",
+      "bars": 16,
+      "energy": "full",
+      "focus": "radio-ready emotional release"
+    }
+  ],
+  "tracks": [
+    "vocal",
+    "piano",
+    "bass",
+    "drums",
+    "strings",
+    "guitar"
+  ],
+  "production_direction": "זמר גברי, עברית נקייה, פסנתר רך בבית, בס עגול, תופים נפתחים בפזמון, מיתרים רחבים, סיום גדול אבל לא צעקני.",
+  "boundaries": {
+    "creates_audio": false,
+    "loads_real_samples": false,
+    "requires_rights_gate_for_real_assets": true,
+    "next_step": "Convert this brief into DML arrangement/performance/MIDI/audio pipeline."
+  }
+}
