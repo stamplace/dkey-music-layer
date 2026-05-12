@@ -189,3 +189,22 @@ Rejected for this wave:
 - WAV rendering.
 - Audio DSP.
 - DAW UI.
+
+## Wave 10 Decision — Rights Gate Before Real Sample Loading
+
+Decision: add an asset rights manifest before introducing real sample loading.
+
+Reason:
+The system now has playback intent and preview boundaries. Before any real asset can be loaded, every sample slot must have a rights record. This prevents hidden licensing debt and keeps the system safe for future audio work.
+
+Selected path:
+- Generate rights manifest from playback plan sample slots.
+- Keep all current slots as placeholder-only.
+- Block real sample loading and commercial release by default.
+- Require explicit future rights clearance before any real asset attachment.
+
+Rejected for this wave:
+- Loading WAV files.
+- Decoding samples.
+- Audio rendering.
+- Claiming any commercial asset clearance.

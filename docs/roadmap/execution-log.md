@@ -106,3 +106,13 @@ npm run smoke
 - Added preview:check.
 - Strengthened format:check and verify.
 - Updated devctl state for Wave 09.
+
+## Wave 10 Execution
+
+- Added asset rights manifest generator.
+- Added asset rights manifest validator.
+- Added placeholder-only rights manifest artifact.
+- Added rights boundary documentation.
+- Added rights:check.
+- Strengthened format:check and verify.
+- Updated devctl state for Wave 10.

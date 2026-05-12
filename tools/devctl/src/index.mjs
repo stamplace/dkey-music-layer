@@ -50,6 +50,10 @@ const requiredFiles = [
   'tools/sample-slot-preview-renderer/src/index.mjs',
   'tools/sample-slot-preview-renderer/src/check.mjs',
   'generated/sample-slot-previews/hasidic-modern/sample-slot-preview.dml.json',
+  'docs/rights/17_ASSET_RIGHTS_MANIFEST.md',
+  'assets/rights/hasidic-modern/asset-rights.dml.json',
+  'tools/asset-rights-validator/src/index.mjs',
+  'tools/asset-rights-validator/src/check.mjs',
   '.github/workflows/ci.yml'
 ];
 
@@ -97,9 +101,9 @@ function statusCommand() {
 function pickCommand() {
   const state = readState();
   state.delivery_status = 'picked';
-  state.active_wave = 'Wave 09: Sample Slot Preview Renderer Boundary';
-  state.current_work = 'Add deterministic sample-slot preview renderer boundary';
-  state.next_action = 'Run npm run verify, commit, and push Wave 09 preview boundary';
+  state.active_wave = 'Wave 10: Asset Rights Manifest Hardening';
+  state.current_work = 'Add asset rights manifest gate before real sample loading';
+  state.next_action = 'Run npm run verify, commit, and push Wave 10 rights manifest';
   state.verified = false;
   writeState(state);
   console.log('Work picked.');
@@ -109,9 +113,9 @@ function pickCommand() {
 function closeCommand() {
   const state = readState();
   state.delivery_status = 'implemented';
-  state.active_wave = 'Wave 09: Sample Slot Preview Renderer Boundary';
-  state.current_work = 'Sample-slot preview renderer baseline implemented';
-  state.next_action = 'Wave 10: Asset rights manifest hardening before real sample loading';
+  state.active_wave = 'Wave 10: Asset Rights Manifest Hardening';
+  state.current_work = 'Asset rights manifest baseline implemented';
+  state.next_action = 'Wave 11: Real sample loading proposal behind rights gate';
   state.verified = true;
   writeState(state);
   console.log('Work closed.');

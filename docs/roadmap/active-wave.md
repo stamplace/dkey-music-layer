@@ -1,22 +1,21 @@
-# Active Wave — Wave 09: Sample Slot Preview Renderer Boundary
+# Active Wave — Wave 10: Asset Rights Manifest Hardening
 
 ## Status
 BUILD
 
 ## Goal
-Add a deterministic preview renderer from playback plan to sample-slot timeline artifact.
+Add a rights manifest gate before real sample loading.
 
 ## Scope
-- Add sample-slot preview renderer.
-- Generate sample-slot preview artifact.
-- Add preview artifact checker.
-- Add preview boundary documentation.
-- Add preview:check.
+- Generate asset rights manifest from playback plan sample slots.
+- Add asset rights validator.
+- Add rights boundary documentation.
+- Add rights:check.
 - Strengthen format:check and verify.
-- Preserve all existing verification.
+- Preserve all existing checks.
 
 ## GitHub
-- Issue: #9 — Wave 09: Sample slot preview renderer
+- Issue: #10 — Wave 10: Asset rights manifest hardening
 
 ## Definition of Done
 - npm run doctor passes.
@@ -30,13 +29,14 @@ Add a deterministic preview renderer from playback plan to sample-slot timeline 
 - npm run export:check passes.
 - npm run playback:check passes.
 - npm run preview:check passes.
+- npm run rights:check passes.
 - npm run format:check passes.
 - npm run smoke passes.
 - npm run verify passes.
 - Git working tree is clean after checkpoint and push.
 
 ## Boundaries
-- No audio DSP yet.
-- No WAV rendering yet.
-- No real sample loading yet.
-- This wave creates deterministic preview metadata only.
+- No real sample loading.
+- No WAV rendering.
+- No audio DSP.
+- No commercial rights claim.

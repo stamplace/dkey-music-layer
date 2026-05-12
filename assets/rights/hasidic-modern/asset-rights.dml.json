@@ -1,0 +1,207 @@
+{
+  "schema": "dml.asset_rights_manifest.v0",
+  "rights_manifest_id": "demo-hasidic-modern-asset-rights",
+  "project_id": "demo-hasidic-modern",
+  "source_playback_plan": "demo-hasidic-modern-playback-plan",
+  "deterministic": true,
+  "policy": {
+    "placeholder_slots_only": true,
+    "real_sample_loading_allowed": false,
+    "require_rights_clearance_before_loading": true,
+    "require_license_record_before_audio_export": true,
+    "require_human_approval_before_real_assets": true
+  },
+  "summary": {
+    "slot_count": 5,
+    "tracks": [
+      "bass",
+      "drums",
+      "guitar",
+      "piano",
+      "strings"
+    ],
+    "sections": [
+      "chorus",
+      "intro",
+      "verse"
+    ]
+  },
+  "slots": [
+    {
+      "slot_id": "acoustic_strum_placeholder",
+      "rights_status": "placeholder_only",
+      "source_type": "internal_placeholder_slot",
+      "real_asset_attached": false,
+      "source_cleared": false,
+      "license_status": "not_applicable_placeholder",
+      "allowed_uses": [
+        "local_development",
+        "metadata_preview",
+        "validation",
+        "non_audio_planning"
+      ],
+      "blocked_uses": [
+        "real_sample_loading",
+        "audio_rendering",
+        "commercial_release",
+        "redistribution_as_sample_pack"
+      ],
+      "tracks": [
+        "guitar"
+      ],
+      "sections": [
+        "chorus"
+      ],
+      "notes": [
+        "59"
+      ],
+      "velocity_layers": [
+        "open"
+      ]
+    },
+    {
+      "slot_id": "finger_bass_placeholder",
+      "rights_status": "placeholder_only",
+      "source_type": "internal_placeholder_slot",
+      "real_asset_attached": false,
+      "source_cleared": false,
+      "license_status": "not_applicable_placeholder",
+      "allowed_uses": [
+        "local_development",
+        "metadata_preview",
+        "validation",
+        "non_audio_planning"
+      ],
+      "blocked_uses": [
+        "real_sample_loading",
+        "audio_rendering",
+        "commercial_release",
+        "redistribution_as_sample_pack"
+      ],
+      "tracks": [
+        "bass"
+      ],
+      "sections": [
+        "chorus",
+        "verse"
+      ],
+      "notes": [
+        "47"
+      ],
+      "velocity_layers": [
+        "round",
+        "solid"
+      ]
+    },
+    {
+      "slot_id": "light_to_full_kit_placeholder",
+      "rights_status": "placeholder_only",
+      "source_type": "internal_placeholder_slot",
+      "real_asset_attached": false,
+      "source_cleared": false,
+      "license_status": "not_applicable_placeholder",
+      "allowed_uses": [
+        "local_development",
+        "metadata_preview",
+        "validation",
+        "non_audio_planning"
+      ],
+      "blocked_uses": [
+        "real_sample_loading",
+        "audio_rendering",
+        "commercial_release",
+        "redistribution_as_sample_pack"
+      ],
+      "tracks": [
+        "drums"
+      ],
+      "sections": [
+        "chorus",
+        "verse"
+      ],
+      "notes": [
+        "36"
+      ],
+      "velocity_layers": [
+        "full",
+        "light"
+      ]
+    },
+    {
+      "slot_id": "piano_soft_grand_placeholder",
+      "rights_status": "placeholder_only",
+      "source_type": "internal_placeholder_slot",
+      "real_asset_attached": false,
+      "source_cleared": false,
+      "license_status": "not_applicable_placeholder",
+      "allowed_uses": [
+        "local_development",
+        "metadata_preview",
+        "validation",
+        "non_audio_planning"
+      ],
+      "blocked_uses": [
+        "real_sample_loading",
+        "audio_rendering",
+        "commercial_release",
+        "redistribution_as_sample_pack"
+      ],
+      "tracks": [
+        "piano"
+      ],
+      "sections": [
+        "intro",
+        "verse"
+      ],
+      "notes": [
+        "59",
+        "62"
+      ],
+      "velocity_layers": [
+        "soft"
+      ]
+    },
+    {
+      "slot_id": "strings_long_pad_placeholder",
+      "rights_status": "placeholder_only",
+      "source_type": "internal_placeholder_slot",
+      "real_asset_attached": false,
+      "source_cleared": false,
+      "license_status": "not_applicable_placeholder",
+      "allowed_uses": [
+        "local_development",
+        "metadata_preview",
+        "validation",
+        "non_audio_planning"
+      ],
+      "blocked_uses": [
+        "real_sample_loading",
+        "audio_rendering",
+        "commercial_release",
+        "redistribution_as_sample_pack"
+      ],
+      "tracks": [
+        "strings"
+      ],
+      "sections": [
+        "chorus",
+        "intro"
+      ],
+      "notes": [
+        "71",
+        "74"
+      ],
+      "velocity_layers": [
+        "lift",
+        "support"
+      ]
+    }
+  ],
+  "boundary": {
+    "creates_audio": false,
+    "loads_real_samples": false,
+    "writes_wav": false,
+    "rights_gate_only": true,
+    "next_step": "Wave 11 can add a real sample loading proposal only after rights metadata exists."
+  }
+}
