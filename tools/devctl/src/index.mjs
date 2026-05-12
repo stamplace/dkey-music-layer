@@ -1,11 +1,9 @@
 #!/usr/bin/env node
-import { existsSync, readFileSync } from 'node:fs';
-import { join } from 'node:path';
+import fs from 'node:fs';
 
-const ROOT = process.cwd();
-const STATE = join(ROOT, 'tools/devctl/state/dkey-music-layer.json');
+const statePath = 'tools/devctl/state/dkey-music-layer.json';
 
-const required = [
+const requiredFiles = [
   'README.md',
   'MANIFEST.json',
   'package.json',
@@ -25,39 +23,77 @@ const required = [
 ];
 
 function readState() {
-  if (!existsSync(STATE)) return null;
-  return JSON.parse(readFileSync(STATE, 'utf8'));
+  return JSON.parse(fs.readFileSync(statePath, 'utf8'));
 }
 
-function doctor() {
-  const missing = required.filter((p) => !existsSync(join(ROOT, p)));
-  if (missing.length) {
-    console.error('DOCTOR DKey Music Layer: FAIL');
-    for (const file of missing) console.error(`MISSING ${file}`);
+function writeState(state) {
+  state.updated_at = new Date().toISOString();
+  fs.writeFileSync(statePath, JSON.stringify(state, null, 2) + "\n");
+}
+
+function doctorCommand() {
+  console.log('DOCTOR DKey Music Layer');
+  let ok = true;
+
+  for (const file of requiredFiles) {
+    if (fs.existsSync(file)) {
+      console.log('OK  ', file);
+    } else {
+      console.log('MISS', file);
+      ok = false;
+    }
+  }
+
+  if (!ok) {
+    console.error('Doctor failed.');
     process.exit(1);
   }
-  console.log('DOCTOR DKey Music Layer');
-  for (const file of required) console.log(`OK   ${file}`);
+
   console.log('Doctor passed.');
 }
 
-function status() {
+function statusCommand() {
   const state = readState();
-  if (!state) {
-    console.log('No devctl state found.');
-    return;
-  }
-  console.log(`Project: ${state.project}`);
-  console.log(`Mode: ${state.mode}`);
-  console.log(`Delivery Status: ${state.delivery_status}`);
-  console.log(`Active Wave: ${state.active_wave}`);
-  console.log(`Next Action: ${state.next_action}`);
+  console.log('DKEY MUSIC LAYER STATUS');
+  console.log('project:', state.project);
+  console.log('delivery_status:', state.delivery_status);
+  console.log('active_wave:', state.active_wave);
+  console.log('current_work:', state.current_work);
+  console.log('next_action:', state.next_action);
+  console.log('verified:', state.verified);
 }
 
-const cmd = process.argv[2] || 'status';
-if (cmd === 'doctor') doctor();
-else if (cmd === 'status') status();
+function pickCommand() {
+  const state = readState();
+  state.delivery_status = 'picked';
+  state.active_wave = 'Wave 01: Product Control Layer';
+  state.current_work = 'Strengthen devctl work ledger and production control commands';
+  state.next_action = 'Run npm run verify, commit, and push Wave 01 control layer';
+  state.verified = false;
+  writeState(state);
+  console.log('Work picked.');
+  statusCommand();
+}
+
+function closeCommand() {
+  const state = readState();
+  state.delivery_status = 'implemented';
+  state.active_wave = 'Wave 01: Product Control Layer';
+  state.current_work = 'Product control layer baseline implemented';
+  state.next_action = 'Wave 02: DML project format and asset vault hardening';
+  state.verified = true;
+  writeState(state);
+  console.log('Work closed.');
+  statusCommand();
+}
+
+const cmd = process.argv[2] || 'doctor';
+
+if (cmd === 'doctor') doctorCommand();
+else if (cmd === 'status') statusCommand();
+else if (cmd === 'pick') pickCommand();
+else if (cmd === 'close') closeCommand();
 else {
-  console.error(`Unknown devctl command: ${cmd}`);
-  process.exit(2);
+  console.error('Unknown devctl command:', cmd);
+  process.exit(1);
 }

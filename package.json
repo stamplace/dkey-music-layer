@@ -10,7 +10,11 @@
     "test": "node tests/smoke/core-pipeline.test.mjs",
     "smoke": "node tools/render-smoke/src/index.mjs",
     "pack:check": "node tools/pack-validator/src/index.mjs assets/demo-packs/hasidic-modern/pack.dml.json",
-    "format:check": "node tools/pack-validator/src/index.mjs assets/demo-packs/hasidic-modern/pack.dml.json && node tools/render-smoke/src/index.mjs"
+    "format:check": "node tools/pack-validator/src/index.mjs assets/demo-packs/hasidic-modern/pack.dml.json && node tools/render-smoke/src/index.mjs",
+    "ops:status": "node tools/devctl/src/index.mjs status",
+    "ops:pick": "node tools/devctl/src/index.mjs pick",
+    "ops:close": "node tools/devctl/src/index.mjs close",
+    "verify": "npm run doctor && npm test && npm run pack:check && npm run smoke && npm run ops:status"
   },
   "engines": {
     "node": ">=20"

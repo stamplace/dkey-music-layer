@@ -1,31 +1,32 @@
-# Active Wave
+# Active Wave — Wave 01: Product Control Layer
 
-## Current status
-
-FOUNDATION_BOOTSTRAP
+## Status
+BUILD
 
 ## Goal
-
-Establish production-grade repository foundation for DKey Music Layer.
+Turn the DKey Music Layer foundation into an active production work system.
 
 ## Scope
+- Strengthen devctl as the local work ledger.
+- Add explicit status, pick, and close commands.
+- Keep active-wave, decision-log, execution-log, and state aligned.
+- Preserve doctor, test, pack validation, and render smoke verification.
 
-- docs
-- package scripts
-- devctl
-- pack validation
-- smoke pipeline
-- CI
+## GitHub
+- Issue: #1 — Wave 01: Product Control Layer
 
-## Next action
+## Definition of Done
+- npm run doctor passes.
+- npm test passes.
+- npm run pack:check passes.
+- npm run smoke passes.
+- npm run ops:status works.
+- npm run ops:pick works.
+- npm run ops:close works.
+- npm run verify passes.
+- Git working tree is clean after checkpoint and push.
 
-Run verification locally and push to GitHub.
-
-## Verification
-
-```bash
-npm run doctor
-npm test
-npm run pack:check
-npm run smoke
-```
+## Boundaries
+- No audio-model training in this wave.
+- No large app implementation yet.
+- This wave is about traceability, control, and safe production rhythm.

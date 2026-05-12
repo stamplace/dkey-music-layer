@@ -1,7 +1,7 @@
 {
   "project": "dkey-music-layer",
-  "delivery_status": "foundation_bootstrap",
-  "active_wave": "Wave 0 — Foundation",
+  "delivery_status": "implemented",
+  "active_wave": "Wave 01: Product Control Layer",
   "mode": "PRODUCTION",
   "current_scope": [
     "repo foundation",
@@ -10,11 +10,14 @@
     "devctl",
     "smoke verification"
   ],
-  "next_action": "Create/push GitHub repository and run verification commands.",
-  "verified": [],
+  "next_action": "Wave 02: DML project format and asset vault hardening",
+  "verified": true,
   "risks": [
     "Remote GitHub repository creation was not available through the connected tool in this session.",
     "Real audio DSP/rendering is not implemented yet.",
     "Third-party asset rights must be documented before real samples are imported."
-  ]
+  ],
+  "current_work": "Product control layer baseline implemented",
+  "github_issue": "#1",
+  "updated_at": "2026-05-12T13:50:38.683Z"
 }
