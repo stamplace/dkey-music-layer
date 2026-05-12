@@ -55,3 +55,22 @@ Rejected for this wave:
 - Full DAW UI.
 - External arranger import.
 - Audio model training.
+
+## Wave 03 Decision — Editable Arrangement State
+
+Decision: create an explicit arrangement contract before building performance, rendering, or UI layers.
+
+Reason:
+The system must preserve the musical decision path from human intent to song sections and track behavior. Without editable arrangement state, DKey Music Layer would collapse toward opaque generation instead of becoming a controllable studio runtime.
+
+Selected path:
+- Add arrangement.dml.json as the first editable arrangement contract.
+- Validate sections, track states, energy, density, and revision policy.
+- Keep arrangement language human-readable and machine-checkable.
+- Preserve human override as a product rule.
+
+Rejected for this wave:
+- Full DAW UI.
+- Audio rendering implementation.
+- Model training.
+- Real commercial samples.

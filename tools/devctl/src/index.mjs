@@ -23,6 +23,9 @@ const requiredFiles = [
   'assets/demo-projects/hasidic-modern/project.dml.json',
   'assets/vault/demo-hasidic-modern/asset-vault.dml.json',
   'tools/project-validator/src/index.mjs',
+  'docs/arrangement/10_INTENT_TO_ARRANGEMENT_CONTRACT.md',
+  'assets/demo-arrangements/hasidic-modern/arrangement.dml.json',
+  'tools/arrangement-validator/src/index.mjs',
   '.github/workflows/ci.yml'
 ];
 
@@ -70,9 +73,9 @@ function statusCommand() {
 function pickCommand() {
   const state = readState();
   state.delivery_status = 'picked';
-  state.active_wave = 'Wave 02: DML Project Format and Asset Vault Hardening';
-  state.current_work = 'Harden DML project format, asset vault metadata, and validators';
-  state.next_action = 'Run npm run verify, commit, and push Wave 02 format hardening';
+  state.active_wave = 'Wave 03: Intent-to-Arrangement Contract';
+  state.current_work = 'Add first editable intent-to-arrangement contract and validator';
+  state.next_action = 'Run npm run verify, commit, and push Wave 03 arrangement contract';
   state.verified = false;
   writeState(state);
   console.log('Work picked.');
@@ -82,9 +85,9 @@ function pickCommand() {
 function closeCommand() {
   const state = readState();
   state.delivery_status = 'implemented';
-  state.active_wave = 'Wave 02: DML Project Format and Asset Vault Hardening';
-  state.current_work = 'DML project format and asset vault baseline implemented';
-  state.next_action = 'Wave 03: Intent-to-arrangement contract and first editable arrangement plan';
+  state.active_wave = 'Wave 03: Intent-to-Arrangement Contract';
+  state.current_work = 'Intent-to-arrangement baseline implemented';
+  state.next_action = 'Wave 04: Arrangement-to-performance contract and playable section plan';
   state.verified = true;
   writeState(state);
   console.log('Work closed.');

@@ -1,0 +1,101 @@
+{
+  "schema": "dml.arrangement.v0",
+  "arrangement_id": "demo-hasidic-modern-arrangement",
+  "source_project": "demo-hasidic-modern-project",
+  "source_intent": {
+    "human_prompt": "שיר חסידי מודרני, בית רגוע, פזמון רחב, כינורות חיים, פסנתר ובס יציב",
+    "musical_goal": "turn a human song idea into an editable studio arrangement",
+    "control_mode": "human_in_the_loop"
+  },
+  "global_context": {
+    "key": "Bm",
+    "bpm": 90,
+    "time_signature": "4/4",
+    "energy_arc": "quiet verse to wide chorus"
+  },
+  "sections": [
+    {
+      "id": "intro",
+      "bars": 4,
+      "energy": "low",
+      "density": "sparse",
+      "tracks": {
+        "piano": { "state": "active", "pattern": "soft broken chords" },
+        "strings": { "state": "hint", "pattern": "long pad entrance" },
+        "drums": { "state": "mute" },
+        "bass": { "state": "mute" },
+        "guitar": { "state": "mute" }
+      }
+    },
+    {
+      "id": "verse",
+      "bars": 8,
+      "energy": "medium_low",
+      "density": "controlled",
+      "tracks": {
+        "piano": { "state": "active", "pattern": "broken emotional harmony" },
+        "bass": { "state": "active", "pattern": "root pulse" },
+        "drums": { "state": "soft", "pattern": "light kick and brushes" },
+        "strings": { "state": "background", "pattern": "slow support" },
+        "guitar": { "state": "texture", "pattern": "muted light rhythm" }
+      }
+    },
+    {
+      "id": "pre_chorus",
+      "bars": 4,
+      "energy": "rising",
+      "density": "building",
+      "tracks": {
+        "piano": { "state": "active", "pattern": "open sus movement" },
+        "bass": { "state": "active", "pattern": "stronger movement" },
+        "drums": { "state": "build", "pattern": "snare lift" },
+        "strings": { "state": "active", "pattern": "ascending line" },
+        "guitar": { "state": "texture", "pattern": "wider strum preparation" }
+      }
+    },
+    {
+      "id": "chorus",
+      "bars": 8,
+      "energy": "high",
+      "density": "wide",
+      "tracks": {
+        "piano": { "state": "wide", "pattern": "open chords" },
+        "bass": { "state": "full", "pattern": "solid root and passing motion" },
+        "drums": { "state": "full", "pattern": "full kit groove" },
+        "strings": { "state": "wide", "pattern": "octave lift and long emotional lines" },
+        "guitar": { "state": "active", "pattern": "open strum" }
+      }
+    },
+    {
+      "id": "bridge",
+      "bars": 4,
+      "energy": "drop",
+      "density": "thin",
+      "tracks": {
+        "piano": { "state": "solo", "pattern": "simple emotional motif" },
+        "bass": { "state": "mute" },
+        "drums": { "state": "mute" },
+        "strings": { "state": "single_line", "pattern": "quiet answer phrase" },
+        "guitar": { "state": "mute" }
+      }
+    },
+    {
+      "id": "final_chorus",
+      "bars": 8,
+      "energy": "peak",
+      "density": "full",
+      "tracks": {
+        "piano": { "state": "wide", "pattern": "full open harmony" },
+        "bass": { "state": "full", "pattern": "strong foundation" },
+        "drums": { "state": "full", "pattern": "full kit with lift" },
+        "strings": { "state": "peak", "pattern": "wide octave answer lines" },
+        "guitar": { "state": "full", "pattern": "wide strum layer" }
+      }
+    }
+  ],
+  "revision_policy": {
+    "editable": true,
+    "human_can_override_any_section": true,
+    "never_flatten_to_single_audio_without_approval": true
+  }
+}

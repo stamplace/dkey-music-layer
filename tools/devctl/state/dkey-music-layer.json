@@ -1,7 +1,7 @@
 {
   "project": "dkey-music-layer",
   "delivery_status": "implemented",
-  "active_wave": "Wave 02: DML Project Format and Asset Vault Hardening",
+  "active_wave": "Wave 03: Intent-to-Arrangement Contract",
   "mode": "PRODUCTION",
   "current_scope": [
     "repo foundation",
@@ -10,14 +10,14 @@
     "devctl",
     "smoke verification"
   ],
-  "next_action": "Wave 03: Intent-to-arrangement contract and first editable arrangement plan",
+  "next_action": "Wave 04: Arrangement-to-performance contract and playable section plan",
   "verified": true,
   "risks": [
     "Remote GitHub repository creation was not available through the connected tool in this session.",
     "Real audio DSP/rendering is not implemented yet.",
     "Third-party asset rights must be documented before real samples are imported."
   ],
-  "current_work": "DML project format and asset vault baseline implemented",
-  "github_issue": "#2",
-  "updated_at": "2026-05-12T13:54:27.019Z"
+  "current_work": "Intent-to-arrangement baseline implemented",
+  "github_issue": "#3",
+  "updated_at": "2026-05-12T13:57:37.810Z"
 }

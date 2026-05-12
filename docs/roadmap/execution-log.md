@@ -38,3 +38,12 @@ npm run smoke
 - Added project validator.
 - Updated package scripts for project:check and stronger format:check.
 - Updated devctl state for Wave 02.
+
+## Wave 03 Execution
+
+- Added editable arrangement fixture.
+- Added intent-to-arrangement contract documentation.
+- Added arrangement validator.
+- Added arrangement:check.
+- Strengthened format:check and verify.
+- Updated devctl state for Wave 03.

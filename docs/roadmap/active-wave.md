@@ -1,26 +1,27 @@
-# Active Wave — Wave 02: DML Project Format and Asset Vault Hardening
+# Active Wave — Wave 03: Intent-to-Arrangement Contract
 
 ## Status
 BUILD
 
 ## Goal
-Harden the internal DML project and asset formats so DKey Music Layer can evolve from a foundation into a production-grade music project system.
+Add the first editable contract that turns human musical intent into a structured arrangement plan.
 
 ## Scope
-- Add a formal DML project fixture.
-- Add asset vault metadata and rights fields.
-- Add project validation.
+- Add arrangement plan fixture.
+- Add arrangement validation.
+- Add intent-to-arrangement documentation.
 - Strengthen format checks.
-- Preserve doctor, tests, pack validation, render smoke, and ops status.
+- Preserve doctor, tests, pack validation, project validation, render smoke, and ops status.
 
 ## GitHub
-- Issue: #2 — Wave 02: DML Project Format and Asset Vault Hardening
+- Issue: #3 — Wave 03: Intent-to-arrangement contract
 
 ## Definition of Done
 - npm run doctor passes.
 - npm test passes.
 - npm run pack:check passes.
 - npm run project:check passes.
+- npm run arrangement:check passes.
 - npm run format:check passes.
 - npm run smoke passes.
 - npm run verify passes.
@@ -28,6 +29,6 @@ Harden the internal DML project and asset formats so DKey Music Layer can evolve
 
 ## Boundaries
 - No real commercial samples yet.
-- No direct external arranger import yet.
+- No full DAW UI yet.
 - No model training in this wave.
-- This wave strengthens the internal DML contract first.
+- This wave adds editable musical arrangement state only.
