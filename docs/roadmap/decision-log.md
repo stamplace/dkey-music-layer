@@ -74,3 +74,22 @@ Rejected for this wave:
 - Audio rendering implementation.
 - Model training.
 - Real commercial samples.
+
+## Wave 04 Decision — Performance State Before Rendering
+
+Decision: add explicit performance state before implementing MIDI rendering or sample playback.
+
+Reason:
+DKey Music Layer must preserve not only what should play, but how it should feel. Timing, velocity, articulation, and humanize settings are core to the product's live-studio identity.
+
+Selected path:
+- Add performance.dml.json as the first playable performance contract.
+- Validate playable sections, articulation, velocity range, timing feel, and humanize.
+- Preserve human approval before final mix or flattening.
+- Keep rendering as smoke-only for this wave.
+
+Rejected for this wave:
+- Real DSP rendering.
+- Full DAW UI.
+- Audio model training.
+- Real commercial samples.

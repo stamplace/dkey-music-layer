@@ -26,6 +26,9 @@ const requiredFiles = [
   'docs/arrangement/10_INTENT_TO_ARRANGEMENT_CONTRACT.md',
   'assets/demo-arrangements/hasidic-modern/arrangement.dml.json',
   'tools/arrangement-validator/src/index.mjs',
+  'docs/performance/11_ARRANGEMENT_TO_PERFORMANCE_CONTRACT.md',
+  'assets/demo-performances/hasidic-modern/performance.dml.json',
+  'tools/performance-validator/src/index.mjs',
   '.github/workflows/ci.yml'
 ];
 
@@ -73,9 +76,9 @@ function statusCommand() {
 function pickCommand() {
   const state = readState();
   state.delivery_status = 'picked';
-  state.active_wave = 'Wave 03: Intent-to-Arrangement Contract';
-  state.current_work = 'Add first editable intent-to-arrangement contract and validator';
-  state.next_action = 'Run npm run verify, commit, and push Wave 03 arrangement contract';
+  state.active_wave = 'Wave 04: Arrangement-to-Performance Contract';
+  state.current_work = 'Add first playable arrangement-to-performance contract and validator';
+  state.next_action = 'Run npm run verify, commit, and push Wave 04 performance contract';
   state.verified = false;
   writeState(state);
   console.log('Work picked.');
@@ -85,9 +88,9 @@ function pickCommand() {
 function closeCommand() {
   const state = readState();
   state.delivery_status = 'implemented';
-  state.active_wave = 'Wave 03: Intent-to-Arrangement Contract';
-  state.current_work = 'Intent-to-arrangement baseline implemented';
-  state.next_action = 'Wave 04: Arrangement-to-performance contract and playable section plan';
+  state.active_wave = 'Wave 04: Arrangement-to-Performance Contract';
+  state.current_work = 'Arrangement-to-performance baseline implemented';
+  state.next_action = 'Wave 05: Performance-to-MIDI event plan and section rendering smoke';
   state.verified = true;
   writeState(state);
   console.log('Work closed.');

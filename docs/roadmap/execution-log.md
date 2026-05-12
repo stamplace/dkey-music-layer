@@ -47,3 +47,12 @@ npm run smoke
 - Added arrangement:check.
 - Strengthened format:check and verify.
 - Updated devctl state for Wave 03.
+
+## Wave 04 Execution
+
+- Added playable performance fixture.
+- Added arrangement-to-performance contract documentation.
+- Added performance validator.
+- Added performance:check.
+- Strengthened format:check and verify.
+- Updated devctl state for Wave 04.

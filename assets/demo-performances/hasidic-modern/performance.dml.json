@@ -1,0 +1,193 @@
+{
+  "schema": "dml.performance.v0",
+  "performance_id": "demo-hasidic-modern-performance",
+  "source_arrangement": "demo-hasidic-modern-arrangement",
+  "playback_context": {
+    "key": "Bm",
+    "bpm": 90,
+    "time_signature": "4/4",
+    "feel": "human_live_studio",
+    "quantize_policy": "musical_not_mechanical"
+  },
+  "global_humanize": {
+    "timing_ms": { "min": -12, "max": 18 },
+    "velocity": { "min": -8, "max": 10 },
+    "micro_timing_style": "slightly_behind_on_emotional_tracks"
+  },
+  "sections": [
+    {
+      "id": "intro",
+      "playable": true,
+      "tracks": {
+        "piano": {
+          "articulation": "soft_legato",
+          "velocity_range": [48, 68],
+          "timing_feel": "slightly_behind",
+          "humanize": "medium",
+          "performance_note": "open the emotional room without rushing"
+        },
+        "strings": {
+          "articulation": "long_pad",
+          "velocity_range": [42, 58],
+          "timing_feel": "behind",
+          "humanize": "low",
+          "performance_note": "enter as a hint, not a melody"
+        },
+        "drums": { "articulation": "mute", "velocity_range": [0, 0], "timing_feel": "none", "humanize": "none" },
+        "bass": { "articulation": "mute", "velocity_range": [0, 0], "timing_feel": "none", "humanize": "none" },
+        "guitar": { "articulation": "mute", "velocity_range": [0, 0], "timing_feel": "none", "humanize": "none" }
+      }
+    },
+    {
+      "id": "verse",
+      "playable": true,
+      "tracks": {
+        "piano": {
+          "articulation": "broken_chords",
+          "velocity_range": [52, 74],
+          "timing_feel": "natural",
+          "humanize": "medium",
+          "performance_note": "keep the verse controlled and singable"
+        },
+        "bass": {
+          "articulation": "finger_root_pulse",
+          "velocity_range": [58, 78],
+          "timing_feel": "center",
+          "humanize": "medium",
+          "performance_note": "stable foundation, no busy movement"
+        },
+        "drums": {
+          "articulation": "light_brush_groove",
+          "velocity_range": [38, 62],
+          "timing_feel": "behind",
+          "humanize": "high",
+          "performance_note": "soft human groove"
+        },
+        "strings": {
+          "articulation": "slow_support",
+          "velocity_range": [44, 64],
+          "timing_feel": "behind",
+          "humanize": "low",
+          "performance_note": "do not steal the vocal space"
+        },
+        "guitar": {
+          "articulation": "muted_texture",
+          "velocity_range": [40, 62],
+          "timing_feel": "natural",
+          "humanize": "medium",
+          "performance_note": "barely felt texture"
+        }
+      }
+    },
+    {
+      "id": "chorus",
+      "playable": true,
+      "tracks": {
+        "piano": {
+          "articulation": "open_chords",
+          "velocity_range": [72, 96],
+          "timing_feel": "center",
+          "humanize": "medium",
+          "performance_note": "wide but not harsh"
+        },
+        "bass": {
+          "articulation": "solid_foundation",
+          "velocity_range": [78, 104],
+          "timing_feel": "locked",
+          "humanize": "medium",
+          "performance_note": "hold the whole chorus"
+        },
+        "drums": {
+          "articulation": "full_kit_groove",
+          "velocity_range": [76, 112],
+          "timing_feel": "locked_with_lift",
+          "humanize": "medium",
+          "performance_note": "big, clean, live"
+        },
+        "strings": {
+          "articulation": "long_octave_lift",
+          "velocity_range": [70, 98],
+          "timing_feel": "slightly_behind",
+          "humanize": "low",
+          "performance_note": "emotional lift behind the vocal"
+        },
+        "guitar": {
+          "articulation": "open_strum",
+          "velocity_range": [64, 88],
+          "timing_feel": "natural",
+          "humanize": "high",
+          "performance_note": "real strum movement, not grid-flat"
+        }
+      }
+    },
+    {
+      "id": "bridge",
+      "playable": true,
+      "tracks": {
+        "piano": {
+          "articulation": "solo_motif",
+          "velocity_range": [46, 70],
+          "timing_feel": "rubato_light",
+          "humanize": "high",
+          "performance_note": "let the phrase breathe"
+        },
+        "strings": {
+          "articulation": "quiet_answer_phrase",
+          "velocity_range": [38, 56],
+          "timing_feel": "behind",
+          "humanize": "medium",
+          "performance_note": "answer, do not lead"
+        },
+        "drums": { "articulation": "mute", "velocity_range": [0, 0], "timing_feel": "none", "humanize": "none" },
+        "bass": { "articulation": "mute", "velocity_range": [0, 0], "timing_feel": "none", "humanize": "none" },
+        "guitar": { "articulation": "mute", "velocity_range": [0, 0], "timing_feel": "none", "humanize": "none" }
+      }
+    },
+    {
+      "id": "final_chorus",
+      "playable": true,
+      "tracks": {
+        "piano": {
+          "articulation": "full_open_harmony",
+          "velocity_range": [78, 106],
+          "timing_feel": "center",
+          "humanize": "medium",
+          "performance_note": "final wide lift"
+        },
+        "bass": {
+          "articulation": "strong_foundation",
+          "velocity_range": [82, 112],
+          "timing_feel": "locked",
+          "humanize": "medium",
+          "performance_note": "maximum stable energy"
+        },
+        "drums": {
+          "articulation": "full_kit_with_lift",
+          "velocity_range": [82, 118],
+          "timing_feel": "locked_with_push",
+          "humanize": "medium",
+          "performance_note": "big final push without rushing"
+        },
+        "strings": {
+          "articulation": "peak_wide_octaves",
+          "velocity_range": [78, 108],
+          "timing_feel": "slightly_behind",
+          "humanize": "low",
+          "performance_note": "peak emotion"
+        },
+        "guitar": {
+          "articulation": "wide_full_strum",
+          "velocity_range": [72, 96],
+          "timing_feel": "natural",
+          "humanize": "high",
+          "performance_note": "human wide layer"
+        }
+      }
+    }
+  ],
+  "render_policy": {
+    "renderable_to_midi": true,
+    "renderable_to_stems": true,
+    "requires_human_approval_before_final_mix": true
+  }
+}
