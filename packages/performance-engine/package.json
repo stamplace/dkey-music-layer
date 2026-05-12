@@ -1,0 +1,7 @@
+{
+  "name": "@dml/performance-engine",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "src/index.mjs",
+  "private": true
+}

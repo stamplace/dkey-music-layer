@@ -1,0 +1,20 @@
+{
+  "project": "dkey-music-layer",
+  "delivery_status": "foundation_bootstrap",
+  "active_wave": "Wave 0 — Foundation",
+  "mode": "PRODUCTION",
+  "current_scope": [
+    "repo foundation",
+    "docs",
+    "formats",
+    "devctl",
+    "smoke verification"
+  ],
+  "next_action": "Create/push GitHub repository and run verification commands.",
+  "verified": [],
+  "risks": [
+    "Remote GitHub repository creation was not available through the connected tool in this session.",
+    "Real audio DSP/rendering is not implemented yet.",
+    "Third-party asset rights must be documented before real samples are imported."
+  ]
+}

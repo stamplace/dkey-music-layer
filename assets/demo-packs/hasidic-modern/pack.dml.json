@@ -1,0 +1,69 @@
+{
+  "kind": "dml-pack",
+  "id": "hasidic-modern-demo-pack",
+  "title": "Hasidic Modern Demo Pack",
+  "version": "0.1.0-placeholder",
+  "rights_policy": "placeholder-only-no-real-samples",
+  "assets": [
+    {
+      "id": "kick-soft",
+      "path": "samples/drums/kick-soft.wav",
+      "role": "drums",
+      "type": "sample",
+      "rights": {
+        "owner": "DML placeholder",
+        "usage": "demo-only"
+      }
+    },
+    {
+      "id": "snare-tight",
+      "path": "samples/drums/snare-tight.wav",
+      "role": "drums",
+      "type": "sample",
+      "rights": {
+        "owner": "DML placeholder",
+        "usage": "demo-only"
+      }
+    },
+    {
+      "id": "bass-root",
+      "path": "samples/bass/bass-root.wav",
+      "role": "bass",
+      "type": "sample",
+      "rights": {
+        "owner": "DML placeholder",
+        "usage": "demo-only"
+      }
+    },
+    {
+      "id": "piano-soft",
+      "path": "samples/piano/piano-soft.wav",
+      "role": "piano",
+      "type": "sample",
+      "rights": {
+        "owner": "DML placeholder",
+        "usage": "demo-only"
+      }
+    },
+    {
+      "id": "strings-legato",
+      "path": "samples/strings/strings-legato.wav",
+      "role": "strings",
+      "type": "sample",
+      "rights": {
+        "owner": "DML placeholder",
+        "usage": "demo-only"
+      }
+    },
+    {
+      "id": "guitar-strum",
+      "path": "samples/guitar/guitar-strum.wav",
+      "role": "guitar",
+      "type": "sample",
+      "rights": {
+        "owner": "DML placeholder",
+        "usage": "demo-only"
+      }
+    }
+  ]
+}

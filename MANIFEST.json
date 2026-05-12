@@ -1,0 +1,38 @@
+{
+  "project": "DKey Music Layer",
+  "slug": "dkey-music-layer",
+  "status": "foundation_bootstrap",
+  "mode": "PRODUCTION",
+  "vision": "A living DAW + mobile studio controller + AI intent/runtime layer that turns human musical intent into controllable professional productions.",
+  "principles": [
+    "Human remains the conductor",
+    "Simple core, scalable architecture",
+    "Own the internal formats before importing legacy formats",
+    "Assets are source-of-truth, never magic",
+    "Every wave must be verifiable"
+  ],
+  "modules": [
+    "apps/web-studio",
+    "apps/mobile-controller",
+    "apps/desktop-daw",
+    "packages/core",
+    "packages/formats",
+    "packages/intent-engine",
+    "packages/arrangement-engine",
+    "packages/performance-engine",
+    "packages/sample-engine",
+    "packages/render-engine",
+    "packages/mixer",
+    "packages/dml-cli",
+    "tools/devctl",
+    "tools/pack-validator",
+    "tools/render-smoke"
+  ],
+  "definition_of_done": [
+    "source files changed are clear",
+    "verification command is documented and passing",
+    "devctl state is updated when used",
+    "git status is clean after checkpoint",
+    "risks and next action are documented"
+  ]
+}

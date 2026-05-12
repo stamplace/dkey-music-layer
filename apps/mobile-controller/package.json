@@ -1,0 +1,7 @@
+{
+  "name": "@dml/mobile-controller",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "description": "DML Mobile Controller shell for DKey Music Layer"
+}

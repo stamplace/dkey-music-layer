@@ -1,0 +1,32 @@
+name: DML CI
+
+on:
+  push:
+    branches: [ main, develop, "wave/**" ]
+  pull_request:
+    branches: [ main, develop ]
+  workflow_dispatch:
+
+jobs:
+  foundation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Doctor
+        run: npm run doctor
+
+      - name: Test
+        run: npm test
+
+      - name: Pack check
+        run: npm run pack:check
+
+      - name: Render smoke
+        run: npm run smoke

@@ -1,0 +1,32 @@
+{
+  "name": "dkey-music-layer",
+  "version": "0.1.0-foundation",
+  "private": true,
+  "type": "module",
+  "description": "Production foundation for DKey Music Layer: DAW + mobile controller + AI intent music runtime.",
+  "scripts": {
+    "doctor": "node tools/devctl/src/index.mjs doctor",
+    "devctl": "node tools/devctl/src/index.mjs status",
+    "test": "node tests/smoke/core-pipeline.test.mjs",
+    "smoke": "node tools/render-smoke/src/index.mjs",
+    "pack:check": "node tools/pack-validator/src/index.mjs assets/demo-packs/hasidic-modern/pack.dml.json",
+    "format:check": "node tools/pack-validator/src/index.mjs assets/demo-packs/hasidic-modern/pack.dml.json && node tools/render-smoke/src/index.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "tools/*"
+  ],
+  "keywords": [
+    "daw",
+    "ai-music",
+    "intent-engine",
+    "sample-engine",
+    "stems",
+    "arranger"
+  ],
+  "license": "UNLICENSED"
+}
