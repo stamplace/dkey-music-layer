@@ -56,3 +56,12 @@ npm run smoke
 - Added performance:check.
 - Strengthened format:check and verify.
 - Updated devctl state for Wave 04.
+
+## Wave 05 Execution
+
+- Added MIDI event plan fixture.
+- Added performance-to-MIDI event plan documentation.
+- Added MIDI event validator.
+- Added midi:check.
+- Strengthened format:check and verify.
+- Updated devctl state for Wave 05.

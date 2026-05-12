@@ -93,3 +93,22 @@ Rejected for this wave:
 - Full DAW UI.
 - Audio model training.
 - Real commercial samples.
+
+## Wave 05 Decision — MIDI Event Plan Before MIDI File Export
+
+Decision: create inspectable MIDI event state before writing a real .mid artifact.
+
+Reason:
+DKey Music Layer needs a visible and testable bridge from performance feel to machine-renderable note events. This keeps the system simple, verifiable, and editable before binary file export.
+
+Selected path:
+- Add midi-events.dml.json as the first event contract.
+- Validate ticks, notes, velocity, duration, articulation, tracks, and sections.
+- Keep the output as JSON for this wave.
+- Defer actual .mid export to the next wave.
+
+Rejected for this wave:
+- Binary MIDI file writing.
+- Sample playback.
+- Full DAW UI.
+- Audio model training.

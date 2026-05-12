@@ -29,6 +29,9 @@ const requiredFiles = [
   'docs/performance/11_ARRANGEMENT_TO_PERFORMANCE_CONTRACT.md',
   'assets/demo-performances/hasidic-modern/performance.dml.json',
   'tools/performance-validator/src/index.mjs',
+  'docs/midi/12_PERFORMANCE_TO_MIDI_EVENT_PLAN.md',
+  'assets/demo-midi-events/hasidic-modern/midi-events.dml.json',
+  'tools/midi-event-validator/src/index.mjs',
   '.github/workflows/ci.yml'
 ];
 
@@ -76,9 +79,9 @@ function statusCommand() {
 function pickCommand() {
   const state = readState();
   state.delivery_status = 'picked';
-  state.active_wave = 'Wave 04: Arrangement-to-Performance Contract';
-  state.current_work = 'Add first playable arrangement-to-performance contract and validator';
-  state.next_action = 'Run npm run verify, commit, and push Wave 04 performance contract';
+  state.active_wave = 'Wave 05: Performance-to-MIDI Event Plan';
+  state.current_work = 'Add first MIDI event plan and validator from performance state';
+  state.next_action = 'Run npm run verify, commit, and push Wave 05 MIDI event plan';
   state.verified = false;
   writeState(state);
   console.log('Work picked.');
@@ -88,9 +91,9 @@ function pickCommand() {
 function closeCommand() {
   const state = readState();
   state.delivery_status = 'implemented';
-  state.active_wave = 'Wave 04: Arrangement-to-Performance Contract';
-  state.current_work = 'Arrangement-to-performance baseline implemented';
-  state.next_action = 'Wave 05: Performance-to-MIDI event plan and section rendering smoke';
+  state.active_wave = 'Wave 05: Performance-to-MIDI Event Plan';
+  state.current_work = 'Performance-to-MIDI event plan baseline implemented';
+  state.next_action = 'Wave 06: Debug MIDI renderer and first generated MIDI artifact';
   state.verified = true;
   writeState(state);
   console.log('Work closed.');

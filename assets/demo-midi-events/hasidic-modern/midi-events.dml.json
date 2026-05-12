@@ -1,0 +1,137 @@
+{
+  "schema": "dml.midi_events.v0",
+  "midi_event_plan_id": "demo-hasidic-modern-midi-events",
+  "source_performance": "demo-hasidic-modern-performance",
+  "timebase": {
+    "ppq": 480,
+    "bpm": 90,
+    "time_signature": "4/4"
+  },
+  "render_scope": {
+    "sections": ["intro", "verse", "chorus"],
+    "tracks": ["piano", "bass", "drums", "strings", "guitar"],
+    "policy": "section_smoke_not_final_render"
+  },
+  "events": [
+    {
+      "section": "intro",
+      "track": "piano",
+      "tick": 0,
+      "type": "note",
+      "note": 59,
+      "duration": 960,
+      "velocity": 54,
+      "articulation": "soft_legato",
+      "humanize_ms": 8
+    },
+    {
+      "section": "intro",
+      "track": "piano",
+      "tick": 960,
+      "type": "note",
+      "note": 62,
+      "duration": 960,
+      "velocity": 58,
+      "articulation": "soft_legato",
+      "humanize_ms": 11
+    },
+    {
+      "section": "intro",
+      "track": "strings",
+      "tick": 0,
+      "type": "note",
+      "note": 71,
+      "duration": 1920,
+      "velocity": 48,
+      "articulation": "long_pad",
+      "humanize_ms": 15
+    },
+    {
+      "section": "verse",
+      "track": "bass",
+      "tick": 1920,
+      "type": "note",
+      "note": 47,
+      "duration": 480,
+      "velocity": 66,
+      "articulation": "finger_root_pulse",
+      "humanize_ms": 2
+    },
+    {
+      "section": "verse",
+      "track": "drums",
+      "tick": 1920,
+      "type": "note",
+      "note": 36,
+      "duration": 120,
+      "velocity": 52,
+      "articulation": "light_brush_groove",
+      "humanize_ms": 10
+    },
+    {
+      "section": "verse",
+      "track": "piano",
+      "tick": 1920,
+      "type": "note",
+      "note": 59,
+      "duration": 480,
+      "velocity": 61,
+      "articulation": "broken_chords",
+      "humanize_ms": 6
+    },
+    {
+      "section": "chorus",
+      "track": "drums",
+      "tick": 5760,
+      "type": "note",
+      "note": 36,
+      "duration": 120,
+      "velocity": 94,
+      "articulation": "full_kit_groove",
+      "humanize_ms": 1
+    },
+    {
+      "section": "chorus",
+      "track": "bass",
+      "tick": 5760,
+      "type": "note",
+      "note": 47,
+      "duration": 480,
+      "velocity": 92,
+      "articulation": "solid_foundation",
+      "humanize_ms": 0
+    },
+    {
+      "section": "chorus",
+      "track": "strings",
+      "tick": 5760,
+      "type": "note",
+      "note": 74,
+      "duration": 960,
+      "velocity": 86,
+      "articulation": "long_octave_lift",
+      "humanize_ms": 12
+    },
+    {
+      "section": "chorus",
+      "track": "guitar",
+      "tick": 5760,
+      "type": "note",
+      "note": 59,
+      "duration": 480,
+      "velocity": 76,
+      "articulation": "open_strum",
+      "humanize_ms": 7
+    }
+  ],
+  "smoke_expectations": {
+    "min_events": 10,
+    "required_tracks": ["piano", "bass", "drums", "strings", "guitar"],
+    "required_sections": ["intro", "verse", "chorus"]
+  },
+  "export_policy": {
+    "renderable_to_standard_midi": true,
+    "renderable_to_debug_json": true,
+    "not_final_musical_output": true
+  }
+}

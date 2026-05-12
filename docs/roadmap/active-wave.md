@@ -1,20 +1,20 @@
-# Active Wave — Wave 04: Arrangement-to-Performance Contract
+# Active Wave — Wave 05: Performance-to-MIDI Event Plan
 
 ## Status
 BUILD
 
 ## Goal
-Add the first playable contract that turns arrangement state into performance behavior.
+Add the first MIDI event plan derived from performance state.
 
 ## Scope
-- Add performance plan fixture.
-- Add performance validation.
-- Add arrangement-to-performance documentation.
+- Add MIDI event plan fixture.
+- Add MIDI event validation.
+- Add performance-to-MIDI documentation.
 - Strengthen format checks.
-- Preserve doctor, tests, pack validation, project validation, arrangement validation, render smoke, and ops status.
+- Preserve doctor, tests, pack validation, project validation, arrangement validation, performance validation, render smoke, and ops status.
 
 ## GitHub
-- Issue: #4 — Wave 04: Arrangement-to-performance contract
+- Issue: #5 — Wave 05: Performance-to-MIDI event plan
 
 ## Definition of Done
 - npm run doctor passes.
@@ -23,13 +23,14 @@ Add the first playable contract that turns arrangement state into performance be
 - npm run project:check passes.
 - npm run arrangement:check passes.
 - npm run performance:check passes.
+- npm run midi:check passes.
 - npm run format:check passes.
 - npm run smoke passes.
 - npm run verify passes.
 - Git working tree is clean after checkpoint and push.
 
 ## Boundaries
-- No real DSP rendering yet.
+- No real .mid file export yet.
+- No sample playback yet.
 - No full DAW UI yet.
-- No model training in this wave.
-- This wave adds playable performance state only.
+- This wave adds inspectable event state only.

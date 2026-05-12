@@ -1,7 +1,7 @@
 {
   "project": "dkey-music-layer",
   "delivery_status": "implemented",
-  "active_wave": "Wave 04: Arrangement-to-Performance Contract",
+  "active_wave": "Wave 05: Performance-to-MIDI Event Plan",
   "mode": "PRODUCTION",
   "current_scope": [
     "repo foundation",
@@ -10,14 +10,14 @@
     "devctl",
     "smoke verification"
   ],
-  "next_action": "Wave 05: Performance-to-MIDI event plan and section rendering smoke",
+  "next_action": "Wave 06: Debug MIDI renderer and first generated MIDI artifact",
   "verified": true,
   "risks": [
     "Remote GitHub repository creation was not available through the connected tool in this session.",
     "Real audio DSP/rendering is not implemented yet.",
     "Third-party asset rights must be documented before real samples are imported."
   ],
-  "current_work": "Arrangement-to-performance baseline implemented",
-  "github_issue": "#4",
-  "updated_at": "2026-05-12T14:01:06.324Z"
+  "current_work": "Performance-to-MIDI event plan baseline implemented",
+  "github_issue": "#5",
+  "updated_at": "2026-05-12T14:05:08.288Z"
 }
