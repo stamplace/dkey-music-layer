@@ -1,0 +1,26 @@
+{
+  "version": "0.1.0",
+  "profiles": {
+    "youtube": {
+      "label": "YouTube 16:9",
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "query": "?clip=1&profile=youtube"
+    },
+    "shorts": {
+      "label": "Shorts / Reels 9:16",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "query": "?clip=1&profile=shorts"
+    },
+    "telegram": {
+      "label": "Telegram Preview 16:9",
+      "width": 1280,
+      "height": 720,
+      "fps": 30,
+      "query": "?clip=1&profile=telegram"
+    }
+  }
+}

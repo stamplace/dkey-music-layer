@@ -92,11 +92,33 @@ const timingPath = resolve(songDir, song.timing || "");
 const lyricsPath = resolve(songDir, song.lyrics || "");
 const palettePath = resolve(songDir, song.visual?.palette || "");
 const siteEntry = resolve(songDir, song.site?.entry || "");
+const exportProfilesPath = song.export?.profiles
+  ? resolve(songDir, song.export.profiles)
+  : null;
 
 requireFile(timingPath, "timing file");
 requireFile(lyricsPath, "lyrics file");
 requireFile(palettePath, "palette file");
 requireFile(siteEntry, "site entry");
+
+if (exportProfilesPath) {
+  requireFile(exportProfilesPath, "export profiles file");
+  const exportProfiles = readJson(exportProfilesPath);
+
+  if (!exportProfiles.profiles || typeof exportProfiles.profiles !== "object") {
+    fail("export profiles must include a profiles object");
+  }
+
+  for (const [profileId, profile] of Object.entries(exportProfiles.profiles)) {
+    if (!profile.label || typeof profile.label !== "string") {
+      fail(`Export profile ${profileId} missing label`);
+    }
+
+    if (!Number.isFinite(profile.width) || !Number.isFinite(profile.height) || !Number.isFinite(profile.fps)) {
+      fail(`Export profile ${profileId} must include numeric width, height, and fps`);
+    }
+  }
+}
 
 const timing = readJson(timingPath);
 

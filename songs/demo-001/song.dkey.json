@@ -24,7 +24,12 @@
   },
   "site": {
     "entry": "../../site/living-songs/demo-001/index.html",
-    "modes": ["song", "clip", "lyrics", "live"]
+    "modes": [
+      "song",
+      "clip",
+      "lyrics",
+      "live"
+    ]
   },
   "sections": [
     {
@@ -72,5 +77,8 @@
     "title": "DKey Living Song Demo 001",
     "description": "נכס־שיר חי מתוך DKey Music Layer",
     "cover": "./cover.png"
+  },
+  "export": {
+    "profiles": "./export-profiles.json"
   }
 }

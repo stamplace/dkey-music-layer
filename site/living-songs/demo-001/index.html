@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#050711">
+  <meta name="description" content="DKey Living Song Demo 001 — שיר שהוא אתר חי">
   <title>DKey Living Song Demo 001</title>
   <link rel="stylesheet" href="./style.css">
 </head>
@@ -11,8 +12,13 @@
   <main class="song-shell">
     <canvas id="livingCanvas" aria-hidden="true"></canvas>
 
+    <a class="back-link" href="../" aria-label="חזרה לספריית השירים">← Living Songs</a>
+
     <section class="song-ui" aria-label="DKey Living Song Player">
-      <div class="badge">DKey Living Song</div>
+      <div class="top-row">
+        <div class="badge">DKey Living Song</div>
+        <div id="profileBadge" class="profile-badge">Live</div>
+      </div>
 
       <h1 id="songTitle">DKey Living Song Demo 001</h1>
       <p id="songSubtitle">שיר שהוא אתר חי</p>
@@ -22,10 +28,25 @@
         <p id="lyricLine">לחץ Play כדי להיכנס לשיר.</p>
       </div>
 
-      <div class="controls">
+      <div class="controls primary-controls">
         <button id="playBtn" type="button">Play</button>
         <button id="clipBtn" type="button">Clip Mode</button>
         <button id="replayBtn" type="button">Replay</button>
+      </div>
+
+      <div class="controls secondary-controls">
+        <button id="fullscreenBtn" type="button">Fullscreen</button>
+        <button id="shareBtn" type="button">Share</button>
+        <button id="copyBtn" type="button">Copy Link</button>
+      </div>
+
+      <div class="export-panel" aria-label="Export profiles">
+        <div class="export-title">Export Profiles</div>
+        <div class="export-links">
+          <a href="?clip=1&profile=youtube">YouTube 16:9</a>
+          <a href="?clip=1&profile=shorts">Shorts 9:16</a>
+          <a href="?clip=1&profile=telegram">Telegram</a>
+        </div>
       </div>
 
       <div class="progress-wrap" aria-label="Song progress">
@@ -34,9 +55,11 @@
 
       <footer>
         <span id="timeLabel">00:00 / 01:36</span>
-        <span>נכס־שיר חי · HTML + Canvas + Audio</span>
+        <span id="statusLabel">נכס־שיר חי · HTML + Canvas + Audio</span>
       </footer>
     </section>
+
+    <div id="toast" role="status" aria-live="polite"></div>
   </main>
 
   <script type="module" src="./app.js"></script>

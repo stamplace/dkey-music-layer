@@ -6,6 +6,7 @@
   --glass: rgba(255, 255, 255, 0.08);
   --line: rgba(255, 255, 255, 0.16);
   --accent: #d6b16a;
+  --blue: #7cc7ff;
 }
 
 * {
@@ -41,11 +42,25 @@ body {
   z-index: 0;
 }
 
+.back-link {
+  position: fixed;
+  z-index: 4;
+  top: 18px;
+  right: 18px;
+  text-decoration: none;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 9px 13px;
+  background: rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(14px);
+}
+
 .song-ui {
   position: relative;
   z-index: 2;
-  width: min(760px, calc(100vw - 32px));
-  min-height: min(680px, calc(100vh - 32px));
+  width: min(780px, calc(100vw - 32px));
+  min-height: min(720px, calc(100vh - 32px));
   margin: 16px auto;
   padding: clamp(22px, 5vw, 56px);
   border: 1px solid var(--line);
@@ -57,10 +72,19 @@ body {
   backdrop-filter: blur(18px);
   display: grid;
   align-content: center;
-  gap: 22px;
+  gap: 18px;
 }
 
-.badge {
+.top-row,
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.badge,
+.profile-badge {
   width: max-content;
   padding: 8px 14px;
   border: 1px solid var(--line);
@@ -70,6 +94,10 @@ body {
   letter-spacing: 0.08em;
   font-size: 12px;
   text-transform: uppercase;
+}
+
+.profile-badge {
+  color: var(--accent);
 }
 
 h1 {
@@ -113,7 +141,14 @@ h1 {
   gap: 12px;
 }
 
-button {
+.secondary-controls button {
+  padding: 10px 15px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+button,
+.export-links a {
   appearance: none;
   border: 1px solid var(--line);
   border-radius: 999px;
@@ -123,10 +158,37 @@ button {
   font: inherit;
   font-weight: 700;
   cursor: pointer;
+  text-decoration: none;
 }
 
-button:hover {
+button:hover,
+.export-links a:hover {
   background: rgba(255, 255, 255, 0.18);
+}
+
+.export-panel {
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: rgba(0, 0, 0, 0.16);
+}
+
+.export-title {
+  margin-bottom: 10px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.export-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.export-links a {
+  padding: 9px 13px;
+  color: var(--muted);
+  font-size: 13px;
 }
 
 .progress-wrap {
@@ -140,24 +202,58 @@ button:hover {
   width: 0%;
   height: 100%;
   border-radius: inherit;
-  background: linear-gradient(90deg, #7cc7ff, #d6b16a);
+  background: linear-gradient(90deg, var(--blue), var(--accent));
 }
 
 footer {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
   color: var(--muted);
   font-size: 13px;
 }
 
-body.clip-mode .song-ui {
+#toast {
+  position: fixed;
+  z-index: 5;
+  left: 50%;
+  bottom: 24px;
+  transform: translate(-50%, 120%);
+  padding: 12px 16px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  opacity: 0;
+  color: var(--text);
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(14px);
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+#toast.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+body.clip-mode .song-ui,
+body.clip-mode .back-link {
   opacity: 0;
   pointer-events: none;
 }
 
 body.clip-mode #livingCanvas {
   cursor: none;
+}
+
+body.profile-shorts .song-shell {
+  max-width: 56.25vh;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+body.profile-youtube .song-shell,
+body.profile-telegram .song-shell {
+  aspect-ratio: 16 / 9;
+}
+
+body.profile-shorts #livingCanvas {
+  background: #050711;
 }
 
 @media (max-width: 620px) {
@@ -172,9 +268,12 @@ body.clip-mode #livingCanvas {
 
   .song-ui {
     min-height: calc(100vh - 32px);
+    margin-top: 54px;
   }
 
+  .top-row,
   footer {
     flex-direction: column;
+    align-items: flex-start;
   }
 }

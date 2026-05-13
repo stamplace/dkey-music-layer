@@ -8,11 +8,21 @@ const sectionEl = document.querySelector("#sectionLabel");
 const playBtn = document.querySelector("#playBtn");
 const clipBtn = document.querySelector("#clipBtn");
 const replayBtn = document.querySelector("#replayBtn");
+const fullscreenBtn = document.querySelector("#fullscreenBtn");
+const shareBtn = document.querySelector("#shareBtn");
+const copyBtn = document.querySelector("#copyBtn");
 const progressBar = document.querySelector("#progressBar");
 const timeLabel = document.querySelector("#timeLabel");
+const statusLabel = document.querySelector("#statusLabel");
+const profileBadge = document.querySelector("#profileBadge");
+const toast = document.querySelector("#toast");
 
 const SONG_URL = "../../../songs/demo-001/song.dkey.json";
 const TIMING_URL = "../../../songs/demo-001/timing.json";
+const EXPORT_PROFILES_URL = "../../../songs/demo-001/export-profiles.json";
+
+const params = new URLSearchParams(window.location.search);
+const activeProfile = params.get("profile") || "live";
 
 const fallbackSong = {
   title: "DKey Living Song Demo 001",
@@ -43,6 +53,7 @@ const fallbackTiming = {
 
 let song = fallbackSong;
 let timing = fallbackTiming;
+let exportProfiles = { profiles: {} };
 
 let audioContext;
 let oscillator;
@@ -70,6 +81,26 @@ async function loadJson(url, fallback) {
   } catch {
     return fallback;
   }
+}
+
+function showToast(message) {
+  toast.textContent = message;
+  toast.classList.add("show");
+  window.clearTimeout(showToast.timeoutId);
+  showToast.timeoutId = window.setTimeout(() => {
+    toast.classList.remove("show");
+  }, 1700);
+}
+
+function applyProfile() {
+  document.body.classList.remove("profile-youtube", "profile-shorts", "profile-telegram");
+
+  if (activeProfile !== "live") {
+    document.body.classList.add(`profile-${activeProfile}`);
+  }
+
+  const profile = exportProfiles.profiles?.[activeProfile];
+  profileBadge.textContent = profile?.label || (activeProfile === "live" ? "Live" : activeProfile);
 }
 
 function resizeCanvas() {
@@ -209,6 +240,9 @@ function updateUi() {
   progressBar.style.width = `${progress}%`;
   timeLabel.textContent = `${formatTime(time)} / ${formatTime(duration)}`;
   playBtn.textContent = isPlaying ? "Pause" : "Play";
+  statusLabel.textContent = document.body.classList.contains("clip-mode")
+    ? `Clip Mode · ${activeProfile}`
+    : "נכס־שיר חי · HTML + Canvas + Audio";
 
   if (isPlaying && time >= duration) {
     stopAtEnd();
@@ -261,8 +295,11 @@ function replay() {
 async function init() {
   song = await loadJson(SONG_URL, fallbackSong);
   timing = await loadJson(TIMING_URL, fallbackTiming);
+  exportProfiles = await loadJson(EXPORT_PROFILES_URL, { profiles: {} });
 
-  if (new URLSearchParams(window.location.search).get("clip") === "1") {
+  applyProfile();
+
+  if (params.get("clip") === "1") {
     document.body.classList.add("clip-mode");
   }
 
@@ -276,6 +313,51 @@ playBtn.addEventListener("click", togglePlay);
 replayBtn.addEventListener("click", replay);
 clipBtn.addEventListener("click", () => {
   document.body.classList.toggle("clip-mode");
+  showToast(document.body.classList.contains("clip-mode") ? "Clip Mode On" : "Clip Mode Off");
+});
+
+fullscreenBtn.addEventListener("click", async () => {
+  try {
+    if (!document.fullscreenElement) {
+      await document.documentElement.requestFullscreen();
+      showToast("Fullscreen On");
+    } else {
+      await document.exitFullscreen();
+      showToast("Fullscreen Off");
+    }
+  } catch {
+    showToast("Fullscreen לא זמין כאן");
+  }
+});
+
+copyBtn.addEventListener("click", async () => {
+  const url = window.location.href;
+  try {
+    await navigator.clipboard.writeText(url);
+    showToast("הקישור הועתק");
+  } catch {
+    showToast(url);
+  }
+});
+
+shareBtn.addEventListener("click", async () => {
+  const shareData = {
+    title: song.title,
+    text: song.subtitle || "DKey Living Song",
+    url: window.location.href
+  };
+
+  try {
+    if (navigator.share) {
+      await navigator.share(shareData);
+      return;
+    }
+
+    await navigator.clipboard.writeText(window.location.href);
+    showToast("הקישור הועתק לשיתוף");
+  } catch {
+    showToast("השיתוף בוטל");
+  }
 });
 
 init();
