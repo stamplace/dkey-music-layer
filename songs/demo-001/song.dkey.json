@@ -1,0 +1,76 @@
+{
+  "id": "demo-001",
+  "type": "dkey-living-song",
+  "version": "0.1.0",
+  "title": "DKey Living Song Demo 001",
+  "subtitle": "שיר שהוא אתר חי",
+  "artist": "DKey Music Layer",
+  "language": "he",
+  "direction": "rtl",
+  "key": "Bm",
+  "bpm": 90,
+  "durationSeconds": 96,
+  "audio": {
+    "mode": "generated-demo-tone",
+    "master": "./audio/master.wav",
+    "preview": "./audio/preview.mp3"
+  },
+  "lyrics": "./lyrics.md",
+  "timing": "./timing.json",
+  "visual": {
+    "mode": "canvas-live",
+    "theme": "2036-emotional-glow",
+    "palette": "./visuals/palette.json"
+  },
+  "site": {
+    "entry": "../../site/living-songs/demo-001/index.html",
+    "modes": ["song", "clip", "lyrics", "live"]
+  },
+  "sections": [
+    {
+      "id": "intro",
+      "label": "Intro",
+      "start": 0,
+      "end": 12,
+      "energy": 0.22,
+      "scene": "small-light"
+    },
+    {
+      "id": "verse-1",
+      "label": "Verse 1",
+      "start": 12,
+      "end": 42,
+      "energy": 0.42,
+      "scene": "inner-room"
+    },
+    {
+      "id": "chorus-1",
+      "label": "Chorus",
+      "start": 42,
+      "end": 68,
+      "energy": 0.88,
+      "scene": "wide-light"
+    },
+    {
+      "id": "bridge",
+      "label": "Bridge",
+      "start": 68,
+      "end": 82,
+      "energy": 0.35,
+      "scene": "quiet-space"
+    },
+    {
+      "id": "final",
+      "label": "Final",
+      "start": 82,
+      "end": 96,
+      "energy": 0.72,
+      "scene": "breathing-afterglow"
+    }
+  ],
+  "share": {
+    "title": "DKey Living Song Demo 001",
+    "description": "נכס־שיר חי מתוך DKey Music Layer",
+    "cover": "./cover.png"
+  }
+}

@@ -1,0 +1,180 @@
+:root {
+  color-scheme: dark;
+  --bg: #050711;
+  --text: #eef4ff;
+  --muted: rgba(238, 244, 255, 0.68);
+  --glass: rgba(255, 255, 255, 0.08);
+  --line: rgba(255, 255, 255, 0.16);
+  --accent: #d6b16a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.song-shell {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  isolation: isolate;
+}
+
+#livingCanvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.song-ui {
+  position: relative;
+  z-index: 2;
+  width: min(760px, calc(100vw - 32px));
+  min-height: min(680px, calc(100vh - 32px));
+  margin: 16px auto;
+  padding: clamp(22px, 5vw, 56px);
+  border: 1px solid var(--line);
+  border-radius: 34px;
+  background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.14), transparent 42%),
+    linear-gradient(145deg, rgba(255,255,255,0.10), rgba(255,255,255,0.035));
+  box-shadow: 0 24px 90px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(18px);
+  display: grid;
+  align-content: center;
+  gap: 22px;
+}
+
+.badge {
+  width: max-content;
+  padding: 8px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.06);
+  letter-spacing: 0.08em;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(34px, 8vw, 78px);
+  line-height: 0.95;
+  letter-spacing: -0.06em;
+}
+
+#songSubtitle {
+  margin: 0;
+  color: var(--muted);
+  font-size: clamp(18px, 3vw, 26px);
+}
+
+.lyric-card {
+  min-height: 170px;
+  padding: 26px;
+  border: 1px solid var(--line);
+  border-radius: 26px;
+  background: rgba(0, 0, 0, 0.22);
+}
+
+#sectionLabel {
+  color: var(--accent);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+#lyricLine {
+  margin: 16px 0 0;
+  font-size: clamp(28px, 6vw, 56px);
+  line-height: 1.08;
+  font-weight: 750;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+button {
+  appearance: none;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 13px 20px;
+  background: rgba(255, 255, 255, 0.11);
+  color: var(--text);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.progress-wrap {
+  height: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+#progressBar {
+  width: 0%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #7cc7ff, #d6b16a);
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+body.clip-mode .song-ui {
+  opacity: 0;
+  pointer-events: none;
+}
+
+body.clip-mode #livingCanvas {
+  cursor: none;
+}
+
+@media (max-width: 620px) {
+  body {
+    overflow: auto;
+  }
+
+  .song-shell {
+    min-height: 100vh;
+    height: auto;
+  }
+
+  .song-ui {
+    min-height: calc(100vh - 32px);
+  }
+
+  footer {
+    flex-direction: column;
+  }
+}

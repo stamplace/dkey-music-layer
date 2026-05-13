@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#050711">
+  <title>DKey Living Song Demo 001</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <main class="song-shell">
+    <canvas id="livingCanvas" aria-hidden="true"></canvas>
+
+    <section class="song-ui" aria-label="DKey Living Song Player">
+      <div class="badge">DKey Living Song</div>
+
+      <h1 id="songTitle">DKey Living Song Demo 001</h1>
+      <p id="songSubtitle">שיר שהוא אתר חי</p>
+
+      <div class="lyric-card">
+        <div id="sectionLabel">Intro</div>
+        <p id="lyricLine">לחץ Play כדי להיכנס לשיר.</p>
+      </div>
+
+      <div class="controls">
+        <button id="playBtn" type="button">Play</button>
+        <button id="clipBtn" type="button">Clip Mode</button>
+        <button id="replayBtn" type="button">Replay</button>
+      </div>
+
+      <div class="progress-wrap" aria-label="Song progress">
+        <div id="progressBar"></div>
+      </div>
+
+      <footer>
+        <span id="timeLabel">00:00 / 01:36</span>
+        <span>נכס־שיר חי · HTML + Canvas + Audio</span>
+      </footer>
+    </section>
+  </main>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

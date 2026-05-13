@@ -44,7 +44,8 @@
     "audio:check": "npm run audio:write && npm run audio:file-check",
     "song-request:midi": "node tools/song-request-renderer/src/index.mjs generated/requests/song-request.dml.json generated/song-midi-events/song-request/midi-events.dml.json",
     "song-request:audio": "npm run song-request:midi && node tools/audio-wav-renderer/src/index.mjs generated/song-midi-events/song-request/midi-events.dml.json generated/audio/song-request/song.wav",
-    "song-request:check": "npm run song-request:audio && node tools/audio-wav-renderer/src/check.mjs generated/audio/song-request/song.wav"
+    "song-request:check": "npm run song-request:audio && node tools/audio-wav-renderer/src/check.mjs generated/audio/song-request/song.wav",
+    "living-song:check": "node tools/living-song-validator/src/index.mjs songs/demo-001/song.dkey.json"
   },
   "engines": {
     "node": ">=20"

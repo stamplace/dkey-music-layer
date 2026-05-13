@@ -1,0 +1,19 @@
+{
+  "lyrics": [
+    { "time": 0.5, "text": "זה לא דף לשיר." },
+    { "time": 6.0, "text": "זה השיר עצמו." },
+    { "time": 14.0, "text": "האור מתחיל קטן," },
+    { "time": 22.0, "text": "נושם מתוך השקט." },
+    { "time": 42.0, "text": "ואז הפזמון נפתח," },
+    { "time": 50.0, "text": "כמו חלון גדול בלילה." },
+    { "time": 70.0, "text": "בסוף הכול נשאר חי —" },
+    { "time": 84.0, "text": "גם אחרי שהשיר נגמר." }
+  ],
+  "events": [
+    { "time": 0, "type": "scene", "value": "small-light" },
+    { "time": 12, "type": "scene", "value": "inner-room" },
+    { "time": 42, "type": "scene", "value": "wide-light" },
+    { "time": 68, "type": "scene", "value": "quiet-space" },
+    { "time": 82, "type": "scene", "value": "breathing-afterglow" }
+  ]
+}
