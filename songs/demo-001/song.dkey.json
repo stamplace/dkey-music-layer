@@ -11,9 +11,9 @@
   "bpm": 72,
   "durationSeconds": 128,
   "audio": {
-    "mode": "built-in-calm-web-audio-song",
-    "master": "./audio/master.wav",
-    "preview": "./audio/preview.mp3"
+    "mode": "real-audio-required",
+    "master": "./audio/or-shaket.wav",
+    "preview": "./audio/or-shaket.mp3"
   },
   "lyrics": "./lyrics.md",
   "timing": "./timing.json",
@@ -80,5 +80,11 @@
   },
   "export": {
     "profiles": "./export-profiles.json"
+  },
+  "video": {
+    "mode": "real-clip-preferred",
+    "clip": "./video/or-shaket.mp4",
+    "cover": "./cover/or-shaket.jpg",
+    "fallback": "clean-lyric-surface"
   }
 }

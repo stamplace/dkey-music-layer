@@ -10,7 +10,14 @@
 </head>
 <body>
   <main class="song-shell">
-    <canvas id="livingCanvas" aria-hidden="true"></canvas>
+    <div class="real-clip-surface" aria-hidden="true">
+      <video id="clipVideo" class="clip-video" playsinline muted loop preload="metadata"></video>
+      <div id="coverFallback" class="cover-fallback">
+        <div class="cover-light"></div>
+        <div class="cover-title">אור שקט</div>
+      </div>
+      <canvas id="livingCanvas" aria-hidden="true"></canvas>
+    </div>
 
     <a class="back-link" href="../" aria-label="חזרה לספריית השירים">← Living Songs</a>
 

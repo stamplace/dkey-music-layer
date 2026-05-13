@@ -1,5 +1,7 @@
 const canvas = document.querySelector("#livingCanvas");
 const ctx = canvas.getContext("2d");
+const clipVideo = document.querySelector("#clipVideo");
+const coverFallback = document.querySelector("#coverFallback");
 
 const titleEl = document.querySelector("#songTitle");
 const subtitleEl = document.querySelector("#songSubtitle");
@@ -82,6 +84,7 @@ const score = {
 let song = fallbackSong;
 let timing = fallbackTiming;
 let exportProfiles = { profiles: {} };
+let hasRealVideo = false;
 
 let audioContext;
 let masterGain;
@@ -141,6 +144,21 @@ function applyProfile() {
 
   const profile = exportProfiles.profiles?.[activeProfile];
   profileBadge.textContent = profile?.label || (activeProfile === "live" ? "Live" : activeProfile);
+}
+
+async function tryLoadRealVideo() {
+  const videoPath = "../../../songs/demo-001/video/or-shaket.mp4";
+
+  try {
+    const response = await fetch(videoPath, { method: "HEAD", cache: "no-store" });
+    if (!response.ok) return;
+
+    clipVideo.src = videoPath;
+    clipVideo.classList.add("ready");
+    hasRealVideo = true;
+  } catch {
+    hasRealVideo = false;
+  }
 }
 
 function resizeCanvas() {
@@ -306,90 +324,28 @@ function draw(time) {
   const section = getSection(time);
   const energy = section.energy || 0.3;
   const colors = sceneColors(section.scene);
-  const runtime = (performance.now() - bootTime) / 1000;
   const progress = time / (song.durationSeconds || 128);
 
   ctx.clearRect(0, 0, width, height);
 
-  const sky = ctx.createLinearGradient(0, 0, 0, height);
-  sky.addColorStop(0, rgb(colors.top, 1));
-  sky.addColorStop(0.52, "rgba(5, 8, 20, 1)");
-  sky.addColorStop(1, "rgba(2, 4, 10, 1)");
-  ctx.fillStyle = sky;
+  const fade = ctx.createLinearGradient(0, 0, width, height);
+  fade.addColorStop(0, rgb(colors.center, 0.08 + energy * 0.05));
+  fade.addColorStop(0.55, "rgba(0,0,0,0)");
+  fade.addColorStop(1, rgb(colors.warm, 0.06 + energy * 0.04));
+  ctx.fillStyle = fade;
   ctx.fillRect(0, 0, width, height);
 
-  const lightX = width * (0.32 + progress * 0.36);
-  const lightY = height * (0.36 + Math.sin(progress * Math.PI) * -0.06);
-
-  const glow = ctx.createRadialGradient(lightX, lightY, 0, lightX, lightY, Math.max(width, height) * 0.62);
-  glow.addColorStop(0, rgb(colors.warm, 0.20 + energy * 0.12));
-  glow.addColorStop(0.28, rgb(colors.center, 0.12 + energy * 0.10));
+  const lightX = width * (0.35 + progress * 0.28);
+  const lightY = height * 0.36;
+  const glow = ctx.createRadialGradient(lightX, lightY, 0, lightX, lightY, Math.max(width, height) * 0.45);
+  glow.addColorStop(0, rgb(colors.warm, 0.10));
   glow.addColorStop(1, "rgba(0,0,0,0)");
   ctx.fillStyle = glow;
   ctx.fillRect(0, 0, width, height);
 
-  ctx.save();
-  ctx.globalAlpha = 0.55;
-  ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
-
-  for (const star of stars) {
-    const x = ((star.x + runtime * star.drift * 0.01) % 1) * width;
-    const y = star.y * height * 0.72;
-    const twinkle = 0.42 + Math.sin(runtime * 0.45 + star.phase) * 0.22;
-    ctx.globalAlpha = Math.max(0.08, twinkle) * (0.25 + energy * 0.25);
-    ctx.beginPath();
-    ctx.arc(x, y, star.size, 0, Math.PI * 2);
-    ctx.fill();
+  if (!hasRealVideo && coverFallback) {
+    coverFallback.style.transform = `scale(${1 + progress * 0.035})`;
   }
-
-  ctx.restore();
-
-  ctx.save();
-  ctx.globalCompositeOperation = "screen";
-
-  for (const mote of dust) {
-    const x = ((mote.x + runtime * mote.drift * 0.012) % 1) * width;
-    const y = height * (0.22 + mote.y * 0.58) + Math.sin(runtime * 0.12 + mote.phase) * 22;
-    const radius = mote.size * (0.7 + energy * 0.55);
-    const haze = ctx.createRadialGradient(x, y, 0, x, y, radius);
-    haze.addColorStop(0, rgb(colors.warm, 0.045));
-    haze.addColorStop(1, "rgba(0,0,0,0)");
-    ctx.fillStyle = haze;
-    ctx.beginPath();
-    ctx.arc(x, y, radius, 0, Math.PI * 2);
-    ctx.fill();
-  }
-
-  ctx.restore();
-
-  const horizon = height * (0.70 - energy * 0.04);
-  const waveAmp = 9 + energy * 18;
-
-  ctx.beginPath();
-  ctx.moveTo(0, height);
-  for (let x = 0; x <= width; x += 24) {
-    const y =
-      horizon
-      + Math.sin((x * 0.005) + runtime * 0.22) * waveAmp
-      + Math.sin((x * 0.014) - runtime * 0.18) * (waveAmp * 0.38);
-    ctx.lineTo(x, y);
-  }
-  ctx.lineTo(width, height);
-  ctx.closePath();
-  ctx.fillStyle = "rgba(0, 0, 0, 0.22)";
-  ctx.fill();
-
-  ctx.beginPath();
-  for (let x = 0; x <= width; x += 18) {
-    const y =
-      horizon
-      + Math.sin((x * 0.006) + runtime * 0.28) * (6 + energy * 10);
-    if (x === 0) ctx.moveTo(x, y);
-    else ctx.lineTo(x, y);
-  }
-  ctx.strokeStyle = rgb(colors.center, 0.18 + energy * 0.18);
-  ctx.lineWidth = 1.4;
-  ctx.stroke();
 
   updateSongAudio(time, section);
 }
@@ -446,6 +402,7 @@ function togglePlay() {
     pausedAt = getCurrentTime();
     isPlaying = false;
     if (masterGain) masterGain.gain.setTargetAtTime(0.0001, audioContext.currentTime, 0.16);
+    if (hasRealVideo) clipVideo.pause();
     return;
   }
 
@@ -456,6 +413,11 @@ function togglePlay() {
 
   startedAt = performance.now() - pausedAt * 1000;
   isPlaying = true;
+
+  if (hasRealVideo) {
+    clipVideo.currentTime = pausedAt;
+    clipVideo.play().catch(() => {});
+  }
 }
 
 function replay() {
@@ -464,6 +426,11 @@ function replay() {
   pausedAt = 0;
   startedAt = performance.now();
   isPlaying = true;
+
+  if (hasRealVideo) {
+    clipVideo.currentTime = 0;
+    clipVideo.play().catch(() => {});
+  }
 }
 
 async function init() {
@@ -472,6 +439,7 @@ async function init() {
   exportProfiles = await loadJson(EXPORT_PROFILES_URL, { profiles: {} });
 
   applyProfile();
+  await tryLoadRealVideo();
 
   if (params.get("clip") === "1") {
     document.body.classList.add("clip-mode");
