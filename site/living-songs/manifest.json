@@ -1,0 +1,19 @@
+{
+  "version": "0.1.0",
+  "title": "DKey Living Songs",
+  "subtitle": "שירים שהם אתרים חיים",
+  "items": [
+    {
+      "id": "demo-001",
+      "title": "DKey Living Song Demo 001",
+      "subtitle": "שיר שהוא אתר חי",
+      "artist": "DKey Music Layer",
+      "key": "Bm",
+      "bpm": 90,
+      "durationSeconds": 96,
+      "url": "./demo-001/",
+      "clipUrl": "./demo-001/?clip=1",
+      "songAsset": "../../songs/demo-001/song.dkey.json"
+    }
+  ]
+}
