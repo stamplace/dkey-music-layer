@@ -1,9 +1,9 @@
 {
-  "name": "2036-emotional-glow",
-  "background": "#050711",
+  "name": "slow-night-light",
+  "background": "#040713",
   "primary": "#eef4ff",
-  "secondary": "#7cc7ff",
-  "accent": "#d6b16a",
-  "deep": "#11182f",
-  "danger": "#ff6b6b"
+  "secondary": "#88bfff",
+  "accent": "#d8bd82",
+  "deep": "#090d1d",
+  "warm": "#ffdba0"
 }

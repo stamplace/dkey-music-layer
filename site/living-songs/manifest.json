@@ -5,12 +5,12 @@
   "items": [
     {
       "id": "demo-001",
-      "title": "DKey Living Song Demo 001",
-      "subtitle": "שיר שהוא אתר חי",
+      "title": "אור שקט",
+      "subtitle": "שיר חי איטי ונעים",
       "artist": "DKey Music Layer",
       "key": "Bm",
-      "bpm": 90,
-      "durationSeconds": 96,
+      "bpm": 72,
+      "durationSeconds": 128,
       "url": "./demo-001/",
       "clipUrl": "./demo-001/?clip=1",
       "songAsset": "../../songs/demo-001/song.dkey.json"

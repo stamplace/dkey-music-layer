@@ -331,3 +331,22 @@ body.profile-shorts::before {
     transition: none !important;
   }
 }
+
+/* Calm Clip v1 */
+.song-ui {
+  background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.10), transparent 48%),
+    linear-gradient(145deg, rgba(255,255,255,0.075), rgba(255,255,255,0.028));
+}
+
+.lyric-card {
+  background: rgba(0, 0, 0, 0.18);
+}
+
+#lyricLine {
+  letter-spacing: -0.035em;
+}
+
+body.clip-mode::before {
+  content: "אור שקט · DKey Living Song";
+}

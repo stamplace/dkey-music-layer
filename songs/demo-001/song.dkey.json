@@ -1,25 +1,25 @@
 {
   "id": "demo-001",
   "type": "dkey-living-song",
-  "version": "0.1.0",
-  "title": "DKey Living Song Demo 001",
-  "subtitle": "שיר שהוא אתר חי",
+  "version": "0.2.0",
+  "title": "אור שקט",
+  "subtitle": "שיר חי איטי ונעים",
   "artist": "DKey Music Layer",
   "language": "he",
   "direction": "rtl",
   "key": "Bm",
-  "bpm": 90,
-  "durationSeconds": 96,
+  "bpm": 72,
+  "durationSeconds": 128,
   "audio": {
-    "mode": "generated-demo-tone",
+    "mode": "built-in-calm-web-audio-song",
     "master": "./audio/master.wav",
     "preview": "./audio/preview.mp3"
   },
   "lyrics": "./lyrics.md",
   "timing": "./timing.json",
   "visual": {
-    "mode": "canvas-live",
-    "theme": "2036-emotional-glow",
+    "mode": "cinematic-calm-canvas",
+    "theme": "slow-night-light",
     "palette": "./visuals/palette.json"
   },
   "site": {
@@ -34,48 +34,48 @@
   "sections": [
     {
       "id": "intro",
-      "label": "Intro",
+      "label": "פתיחה",
       "start": 0,
-      "end": 12,
-      "energy": 0.22,
-      "scene": "small-light"
+      "end": 18,
+      "energy": 0.18,
+      "scene": "night-window"
     },
     {
       "id": "verse-1",
-      "label": "Verse 1",
-      "start": 12,
-      "end": 42,
-      "energy": 0.42,
-      "scene": "inner-room"
+      "label": "בית א׳",
+      "start": 18,
+      "end": 46,
+      "energy": 0.34,
+      "scene": "quiet-room"
     },
     {
       "id": "chorus-1",
-      "label": "Chorus",
-      "start": 42,
-      "end": 68,
-      "energy": 0.88,
-      "scene": "wide-light"
+      "label": "פזמון",
+      "start": 46,
+      "end": 74,
+      "energy": 0.58,
+      "scene": "soft-open-sky"
     },
     {
-      "id": "bridge",
-      "label": "Bridge",
-      "start": 68,
-      "end": 82,
-      "energy": 0.35,
-      "scene": "quiet-space"
+      "id": "verse-2",
+      "label": "בית ב׳",
+      "start": 74,
+      "end": 98,
+      "energy": 0.38,
+      "scene": "slow-road"
     },
     {
       "id": "final",
-      "label": "Final",
-      "start": 82,
-      "end": 96,
-      "energy": 0.72,
-      "scene": "breathing-afterglow"
+      "label": "סיום",
+      "start": 98,
+      "end": 128,
+      "energy": 0.48,
+      "scene": "afterglow"
     }
   ],
   "share": {
-    "title": "DKey Living Song Demo 001",
-    "description": "נכס־שיר חי מתוך DKey Music Layer",
+    "title": "אור שקט — DKey Living Song",
+    "description": "שיר חי איטי ונעים מתוך DKey Music Layer",
     "cover": "./cover.png"
   },
   "export": {

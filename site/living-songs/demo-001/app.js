@@ -25,29 +25,57 @@ const params = new URLSearchParams(window.location.search);
 const activeProfile = params.get("profile") || "live";
 
 const fallbackSong = {
-  title: "DKey Living Song Demo 001",
-  subtitle: "שיר שהוא אתר חי",
-  durationSeconds: 96,
-  bpm: 90,
+  title: "אור שקט",
+  subtitle: "שיר חי איטי ונעים",
+  durationSeconds: 128,
+  bpm: 72,
   sections: [
-    { id: "intro", label: "Intro", start: 0, end: 12, energy: 0.22, scene: "small-light" },
-    { id: "verse-1", label: "Verse 1", start: 12, end: 42, energy: 0.42, scene: "inner-room" },
-    { id: "chorus-1", label: "Chorus", start: 42, end: 68, energy: 0.88, scene: "wide-light" },
-    { id: "bridge", label: "Bridge", start: 68, end: 82, energy: 0.35, scene: "quiet-space" },
-    { id: "final", label: "Final", start: 82, end: 96, energy: 0.72, scene: "breathing-afterglow" }
+    { id: "intro", label: "פתיחה", start: 0, end: 18, energy: 0.18, scene: "night-window" },
+    { id: "verse-1", label: "בית א׳", start: 18, end: 46, energy: 0.34, scene: "quiet-room" },
+    { id: "chorus-1", label: "פזמון", start: 46, end: 74, energy: 0.58, scene: "soft-open-sky" },
+    { id: "verse-2", label: "בית ב׳", start: 74, end: 98, energy: 0.38, scene: "slow-road" },
+    { id: "final", label: "סיום", start: 98, end: 128, energy: 0.48, scene: "afterglow" }
   ]
 };
 
 const fallbackTiming = {
   lyrics: [
-    { time: 0.5, text: "זה לא דף לשיר." },
-    { time: 6.0, text: "זה השיר עצמו." },
-    { time: 14.0, text: "האור מתחיל קטן," },
-    { time: 22.0, text: "נושם מתוך השקט." },
-    { time: 42.0, text: "ואז הפזמון נפתח," },
-    { time: 50.0, text: "כמו חלון גדול בלילה." },
-    { time: 70.0, text: "בסוף הכול נשאר חי —" },
-    { time: 84.0, text: "גם אחרי שהשיר נגמר." }
+    { time: 2, text: "יש רגע קטן" },
+    { time: 10, text: "שלא מבקש לנצח." },
+    { time: 20, text: "רק להיות כאן," },
+    { time: 31, text: "בלי לרוץ לשום מקום." },
+    { time: 47, text: "אור שקט יורד עליי," },
+    { time: 59, text: "פותח לי חלון בלב." },
+    { time: 76, text: "ואני חוזר לאט," },
+    { time: 87, text: "אל מה שכבר ידעתי." },
+    { time: 100, text: "גם אם הדרך ארוכה," },
+    { time: 110, text: "יש נשימה שמחזיקה." },
+    { time: 120, text: "ובסוף הלילה אומר:" },
+    { time: 125, text: "הכול עוד חי בתוכי." }
+  ]
+};
+
+const score = {
+  chords: [
+    { start: 0, end: 18, name: "Bm(add9)", notes: [123.47, 185.0, 246.94, 277.18] },
+    { start: 18, end: 46, name: "Gmaj7", notes: [98.0, 196.0, 246.94, 293.66] },
+    { start: 46, end: 74, name: "D(add9)", notes: [146.83, 220.0, 293.66, 329.63] },
+    { start: 74, end: 98, name: "A(sus4)", notes: [110.0, 220.0, 277.18, 329.63] },
+    { start: 98, end: 128, name: "Bm(add9)", notes: [123.47, 185.0, 246.94, 277.18] }
+  ],
+  melody: [
+    { time: 6, note: 493.88, length: 2.8 },
+    { time: 14, note: 554.37, length: 2.4 },
+    { time: 25, note: 440.0, length: 3.2 },
+    { time: 36, note: 493.88, length: 2.6 },
+    { time: 50, note: 587.33, length: 3.8 },
+    { time: 60, note: 659.25, length: 3.2 },
+    { time: 69, note: 587.33, length: 4.2 },
+    { time: 80, note: 493.88, length: 3.4 },
+    { time: 91, note: 440.0, length: 3.6 },
+    { time: 104, note: 493.88, length: 3.4 },
+    { time: 116, note: 554.37, length: 3.2 },
+    { time: 124, note: 493.88, length: 4.8 }
   ]
 };
 
@@ -56,20 +84,32 @@ let timing = fallbackTiming;
 let exportProfiles = { profiles: {} };
 
 let audioContext;
-let oscillator;
-let gainNode;
+let masterGain;
+let padFilter;
+let padVoices = [];
+let scheduledNotes = new Set();
 
 let isPlaying = false;
 let startedAt = 0;
 let pausedAt = 0;
 let bootTime = performance.now();
+let lastFrameTime = 0;
 
-const particles = Array.from({ length: 90 }, (_, index) => ({
+const stars = Array.from({ length: 54 }, (_, index) => ({
   index,
   x: Math.random(),
   y: Math.random(),
-  r: 0.6 + Math.random() * 2.8,
-  speed: 0.12 + Math.random() * 0.72,
+  size: 0.4 + Math.random() * 1.8,
+  drift: 0.008 + Math.random() * 0.025,
+  phase: Math.random() * Math.PI * 2
+}));
+
+const dust = Array.from({ length: 26 }, (_, index) => ({
+  index,
+  x: Math.random(),
+  y: Math.random(),
+  size: 20 + Math.random() * 90,
+  drift: 0.004 + Math.random() * 0.012,
   phase: Math.random() * Math.PI * 2
 }));
 
@@ -104,7 +144,7 @@ function applyProfile() {
 }
 
 function resizeCanvas() {
-  const dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+  const dpr = Math.max(1, Math.min(1.5, window.devicePixelRatio || 1));
   canvas.width = Math.floor(window.innerWidth * dpr);
   canvas.height = Math.floor(window.innerHeight * dpr);
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -137,31 +177,127 @@ function getLyric(time) {
   return current;
 }
 
+function getChord(time) {
+  return score.chords.find((chord) => time >= chord.start && time < chord.end)
+    || score.chords[score.chords.length - 1];
+}
+
 function ensureAudio() {
   if (audioContext) return;
 
   audioContext = new AudioContext();
-  oscillator = audioContext.createOscillator();
-  gainNode = audioContext.createGain();
+  masterGain = audioContext.createGain();
+  padFilter = audioContext.createBiquadFilter();
 
-  oscillator.type = "sine";
-  oscillator.frequency.value = 185;
-  gainNode.gain.value = 0.0001;
+  masterGain.gain.value = 0.0001;
+  padFilter.type = "lowpass";
+  padFilter.frequency.value = 1250;
+  padFilter.Q.value = 0.2;
 
-  oscillator.connect(gainNode);
-  gainNode.connect(audioContext.destination);
-  oscillator.start();
+  padFilter.connect(masterGain);
+  masterGain.connect(audioContext.destination);
+
+  padVoices = Array.from({ length: 4 }, (_, index) => {
+    const oscillator = audioContext.createOscillator();
+    const gain = audioContext.createGain();
+
+    oscillator.type = index === 0 ? "sine" : "triangle";
+    oscillator.frequency.value = score.chords[0].notes[index];
+    gain.gain.value = 0.035 - index * 0.004;
+
+    oscillator.connect(gain);
+    gain.connect(padFilter);
+    oscillator.start();
+
+    return { oscillator, gain };
+  });
 }
 
-function updateDemoAudio(section, time) {
-  if (!gainNode || !oscillator) return;
+function scheduleBell(note) {
+  if (!audioContext || scheduledNotes.has(note.time)) return;
 
-  const pulse = 0.5 + Math.sin(time * song.bpm / 60 * Math.PI * 2) * 0.5;
-  const targetGain = isPlaying ? 0.035 + section.energy * 0.055 + pulse * 0.012 : 0.0001;
-  const targetFrequency = 120 + section.energy * 190;
+  const now = audioContext.currentTime;
+  const oscillator = audioContext.createOscillator();
+  const gain = audioContext.createGain();
+  const filter = audioContext.createBiquadFilter();
 
-  gainNode.gain.setTargetAtTime(targetGain, audioContext.currentTime, 0.06);
-  oscillator.frequency.setTargetAtTime(targetFrequency, audioContext.currentTime, 0.08);
+  oscillator.type = "sine";
+  oscillator.frequency.value = note.note;
+
+  filter.type = "lowpass";
+  filter.frequency.value = 2600;
+
+  gain.gain.setValueAtTime(0.0001, now);
+  gain.gain.exponentialRampToValueAtTime(0.075, now + 0.08);
+  gain.gain.exponentialRampToValueAtTime(0.0001, now + note.length);
+
+  oscillator.connect(filter);
+  filter.connect(gain);
+  gain.connect(masterGain);
+
+  oscillator.start(now);
+  oscillator.stop(now + note.length + 0.1);
+
+  scheduledNotes.add(note.time);
+}
+
+function updateSongAudio(time, section) {
+  if (!audioContext || !masterGain || !padVoices.length) return;
+
+  const chord = getChord(time);
+  const now = audioContext.currentTime;
+  const sectionGain = isPlaying ? 0.08 + section.energy * 0.09 : 0.0001;
+
+  masterGain.gain.setTargetAtTime(sectionGain, now, 0.24);
+  padFilter.frequency.setTargetAtTime(780 + section.energy * 980, now, 0.5);
+
+  chord.notes.forEach((frequency, index) => {
+    const voice = padVoices[index];
+    const slowDrift = Math.sin((time * 0.08) + index) * 0.45;
+    voice.oscillator.frequency.setTargetAtTime(frequency + slowDrift, now, 0.55);
+  });
+
+  for (const note of score.melody) {
+    if (time >= note.time && time <= note.time + 0.25) {
+      scheduleBell(note);
+    }
+  }
+}
+
+function sceneColors(scene) {
+  const map = {
+    "night-window": {
+      top: [9, 14, 34],
+      center: [80, 118, 164],
+      warm: [210, 180, 120]
+    },
+    "quiet-room": {
+      top: [12, 18, 42],
+      center: [120, 144, 190],
+      warm: [220, 188, 130]
+    },
+    "soft-open-sky": {
+      top: [14, 28, 58],
+      center: [116, 176, 230],
+      warm: [255, 218, 150]
+    },
+    "slow-road": {
+      top: [8, 13, 31],
+      center: [88, 126, 176],
+      warm: [210, 170, 118]
+    },
+    "afterglow": {
+      top: [10, 12, 26],
+      center: [150, 150, 190],
+      warm: [255, 210, 145]
+    }
+  };
+
+  return map[scene] || map["night-window"];
+}
+
+function rgb(color, alpha) {
+  return `rgba(${color[0]}, ${color[1]}, ${color[2]}, ${alpha})`;
 }
 
 function draw(time) {
@@ -169,68 +305,99 @@ function draw(time) {
   const height = window.innerHeight;
   const section = getSection(time);
   const energy = section.energy || 0.3;
+  const colors = sceneColors(section.scene);
   const runtime = (performance.now() - bootTime) / 1000;
+  const progress = time / (song.durationSeconds || 128);
 
   ctx.clearRect(0, 0, width, height);
 
-  const gradient = ctx.createRadialGradient(
-    width * 0.5,
-    height * 0.42,
-    10,
-    width * 0.5,
-    height * 0.42,
-    Math.max(width, height) * 0.85
-  );
-
-  gradient.addColorStop(0, `rgba(124, 199, 255, ${0.12 + energy * 0.26})`);
-  gradient.addColorStop(0.35, `rgba(214, 177, 106, ${0.08 + energy * 0.16})`);
-  gradient.addColorStop(1, "rgba(5, 7, 17, 1)");
-
-  ctx.fillStyle = gradient;
+  const sky = ctx.createLinearGradient(0, 0, 0, height);
+  sky.addColorStop(0, rgb(colors.top, 1));
+  sky.addColorStop(0.52, "rgba(5, 8, 20, 1)");
+  sky.addColorStop(1, "rgba(2, 4, 10, 1)");
+  ctx.fillStyle = sky;
   ctx.fillRect(0, 0, width, height);
 
-  const orbRadius = 70 + energy * 190 + Math.sin(runtime * 1.3) * 18;
-  ctx.beginPath();
-  ctx.arc(width * 0.5, height * 0.43, orbRadius, 0, Math.PI * 2);
-  ctx.fillStyle = `rgba(238, 244, 255, ${0.04 + energy * 0.12})`;
-  ctx.fill();
+  const lightX = width * (0.32 + progress * 0.36);
+  const lightY = height * (0.36 + Math.sin(progress * Math.PI) * -0.06);
 
-  for (const particle of particles) {
-    const drift = runtime * particle.speed * (0.2 + energy);
-    const x = ((particle.x * width) + Math.sin(drift + particle.phase) * 70) % width;
-    const y = ((particle.y * height) + drift * 42) % height;
-    const alpha = 0.13 + energy * 0.42;
+  const glow = ctx.createRadialGradient(lightX, lightY, 0, lightX, lightY, Math.max(width, height) * 0.62);
+  glow.addColorStop(0, rgb(colors.warm, 0.20 + energy * 0.12));
+  glow.addColorStop(0.28, rgb(colors.center, 0.12 + energy * 0.10));
+  glow.addColorStop(1, "rgba(0,0,0,0)");
+  ctx.fillStyle = glow;
+  ctx.fillRect(0, 0, width, height);
 
+  ctx.save();
+  ctx.globalAlpha = 0.55;
+  ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+
+  for (const star of stars) {
+    const x = ((star.x + runtime * star.drift * 0.01) % 1) * width;
+    const y = star.y * height * 0.72;
+    const twinkle = 0.42 + Math.sin(runtime * 0.45 + star.phase) * 0.22;
+    ctx.globalAlpha = Math.max(0.08, twinkle) * (0.25 + energy * 0.25);
     ctx.beginPath();
-    ctx.arc(x, y, particle.r * (0.7 + energy), 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(238, 244, 255, ${alpha})`;
+    ctx.arc(x, y, star.size, 0, Math.PI * 2);
     ctx.fill();
   }
 
-  const waveY = height * (0.68 - energy * 0.08);
+  ctx.restore();
+
+  ctx.save();
+  ctx.globalCompositeOperation = "screen";
+
+  for (const mote of dust) {
+    const x = ((mote.x + runtime * mote.drift * 0.012) % 1) * width;
+    const y = height * (0.22 + mote.y * 0.58) + Math.sin(runtime * 0.12 + mote.phase) * 22;
+    const radius = mote.size * (0.7 + energy * 0.55);
+    const haze = ctx.createRadialGradient(x, y, 0, x, y, radius);
+    haze.addColorStop(0, rgb(colors.warm, 0.045));
+    haze.addColorStop(1, "rgba(0,0,0,0)");
+    ctx.fillStyle = haze;
+    ctx.beginPath();
+    ctx.arc(x, y, radius, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  ctx.restore();
+
+  const horizon = height * (0.70 - energy * 0.04);
+  const waveAmp = 9 + energy * 18;
+
   ctx.beginPath();
-
-  for (let x = 0; x <= width; x += 14) {
+  ctx.moveTo(0, height);
+  for (let x = 0; x <= width; x += 24) {
     const y =
-      waveY
-      + Math.sin((x * 0.012) + runtime * (1.2 + energy * 3.4)) * (14 + energy * 44)
-      + Math.sin((x * 0.027) - runtime * 1.8) * (6 + energy * 18);
+      horizon
+      + Math.sin((x * 0.005) + runtime * 0.22) * waveAmp
+      + Math.sin((x * 0.014) - runtime * 0.18) * (waveAmp * 0.38);
+    ctx.lineTo(x, y);
+  }
+  ctx.lineTo(width, height);
+  ctx.closePath();
+  ctx.fillStyle = "rgba(0, 0, 0, 0.22)";
+  ctx.fill();
 
+  ctx.beginPath();
+  for (let x = 0; x <= width; x += 18) {
+    const y =
+      horizon
+      + Math.sin((x * 0.006) + runtime * 0.28) * (6 + energy * 10);
     if (x === 0) ctx.moveTo(x, y);
     else ctx.lineTo(x, y);
   }
-
-  ctx.strokeStyle = `rgba(124, 199, 255, ${0.22 + energy * 0.45})`;
-  ctx.lineWidth = 1.5 + energy * 3;
+  ctx.strokeStyle = rgb(colors.center, 0.18 + energy * 0.18);
+  ctx.lineWidth = 1.4;
   ctx.stroke();
 
-  updateDemoAudio(section, time);
+  updateSongAudio(time, section);
 }
 
 function updateUi() {
   const time = getCurrentTime();
   const section = getSection(time);
-  const duration = song.durationSeconds || 96;
+  const duration = song.durationSeconds || 128;
   const progress = Math.min(100, (time / duration) * 100);
 
   titleEl.textContent = song.title;
@@ -242,7 +409,7 @@ function updateUi() {
   playBtn.textContent = isPlaying ? "Pause" : "Play";
   statusLabel.textContent = document.body.classList.contains("clip-mode")
     ? `Clip Mode · ${activeProfile}`
-    : "נכס־שיר חי · HTML + Canvas + Audio";
+    : "שיר חי · מוזיקה מובנית · Canvas רגוע";
 
   if (isPlaying && time >= duration) {
     stopAtEnd();
@@ -251,16 +418,20 @@ function updateUi() {
 
 function stopAtEnd() {
   isPlaying = false;
-  pausedAt = song.durationSeconds || 96;
-  if (gainNode && audioContext) {
-    gainNode.gain.setTargetAtTime(0.0001, audioContext.currentTime, 0.08);
+  pausedAt = song.durationSeconds || 128;
+  if (masterGain && audioContext) {
+    masterGain.gain.setTargetAtTime(0.0001, audioContext.currentTime, 0.12);
   }
 }
 
-function frame() {
-  const time = getCurrentTime();
-  draw(time);
-  updateUi();
+function frame(frameTime) {
+  if (!lastFrameTime || frameTime - lastFrameTime > 40) {
+    const time = getCurrentTime();
+    draw(time);
+    updateUi();
+    lastFrameTime = frameTime;
+  }
+
   requestAnimationFrame(frame);
 }
 
@@ -274,11 +445,13 @@ function togglePlay() {
   if (isPlaying) {
     pausedAt = getCurrentTime();
     isPlaying = false;
+    if (masterGain) masterGain.gain.setTargetAtTime(0.0001, audioContext.currentTime, 0.16);
     return;
   }
 
-  if (pausedAt >= (song.durationSeconds || 96)) {
+  if (pausedAt >= (song.durationSeconds || 128)) {
     pausedAt = 0;
+    scheduledNotes.clear();
   }
 
   startedAt = performance.now() - pausedAt * 1000;
@@ -287,6 +460,7 @@ function togglePlay() {
 
 function replay() {
   ensureAudio();
+  scheduledNotes.clear();
   pausedAt = 0;
   startedAt = performance.now();
   isPlaying = true;

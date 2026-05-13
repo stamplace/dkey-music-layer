@@ -1,19 +1,23 @@
 {
   "lyrics": [
-    { "time": 0.5, "text": "זה לא דף לשיר." },
-    { "time": 6.0, "text": "זה השיר עצמו." },
-    { "time": 14.0, "text": "האור מתחיל קטן," },
-    { "time": 22.0, "text": "נושם מתוך השקט." },
-    { "time": 42.0, "text": "ואז הפזמון נפתח," },
-    { "time": 50.0, "text": "כמו חלון גדול בלילה." },
-    { "time": 70.0, "text": "בסוף הכול נשאר חי —" },
-    { "time": 84.0, "text": "גם אחרי שהשיר נגמר." }
+    { "time": 2.0, "text": "יש רגע קטן" },
+    { "time": 10.0, "text": "שלא מבקש לנצח." },
+    { "time": 20.0, "text": "רק להיות כאן," },
+    { "time": 31.0, "text": "בלי לרוץ לשום מקום." },
+    { "time": 47.0, "text": "אור שקט יורד עליי," },
+    { "time": 59.0, "text": "פותח לי חלון בלב." },
+    { "time": 76.0, "text": "ואני חוזר לאט," },
+    { "time": 87.0, "text": "אל מה שכבר ידעתי." },
+    { "time": 100.0, "text": "גם אם הדרך ארוכה," },
+    { "time": 110.0, "text": "יש נשימה שמחזיקה." },
+    { "time": 120.0, "text": "ובסוף הלילה אומר:" },
+    { "time": 125.0, "text": "הכול עוד חי בתוכי." }
   ],
   "events": [
-    { "time": 0, "type": "scene", "value": "small-light" },
-    { "time": 12, "type": "scene", "value": "inner-room" },
-    { "time": 42, "type": "scene", "value": "wide-light" },
-    { "time": 68, "type": "scene", "value": "quiet-space" },
-    { "time": 82, "type": "scene", "value": "breathing-afterglow" }
+    { "time": 0, "type": "scene", "value": "night-window" },
+    { "time": 18, "type": "scene", "value": "quiet-room" },
+    { "time": 46, "type": "scene", "value": "soft-open-sky" },
+    { "time": 74, "type": "scene", "value": "slow-road" },
+    { "time": 98, "type": "scene", "value": "afterglow" }
   ]
 }
